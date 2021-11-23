@@ -58,9 +58,7 @@ const Navigation = props => {
             tabBarInactiveTintColor: 'gray',
             
             tabBarStyle: { 
-            height: 93,
-            paddingTop: 10,
-            paddingBottom: 25,
+            height: 60,
             backgroundColor: 'white',
             },
             tabBarLabelStyle: {
@@ -75,7 +73,7 @@ const Navigation = props => {
               textTransform: 'uppercase'
             },
             headerStyle: {
-              height: 100,
+             
             }
           })}
         >
