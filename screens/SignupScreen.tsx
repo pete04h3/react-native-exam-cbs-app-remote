@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View,  Text, Image, Button, StyleSheet, TextInput } from 'react-native';
-import CheckBox from 'react-native-check-box';
+
 
 // DISPATCH
 import { useDispatch } from 'react-redux';
