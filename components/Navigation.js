@@ -13,7 +13,9 @@ import { HeaderShownContext } from '@react-navigation/elements';
 import SignupScreen from './../screens/SignupScreen';
 import LoginScreen from './../screens/LoginScreen';
 import { useSelector } from 'react-redux';
+
 import Ionicons from 'react-native-vector-icons/Ionicons';
+// remember this when using fonts!!
 import { useFonts } from 'expo-font';
 
 
@@ -23,6 +25,7 @@ const Navigation = props => {
     const Tab = createBottomTabNavigator();
     const loggedInUser = useSelector(state => state.user.loggedInUser);
 
+    // remember this when using fonts!!
     const [loaded] = useFonts({Teko: require('../assets/fonts/Teko-Medium.ttf'),});
       if (!loaded) {return null;}
 
