@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "KvaliApp",
+    "slug": "KvaliApp",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  },
+  "name": "KvaliApp"
+}
