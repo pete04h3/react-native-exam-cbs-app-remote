@@ -6,13 +6,16 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import ChatStackNavigator from './ChatStackNavigator';
 import HomeScreen from './../screens/HomeScreen';
-import DiscoverScreen from './../screens/DiscoverScreen';
+import EventStackNavigator from './EventStackNavigator';
 import MenuScreen from './../screens/MenuScreen';
 import NotificationScreen from './../screens/NotificationScreen';
 import { HeaderShownContext } from '@react-navigation/elements';
 import SignupScreen from './../screens/SignupScreen';
 import LoginScreen from './../screens/LoginScreen';
 import { useSelector } from 'react-redux';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import { useFonts } from 'expo-font';
+
 
 const Navigation = props => {
     
@@ -20,13 +23,61 @@ const Navigation = props => {
     const Tab = createBottomTabNavigator();
     const loggedInUser = useSelector(state => state.user.loggedInUser);
 
+    const [loaded] = useFonts({Teko: require('../assets/fonts/Teko-Medium.ttf'),});
+      if (!loaded) {return null;}
+
     return (
     <NavigationContainer>
         {loggedInUser !== undefined ? (
         
-        <Tab.Navigator screenOptions={{ headerShown: true }}>
+        <Tab.Navigator screenOptions={({ route }) => ({
+            tabBarIcon: ({ focused, color, size }) => {
+              let iconName;
+  
+              if (route.name === 'HOME') {
+                iconName = focused
+                  ? 'home-outline'
+                  : 'home-outline';
+              } else if (route.name === 'DISCOVEROUTER') {
+                iconName = focused ? 'search-outline' : 'search-outline';
+              } else if (route.name === 'CHATOUTER') {
+                iconName = focused ? 'chatbubble-outline' : 'chatbubble-outline';
+            } else if (route.name === 'NOTIFCATIONS') {
+                iconName = focused ? 'notifications-outline' : 'notifications-outline';
+              }  else if (route.name === 'MENU') {
+                iconName = focused ? 'menu-outline' : 'menu-outline';
+              } 
+  
+              // You can return any component that you like here!
+              return <Ionicons name={iconName} size={size} color={color} />;
+            },
+            tabBarActiveTintColor: '#5050A5',
+            tabBarInactiveTintColor: 'gray',
+            
+            tabBarStyle: { 
+            height: 93,
+            paddingTop: 10,
+            paddingBottom: 25,
+            backgroundColor: 'white',
+            },
+            tabBarLabelStyle: {
+              fontFamily: "Teko",
+              fontSize: 16,
+              textTransform: 'uppercase'
+            },
+            headerTitleStyle: {
+              fontFamily: "Teko",
+              fontSize: 26,
+              color: '#5050A5',
+              textTransform: 'uppercase'
+            },
+            headerStyle: {
+              height: 100,
+            }
+          })}
+        >
         <Tab.Screen name="HOME" component={HomeScreen} />
-        <Tab.Screen name="DISCOVER" component={DiscoverScreen} />
+        <Tab.Screen name="DISCOVEROUTER" component={EventStackNavigator} options={{ title: 'DISCOVER', headerShown: false }} />
         <Tab.Screen name="CHATOUTER" component={ChatStackNavigator} options={{ title: 'CHAT' , headerShown: false }} />
         <Tab.Screen name="NOTIFCATIONS" component={NotificationScreen} />
         <Tab.Screen name="MENU" component={MenuScreen} />

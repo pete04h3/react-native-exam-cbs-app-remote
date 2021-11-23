@@ -5,6 +5,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import ChatReducer from './store/reducers/ChatReducer';
 import UserReducer from './store/reducers/UserReducer';
+import EventReducer from './store/reducers/EventReducer';
 import { Provider } from 'react-redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import ReduxThunk from 'redux-thunk';
@@ -14,6 +15,7 @@ import Navigation from './components/Navigation';
 const rootReducer = combineReducers({
   chat: ChatReducer,
   user: UserReducer,
+  event: EventReducer,
   //posts: PostReducer
 });
 
