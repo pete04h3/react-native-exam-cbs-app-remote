@@ -63,7 +63,7 @@ const SignupScreen = (props: any) => {
 
 
 
-        <View style={styles.headLineWrapper}><Text style={styles.headLine}>Sign up to get access</Text></View>
+        <View style={styles.headLineWrapper}><Text style={styles.headLine}>Sign up to get lasse</Text></View>
         
     <View style={styles.wrapper}>
 
