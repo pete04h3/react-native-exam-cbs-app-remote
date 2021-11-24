@@ -147,8 +147,8 @@ const styles = StyleSheet.create({
 
     imgWrap: {
         width: 133,
-        marginTop: 40,
-        marginBottom: 20,
+        marginTop: 30,
+        marginBottom: 10,
         
     },
 
@@ -188,6 +188,7 @@ const styles = StyleSheet.create({
         width: 300,
         backgroundColor: 'rgba(186, 186, 221, 1)',
         color: 'snow',
+        marginTop: 12,
       },
 
       buttonText: {
@@ -197,6 +198,7 @@ const styles = StyleSheet.create({
         color: 'white',
         textTransform: 'capitalize',
         fontWeight: 'bold',
+        fontSize: 16,
         
         
       },
@@ -229,10 +231,11 @@ const styles = StyleSheet.create({
           alignItems: 'flex-start',
           textAlign: 'left',
           color: '#32305D',
-          fontSize: 20,
+          fontSize: 26,
           fontWeight: 'bold',
-          marginRight: 90,
+          marginRight: 115,
           marginBottom: 20,
+          fontFamily: "Teko",
           
       },
 
@@ -278,6 +281,7 @@ const styles = StyleSheet.create({
         borderStyle: 'solid',
         textDecorationLine: 'none',
         fontSize: 12,
+        marginTop: 5,
       },
 
       termsText: {
@@ -286,6 +290,7 @@ const styles = StyleSheet.create({
           borderStyle: 'solid',
           textDecorationLine: 'underline',
           fontSize: 12,
+          marginTop: 4.5,
           
           
          
