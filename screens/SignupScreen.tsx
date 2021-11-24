@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { View,  Text, Image, Button, StyleSheet, TextInput } from 'react-native';
-
+import { View,  Text, Image, Button, StyleSheet, TextInput, Platform, } from 'react-native';
 
 // DISPATCH
 import { useDispatch } from 'react-redux';
 // SIGNUP ACTION
 import { signup } from '../store/actions/UserActions';
+// TERMS ACTION 
+import { terms } from '../store/actions/UserActions';
 // INPUT COMP
 import Input from './../components/Input';
 // IMAGE COMP
@@ -17,15 +18,19 @@ import LoginScreen from './../screens/LoginScreen';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 
+import { Checkbox } from 'react-native-paper';
+
 
 
 
 const SignupScreen = (props: any) => {
 
     //Checkbox 
-    
+   // const [agree, setAgree] = useState(false);
+   const [checked, setChecked] = useState(false);
 
-  /*   const [checked, setChecked] = useState(true);
+ 
+  /*  const [checked, setChecked] = useState(true);
     React.useEffect(() => {
       console.log('Its works great!!', checked);
     }, [checked]); */
@@ -45,12 +50,50 @@ const SignupScreen = (props: any) => {
         dispatch(signup(changeName, password)); // working
     }
 
-
     const acceptTerms = () => {
-        dispatch(signup(changeName, password)); // not working
+        dispatch(terms(checked, setChecked)); // working
+        console.log(checked, setChecked);
     }
+   // #############################################################
+  // #############################################################  
+  // TESTING CHECKBOX VIEW SWAP // NOT WORKING ENTIRELY BUT ALMOST
 
+  /*  <View style={styles.container}>
+    <View style={styles.checkboxWrapper}>
+    <View style={styles.checkboxContainer}>
+      <View style={styles.checkBoxStyle}>
+        <View style={styles.check}>
+    <Checkbox
+    color="#32305D"
+    uncheckedColor="#32305D"
+    status={checked ? 'checked' : 'unchecked'}
+    onPress={() => { setChecked(!checked)}}
+      /> </View></View></View></View> </View>  
+      if (!checked ){                                   
+      console.log("Terms not accepted!");
+      // RETURN VALID BUTTON 
+      return (
+        <TouchableOpacity onPress={handleSignup}>
+        <View style={styles.button}>
+          <Text style={styles.buttonText}>Get access</Text>
+        </View>
+      </TouchableOpacity>
+      );
+    } else if (checked) {
+      console.log("Terms succesfully accepted!");
+      //  RETURN DISABLED BUTTON
+       return (
+      <TouchableOpacity onPress={handleSignup}>
+    <View style={styles.buttonValid}>
+      <Text style={styles.buttonText}>Get access</Text>
+    </View>
+  </TouchableOpacity>
+  );
+    }  */
    
+  // #############################################################
+  // #############################################################  
+
 // RETURN SIGNUP VIEW 
 
     return (
@@ -92,27 +135,63 @@ const SignupScreen = (props: any) => {
             onValid={ (valid: any) => setNameValid(valid)}
             setContent={ (content: any) => onChangeConfirmPassword(content)}/>
         </View>
+        
 
-        <View style={styles.checkboxWrapper}>
-        <View style={styles.checkboxContainer}>
-        <View style={styles.checkBoxStyle}>
-        <View>
+<View style={styles.checkboxWrapper}>
+    <View style={styles.checkboxContainer}>
+      <View style={styles.checkBoxStyle}>
+        <View style={styles.check}>
+        
+        <Checkbox
+        color="#32305D"
+        uncheckedColor="#32305D"
+        status={checked ? 'checked' : 'unchecked'}
+        onPress={() => { setChecked(!checked)
 
-      </View>
-        </View>
-        <Text style={styles.termsLabel} > I agree to the </Text>
-        <TouchableOpacity onPress={acceptTerms}><Text style={styles.termsText}>terms and conditions</Text>
-        </TouchableOpacity>
-      </View>
-      </View>
-
-    </View>
-
-        <TouchableOpacity onPress={handleSignup}>
+          if (!checked ){      // NOT WORKING ENTIRELY                              
+            console.log("Terms successfully accepted!");
+            // RETURN VALID BUTTON 
+           /*  return (
+              <TouchableOpacity onPress={handleSignup}>       
+              <View style={styles.buttonValid}>
+                <Text style={styles.buttonText}>Get access</Text>
+              </View>
+            </TouchableOpacity>
+            ); */
+          } else  {
+            console.log("Terms not accepted!");
+            //  RETURN DISABLED BUTTON
+        /*     return (
+            <TouchableOpacity onPress={handleSignup}>
           <View style={styles.button}>
             <Text style={styles.buttonText}>Get access</Text>
           </View>
+        </TouchableOpacity> 
+          ); */
+        }
+        
+           
+      }}
+          />
+      
+       </View>
+      </View>
+        <Text style={styles.termsLabel} > I agree to the </Text>
+        <TouchableOpacity onPress={acceptTerms}><Text style={styles.termsText}>terms and conditions</Text>
         </TouchableOpacity>
+    </View>
+</View>
+
+    </View>
+
+   
+    <TouchableOpacity onPress={handleSignup}>
+          <View style={styles.button}>
+            <Text style={styles.buttonText}>Get access</Text>
+          </View>
+      </TouchableOpacity>
+
+        
 
         <View style={styles.accountButton}>
            <Text style={styles.accountText}>Already have a user?</Text>
@@ -143,6 +222,28 @@ const styles = StyleSheet.create({
          alignItems: 'center',
          backgroundColor: 'white',    
 
+    },
+
+    check: {                            // THIS IS THE ACTUAL CHECKBOX NBS!
+      backgroundColor: 'transparent',
+      borderColor: '#32305D',
+      borderWidth: 2,
+      borderRadius: 5,
+      width: 27,
+      height: 27,
+      marginTop: 5,
+      marginRight: 0,
+    },
+
+    checkboxwrapper: {
+      display: 'flex',
+      flexDirection: 'row',
+      alignContent: 'center',
+      paddingVertical: 15,
+    },
+    text: {
+      lineHeight: 30,
+      marginLeft: 10,
     },
 
     imgWrap: {
@@ -188,7 +289,27 @@ const styles = StyleSheet.create({
         width: 300,
         backgroundColor: 'rgba(186, 186, 221, 1)',
         color: 'snow',
-        marginTop: 12,
+        marginTop: 25,
+        shadowColor: "#000",
+        shadowOffset: {
+	        width: 0,
+	        height: 2,
+            },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+      },
+
+      buttonValid: {
+        alignItems: 'flex-start',
+        justifyContent: 'flex-start',
+        paddingVertical: 12,
+        paddingHorizontal: 4,
+        borderRadius: 4,
+        elevation: 3,
+        width: 300,
+        backgroundColor: '#5050A5',
+        color: 'snow',
+        marginTop: 25,
         shadowColor: "#000",
         shadowOffset: {
 	        width: 0,
@@ -213,7 +334,8 @@ const styles = StyleSheet.create({
       accountButton: {
           flexDirection: 'row',
           justifyContent: 'space-around',
-          margin: 15,
+          margin: 10,
+          marginBottom: 20,
           paddingVertical: 12,
           
 
@@ -255,31 +377,36 @@ const styles = StyleSheet.create({
       checkboxContainer: {
         flexDirection: "row",
         marginBottom: 20,
+        marginLeft: 3,
        
       },
 
 
       checkboxWrapper: {
-          alignItems: 'center',
-          justifyContent: 'center',
+          alignItems: 'flex-start',
+          justifyContent: 'flex-start',
           marginTop: 15,
 
       },
 
       checkbox: {
         marginBottom: 16,
-        alignSelf: 'center',
+        alignSelf: 'flex-start',
+        justifyContent: 'flex-start',
         borderWidth: 2,
         borderColor: '#32305D',
         borderRadius: 5,
         width: 17,
         height: 17,
-        marginRight: 4,
+        marginRight: 5,
       },
 
       checkBoxStyle: {
         flexDirection: "row",
         marginBottom: 20,
+        marginRight: 10,
+        justifyContent: 'flex-start',
+        alignContent: 'flex-start',
       },
 
       termsLabel: {
@@ -288,7 +415,7 @@ const styles = StyleSheet.create({
         borderStyle: 'solid',
         textDecorationLine: 'none',
         fontSize: 12,
-        marginTop: 5,
+        marginTop: 12,
       },
 
       termsText: {
@@ -297,7 +424,7 @@ const styles = StyleSheet.create({
           borderStyle: 'solid',
           textDecorationLine: 'underline',
           fontSize: 12,
-          marginTop: 4.5,
+          marginTop: 11.5,
           
           
          
