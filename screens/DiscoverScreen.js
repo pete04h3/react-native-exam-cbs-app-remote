@@ -142,7 +142,8 @@ const [fullData, setFullData] = useState([]);
         </Text>     
     </TouchableOpacity> */}
 
-
+      
+  {/* // WORKING SEARCH FLATLIST UNCOMMENT TO SEE */}
 
     <Text style={styles.text}>Search events</Text>
     <FlatList
@@ -162,7 +163,8 @@ const [fullData, setFullData] = useState([]);
           </View>
         </View>
       )}
-    />
+    /> 
+
   </View>
 
  );

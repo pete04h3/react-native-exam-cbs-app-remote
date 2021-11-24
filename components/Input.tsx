@@ -1,8 +1,11 @@
 import React from 'react';
 import { useState } from 'react';
 import { View, Text, Button, StyleSheet, TextInput } from 'react-native';
+import InformationIcon from './InfoIcon';
 
 interface Props {
+    secure: boolean,
+    placeholder: string;
     label: string;
     text: string;
     error: string;
@@ -11,7 +14,7 @@ interface Props {
     setContent: (arg: string) => void; 
 }
 
-const Input = ( {label='My default value', text, error, nameValid, onValid, setContent} : Props)  => {
+const Input = ( {placeholder, secure, label='My default value', text, error, nameValid, onValid, setContent} : Props)  => {
     const [touched, setTouched] = useState(false);
 
     const handleNewInput = (enteredText: string) => {
@@ -27,21 +30,35 @@ const Input = ( {label='My default value', text, error, nameValid, onValid, setC
    return (
       <View>
           <Text style={styles.placeHolder}>{label}</Text>
-          <TextInput style={styles.textInput}  value={text} 
+          <TextInput style={styles.textInput} 
+            value={text} 
+            placeholder={placeholder}
+            secureTextEntry={secure}
             onChangeText={handleNewInput}
             onBlur={() => setTouched(true)}></TextInput>
             {!nameValid && touched && <Text style={styles.errorMsg}  >{error}</Text>}
+            <InformationIcon />
       </View>
+      
+         
+     
+      
    );
     } else {
     return (
        <View>
+           
           <Text style={styles.placeHolder}>{label}</Text>
-                <TextInput style={styles.textInput}  value={text} 
+                <TextInput style={styles.textInput} 
+                  value={text} 
+                  placeholder={placeholder}
+                  secureTextEntry={secure}
                   onChangeText={handleNewInput}
                   onBlur={() => setTouched(false)}></TextInput>
                   {!nameValid && touched && <Text style={styles.errorMsg}  >{error}</Text>}
-        </View>
+                 
+        </View>     
+        
          );
 
 
@@ -49,6 +66,9 @@ const Input = ( {label='My default value', text, error, nameValid, onValid, setC
 }
 
 const styles = StyleSheet.create({
+
+  
+
     textInput : {
         borderWidth: 1,
         padding: 10,
@@ -61,6 +81,14 @@ const styles = StyleSheet.create({
         margin: 12,
         marginTop: 1,
     },
+
+    wrapperInline: {
+        flexDirection: 'row',
+    },
+
+    infoIcon: {
+        flexDirection: 'row',
+      },
 
     placeHolder : {
         margin: 12,

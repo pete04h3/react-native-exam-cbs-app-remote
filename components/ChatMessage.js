@@ -20,7 +20,7 @@ const ChatMessage = props => {
 
     let name;
     if (!isMe){
-        name = 'From ' + props.chatmessage.user.firstname + ' ' + props.chatmessage.user.lastname;
+        name = 'From ' + props.chatmessage.user.firstname + 'John Doe ' + props.chatmessage.user.lastname + 'sent at';
     }
     // console.log("----------------: " + props.img);
     // only display the image if this message is not written by me.
@@ -33,7 +33,7 @@ const ChatMessage = props => {
 
     return (
         <View style={styles.outerContainer}>
-            <View style={[styles.container, isMe ? styles.reverseContainer : '']}>
+            <View style={[styles.reverseContainer, isMe ? styles.container : '']}>
                 {image}
                 <View style={[styles.messageView, isMe ? styles.messageViewFromMe : '']}>
                     <Text style={[styles.message, isMe ? styles.messageFromMe : '']}>
@@ -50,26 +50,33 @@ const ChatMessage = props => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        flexDirection: 'row',
+        flexDirection: 'row', // maybe remove
         paddingTop: 10,
  },
  timeContainer: {
     flex: 1,
     flexDirection: 'row',
     paddingTop: 3,
+    marginLeft: 56,
+    marginBottom: 12,
 },
  reverseContainer: {
      flexDirection: 'row-reverse',
  },
  message: {
-    color: '#333333'
+    color: '#333333',
+    
  },
  messageFromMe: {
     color: 'white',
     
+    
  },
  messageView: {
-     backgroundColor: '#EEEEEE',
+    backgroundColor: '#EEEEEE',
+    width: 200,
+    height: 70,
+    marginRight: 12,
     borderTopLeftRadius: 15,
     borderTopRightRadius: 15,
     borderBottomLeftRadius: 5,
@@ -79,7 +86,9 @@ const styles = StyleSheet.create({
  messageViewFromMe: {
      backgroundColor: '#5050A5',
      right: 0,
-     marginRight: 5
+     marginRight: 5,
+     
+    
  },
  tinyLogo: {
      marginTop: -5

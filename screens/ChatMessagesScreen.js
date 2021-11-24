@@ -56,10 +56,16 @@ const ChatMessagesScreen = props => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
+        
     },
     messages: {
-        flex: 1
+        flex: 1,
+       /*  justifyContent: 'flex-end',
+        alignItems: 'flex-end', */
+        
+
+        
     },
     textInput: {
         flex: 1,

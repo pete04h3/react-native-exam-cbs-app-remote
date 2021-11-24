@@ -19,6 +19,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 
 
 import { Checkbox } from 'react-native-paper';
+import InformationIcon from '../components/InfoIcon';
 
 
 
@@ -33,19 +34,22 @@ const SignupScreen = (props: any) => {
       // add css to signup button (opacity some thing)
     }, [checked]); 
 
-     // useState  
+     // useState 
     const [changeName, setChangeName] = useState(''); // lift up
     const [nameValid, setNameValid] = useState(false); // lift up - pass through props instead
-   
+  
     //const [email, onChangeEmail] = useState("");
-    const [password, onChangePassword] = useState("");
-    const [confirmPassword, onChangeConfirmPassword] = useState("");
+    const [changePassword, setChangePassword] = useState("");
+    const [passwordValid, setPasswordValid] = useState(false);
+
+    const [confirmPassword, setConfirmPassword] = useState("");
+    const [confirmPasswordValid, setConfirmPasswordValid] = useState(false);
 
     // dispatch
     const dispatch = useDispatch();
 
     const handleSignup = () => {
-        dispatch(signup(changeName, password)); // working
+        dispatch(signup(changeName, changePassword)); // working
     }
 
     const acceptTerms = () => {
@@ -110,7 +114,10 @@ const SignupScreen = (props: any) => {
 
         
         <View style={styles.wrapperInline}>
+        
         <Input
+            secure={false}
+            placeholder='sije19ab@student.cbs.dk'
             label="E-mail"
             error="Please fill out your username"
             text={changeName} nameValid={nameValid}
@@ -118,20 +125,24 @@ const SignupScreen = (props: any) => {
             setContent={ (content: any) => setChangeName(content)}/>
         </View>
         <View style={styles.wrapperInline}>
-        <Input
+        <Input 
+            secure={true}
+            placeholder="********"
             label="Password"
             error="Please fill out your password"
-            text={password} nameValid={nameValid}
-            onValid={ (valid: any) => setNameValid(valid)}
-            setContent={ (content: any) => onChangePassword(content)}/>
+            text={changePassword} nameValid={passwordValid}
+            onValid={ (valid: any) => setPasswordValid(valid)}
+            setContent={ (content: any) => setChangePassword(content)}/>
         </View>
         <View style={styles.wrapperInline}>
          <Input
+            secure={true}
+            placeholder="********"
             label="Repeat Password"
             error="Password dosn't match"
-            text={confirmPassword} nameValid={nameValid}
-            onValid={ (valid: any) => setNameValid(valid)}
-            setContent={ (content: any) => onChangeConfirmPassword(content)}/>
+            text={confirmPassword} nameValid={confirmPasswordValid}
+            onValid={ (valid: any) => setConfirmPasswordValid(valid)}
+            setContent={ (content: any) => setConfirmPassword(content)}/>
         </View>
         
 
@@ -223,6 +234,10 @@ const styles = StyleSheet.create({
 
     },
 
+    infoIcon: {
+      flexDirection: 'row',
+    },
+
     check: {                            // THIS IS THE ACTUAL CHECKBOX NBS!
       backgroundColor: 'transparent',
       borderColor: '#32305D',
@@ -275,6 +290,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         shadowColor: '#AAAAAA29',
         width: 300,
+        
         
     },
 
