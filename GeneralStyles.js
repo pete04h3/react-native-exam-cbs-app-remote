@@ -35,7 +35,7 @@ export default defaultStyles = StyleSheet.create({
         margin: 12,
         borderWidth: 1,
         padding: 10,
-        width: 200
+        width: 200,
 
     }
 });
