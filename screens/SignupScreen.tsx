@@ -26,14 +26,12 @@ import { Checkbox } from 'react-native-paper';
 const SignupScreen = (props: any) => {
 
     //Checkbox 
-   // const [agree, setAgree] = useState(false);
    const [checked, setChecked] = useState(false);
-
  
-  /*  const [checked, setChecked] = useState(true);
-    React.useEffect(() => {
-      console.log('Its works great!!', checked);
-    }, [checked]); */
+   React.useEffect(() => {
+      console.log('Checkbox set to', checked);
+      // add css to signup button (opacity some thing)
+    }, [checked]); 
 
      // useState  
     const [changeName, setChangeName] = useState(''); // lift up
@@ -107,7 +105,7 @@ const SignupScreen = (props: any) => {
 
 
         <View style={styles.headLineWrapper}><Text style={styles.headLine}>Sign up to get access</Text></View>
-        
+      
     <View style={styles.wrapper}>
 
         
@@ -146,28 +144,29 @@ const SignupScreen = (props: any) => {
         color="#32305D"
         uncheckedColor="#32305D"
         status={checked ? 'checked' : 'unchecked'}
-        onPress={() => { setChecked(!checked)
-
-          if (!checked ){      // NOT WORKING ENTIRELY                              
+        onPress={() => {  setChecked(!checked) 
+                          
+          if (!checked ){                               
             console.log("Terms successfully accepted!");
             // RETURN VALID BUTTON 
-           /*  return (
+            
+            /*  return (
               <TouchableOpacity onPress={handleSignup}>       
               <View style={styles.buttonValid}>
                 <Text style={styles.buttonText}>Get access</Text>
               </View>
             </TouchableOpacity>
-            ); */
+            );  */
           } else  {
             console.log("Terms not accepted!");
             //  RETURN DISABLED BUTTON
-        /*     return (
+         /*     return (
             <TouchableOpacity onPress={handleSignup}>
           <View style={styles.button}>
             <Text style={styles.buttonText}>Get access</Text>
           </View>
         </TouchableOpacity> 
-          ); */
+          );  */
         }
         
            
@@ -185,8 +184,8 @@ const SignupScreen = (props: any) => {
     </View>
 
    
-    <TouchableOpacity onPress={handleSignup}>
-          <View style={styles.button}>
+    <TouchableOpacity disabled={!checked} onPress={handleSignup}>
+          <View style={styles.buttonValid}>
             <Text style={styles.buttonText}>Get access</Text>
           </View>
       </TouchableOpacity>
