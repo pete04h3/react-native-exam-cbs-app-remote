@@ -3,14 +3,14 @@ import {
   StyleSheet,
   Text,
   View,
-  FlatList,
+  FlatList,                          // needs to be here for the search filtering
   Button,
   TextInput,
   TouchableOpacity,
-  ActivityIndicator,
+  ActivityIndicator,                 // needs to be here for the search filtering
   Image
 } from 'react-native';
-import filter from 'lodash.filter';
+import filter from 'lodash.filter';  // needs to be here for the search filtering
 
 
 
@@ -18,9 +18,10 @@ import filter from 'lodash.filter';
 
 const DiscoverScreen = props => {
 
-const API_ENDPOINT = `https://randomuser.me/api/?seed=1&page=1&results=20`; // change to events api
+const API_ENDPOINT = `https://randomuser.me/api/?seed=1&page=1&results=20`; // change to our firebase api
 
-// state variables defined
+// GENERAL CONSTS FOR useState
+// state variables defined for search
 const [isLoading, setIsLoading] = useState(false);
 const [data, setData] = useState([]);
 const [error, setError] = useState(null);
@@ -33,7 +34,7 @@ const [fullData, setFullData] = useState([]);
   useEffect(() => {
     setIsLoading(true);
   
-    fetch(API_ENDPOINT)
+    fetch(API_ENDPOINT)  // remember to change const API_ENDPOINT above
       .then(response => response.json())
       .then(response => {
         setData(response.results);
@@ -48,6 +49,8 @@ const [fullData, setFullData] = useState([]);
         setError(err);
       });
   }, []);
+
+   // handleSearch to filter the Data
 
   const handleSearch = text => {
     const formattedQuery = text.toLowerCase();
