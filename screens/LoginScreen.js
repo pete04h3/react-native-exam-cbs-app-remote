@@ -6,8 +6,10 @@ import * as SecureStore from 'expo-secure-store';
 
 // IMAGE COMP
 import ImagesExample from './../components/ImageExample'
+import InformationIcon from '../components/InfoIcon';
 // BUTTONS 
 import { TouchableOpacity } from 'react-native-gesture-handler';
+
 
 const LoginScreen = (props) => {
     const [email, onChangeEmail] = useState("");
@@ -74,14 +76,17 @@ const LoginScreen = (props) => {
 
       <View style={styles.wrapper}>
 
-        <View style={styles.wrapperInline}>
+      <View style={styles.wrapperInline}>
           <Text style={styles.placeHolder}>Email</Text>
-          <TextInput label="Email" style={styles.textInput} keyboardType="email-address" onChangeText={onChangeEmail} value={email} />
+          <View style={styles.infoIcon}>
+          <TextInput placeholder="sije19ab@cbs.student.dk" label="Email" style={styles.textInput} keyboardType="email-address" onChangeText={onChangeEmail} value={email} />
+          <InformationIcon />
           </View>
+      </View>
 
           <View style={styles.wrapperInline}>
           <Text style={styles.placeHolder}>Password</Text>
-          <TextInput label="Password" style={styles.textInput} secureTextEntry={true} onChangeText={onChangePassword} value={password} />
+          <TextInput placeholder="********" label="Password" style={styles.textInput} secureTextEntry={true} onChangeText={onChangePassword} value={password} />
           </View>
 
        
@@ -129,6 +134,10 @@ const styles = StyleSheet.create({
 
   },
 
+  infoIcon: {
+    flexDirection: 'row',
+  },
+
   imgWrap: {
       width: 133,
       marginTop: 40,
@@ -171,6 +180,14 @@ const styles = StyleSheet.create({
       width: 300,
       backgroundColor: '#5050A5',
       color: 'snow',
+      shadowColor: "#000",
+      shadowOffset: {
+        width: 0,
+        height: 2,
+          },
+      shadowOpacity: 0.25,
+      shadowRadius: 3.84,
+      elevation: 5,
     },
 
     buttonText: {
@@ -180,6 +197,7 @@ const styles = StyleSheet.create({
       color: 'white',
       textTransform: 'capitalize',
       fontWeight: 'bold',
+      fontSize: 16,
       
       
     },
@@ -212,10 +230,11 @@ const styles = StyleSheet.create({
         alignItems: 'flex-start',
         textAlign: 'left',
         color: '#32305D',
-        fontSize: 20,
+        fontSize: 26,
         fontWeight: 'bold',
         marginRight: 240,
         marginBottom: 20,
+        fontFamily: "Teko",
         
     },
 

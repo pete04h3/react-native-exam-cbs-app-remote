@@ -59,8 +59,6 @@ const Navigation = props => {
             
             tabBarStyle: { 
             height: 60,
-            
-           
             backgroundColor: 'white',
             },
             tabBarLabelStyle: {

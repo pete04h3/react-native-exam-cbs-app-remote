@@ -1,6 +1,7 @@
 import User from "../../models/User";
 
 export const SIGNUP = 'SIGNUP';
+export const TERMS = "TERMS";
 export const LOGIN = 'LOGIN';
 export const LOGOUT = 'LOGOUT';
 export const REFRESH_TOKEN = 'REFRESH_TOKEN';
@@ -13,6 +14,13 @@ const api_key = 'AIzaSyCbs8r_RDoaoPymB2IUukOxQUkm5nV9YtI'; // PETERS API_KEY
 export const restoreUser = (user, token) => {
     return {type: LOGIN, payload: { user, token } };
 }
+
+// NOT SURE IF TERMS IS WORKING
+export const terms = (checked, setChecked) => {   
+    
+    console.log(checked, setChecked)
+    return {type: TERMS };
+};
 
 export const logout = () => {
     SecureStore.setItemAsync('userToken', "");
