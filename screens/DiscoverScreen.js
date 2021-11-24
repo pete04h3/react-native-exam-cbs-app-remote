@@ -125,15 +125,15 @@ const [fullData, setFullData] = useState([]);
     
 {/*  UNCOMMENT THIS TO GET ALL THREE BUTTONS
 
-    <TouchableOpacity title="All Student organisations" style={styles.button2} onPress={() => props.navigation.navigate("Events")}>
-    <Image style={styles.image} source={require("./../assets/IMG_7066.png")}/>
+    <TouchableOpacity title="All Student organisations" style={styles.button2} onPress={() => props.navigation.navigate("Organisations")}>
+    <Image style={styles.image} source={require("./../assets/IMG_8080.png")}/>
     <Text style={styles.eventTouchText}>
           ALL STUDENT ORGANISATIONS
         </Text>     
     </TouchableOpacity> */}
 
- {/*    <TouchableOpacity title="All Posts" style={styles.button3} onPress={() => props.navigation.navigate("Events")}>
-    <Image style={styles.image} source={require("./../assets/IMG_7066.png")}/>
+ {/*    <TouchableOpacity title="All Posts" style={styles.button3} onPress={() => props.navigation.navigate("Posts")}>
+    <Image style={styles.image} source={require("./../assets/IMG_9090.png")}/>
     <Text style={styles.eventTouchText}>
         ALL POSTS
         </Text>     
@@ -145,16 +145,16 @@ const [fullData, setFullData] = useState([]);
     <FlatList
       ListHeaderComponent={renderHeader}
       data={data}
-      keyExtractor={item => item.first}
+      keyExtractor={item => item.first}  
       renderItem={({ item }) => (
         <View style={styles.listItem}>
           <Image
-            source={{ uri: item.picture.thumbnail }}
+            source={{ uri: item.picture.thumbnail }} // change to match firebase db
             style={styles.coverImage}
           />
           <View style={styles.metaInfo}>
-            <Text style={styles.title}>{`${item.name.first} ${
-              item.name.last
+            <Text style={styles.title}>{`${item.name.first} ${    // change to match firebase db
+              item.name.last                               // change to match firebase db
             }`}</Text>
           </View>
         </View>
