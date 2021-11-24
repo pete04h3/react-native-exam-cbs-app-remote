@@ -189,6 +189,13 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(186, 186, 221, 1)',
         color: 'snow',
         marginTop: 12,
+        shadowColor: "#000",
+        shadowOffset: {
+	        width: 0,
+	        height: 2,
+            },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
       },
 
       buttonText: {

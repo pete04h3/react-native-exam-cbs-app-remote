@@ -180,6 +180,14 @@ const styles = StyleSheet.create({
       width: 300,
       backgroundColor: '#5050A5',
       color: 'snow',
+      shadowColor: "#000",
+      shadowOffset: {
+        width: 0,
+        height: 2,
+          },
+      shadowOpacity: 0.25,
+      shadowRadius: 3.84,
+      elevation: 5,
     },
 
     buttonText: {
