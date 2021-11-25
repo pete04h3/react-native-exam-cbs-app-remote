@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { View, Text, Button, StyleSheet, Image } from 'react-native';
-import { useSelector } from 'react-redux';
+
 
 const ChatMessage = props => {
     //props.chatmessage
