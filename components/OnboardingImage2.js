@@ -3,11 +3,12 @@ import { Image } from 'react-native'
 
 const OnboardingImage2 = () => (
    <Image style={{
-      width: 200, 
-      height: 130,
+      width: 272, 
+      height: 427,
       alignItems: 'center',
       justifyContent: 'center',
-      marginRight: 20,
+      marginTop: 52,
+      margin: 12,
       
       
    
@@ -16,7 +17,7 @@ const OnboardingImage2 = () => (
    
    
    
-   }} source = {require('../assets/events@3x@3x1.png')} />
+   }} source = {require('./../assets/onboardingimg2.png')} />
 )
 
 

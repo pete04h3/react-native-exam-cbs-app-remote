@@ -22,7 +22,7 @@ const OnboardingScreen2 = props => {
  return (
     <View style={styles.container}>
 
-<View style={styles.imgWrap}>
+      <View style={styles.imgWrap}>
         <OnboardingImage2 />
         </View>
 
@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
       alignItems: 'center',
       backgroundColor: 'white', 
-      marginTop: 200,
+      marginTop: 272,
       
 
 
@@ -84,18 +84,20 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         textAlign: 'center',
         color: '#707070',
-        fontSize: 26,
+        fontSize: 16,
         fontWeight: 'normal',
         marginRight: 0,
         width: 300,
         marginTop: 10,
-        fontFamily: "Teko",
+        marginBottom: 30
+       
 
     
     },
 
     imgWrap: {
-        width: 200,
+        width: 300,
+        height: 200,
         marginTop: 0,
         marginBottom: 0,
         
@@ -128,13 +130,14 @@ const styles = StyleSheet.create({
     },
 
     button: {
-        alignItems: 'center',
-        justifyContent: 'center',
+        alignItems: 'flex-start',
+        justifyContent: 'flex-start',
         paddingVertical: 12,
         paddingHorizontal: 4,
         borderRadius: 4,
         elevation: 3,
-        width: 300,
+        width: 337,
+        height: 61,
         marginTop: 0,
         backgroundColor: 'rgba(80, 80, 165, 1)',
         color: 'snow',
