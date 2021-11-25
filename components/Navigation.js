@@ -16,6 +16,7 @@ import LoginScreen from './../screens/LoginScreen';
 import OnboardingScreen1 from '../screens/onBoardingScreen1';
 import OnboardingScreen2 from '../screens/onBoardingScreen2';
 import OnboardingScreen3 from '../screens/onBoardingScreen3';
+import OnboardingScreen4 from '../screens/onBoardingScreen4';
 
 // USESELECTOR
 import { useSelector } from 'react-redux';
@@ -102,6 +103,7 @@ const Navigation = props => {
             <Stack.Screen name="ONBOARDINGSCREEN1" component={OnboardingScreen1} options={{ headerShown: false }} />
             <Stack.Screen name="ONBOARDINGSCREEN2" component={OnboardingScreen2} options={{ headerShown: false }} />
             <Stack.Screen name="ONBOARDINGSCREEN3" component={OnboardingScreen3} options={{ headerShown: false }} />
+            <Stack.Screen name="ONBOARDINGSCREEN4" component={OnboardingScreen4} options={{ headerShown: false }} />
             <Stack.Screen name="SIGNUP" component={SignupScreen} />
             <Stack.Screen name="LOGIN" component={LoginScreen} />
         </Stack.Navigator>

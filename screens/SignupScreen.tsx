@@ -19,17 +19,32 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 
 // CHECKBOX
 import { Checkbox } from 'react-native-paper';
+import { RadioButton } from 'react-native-paper';
+
 
 // INFO ICON
 import InformationIcon from '../components/InfoIcon';
+import RadioButtons from '../components/MyCheckBox';
 
 
 
 
 const SignupScreen = (props: any) => {
 
+ 
+    const [checked, setChecked] = useState('false');
+  
+    React.useEffect(() => {
+      console.log('Checkbox set to', checked);
+      // add css to signup button (opacity some thing)
+    }, [checked]);
+    
+    const handleRadio = () => {
+      setChecked(!checked as any)
+    }
+
     //Checkbox 
-   const [checked, setChecked] = useState(false);
+ /*   const [checked, setChecked] = useState(false);
  
    React.useEffect(() => {
       console.log('Checkbox set to', checked);
@@ -38,7 +53,7 @@ const SignupScreen = (props: any) => {
     
     const handleTerms = () => {
       setChecked(!checked)
-    }
+    } */
 
      // useState 
     const [changeName, setChangeName] = useState(''); // lift up
@@ -116,16 +131,28 @@ const SignupScreen = (props: any) => {
 <View style={styles.checkboxWrapper}>
     <View style={styles.checkboxContainer}>
       <View style={styles.checkBoxStyle}>
-        <View style={styles.check}>
+        
+      {/*   <View style={styles.check}>
         
         <Checkbox
         color="#32305D"
         uncheckedColor="#32305D"
         status={checked ? 'checked' : 'unchecked'}
         onPress={() => handleTerms()}
-          />
+          /> 
       
-       </View>
+       </View> */}
+
+       <View style={styles.radioButtonWrapper}>
+      <RadioButton
+        value="false"
+        color="#32305D"
+        uncheckedColor="#32305D"
+        status={checked ? 'checked' : 'unchecked'}
+        onPress={() => handleRadio()}
+
+      />
+      </View>
       </View>
         <Text style={styles.termsLabel} > I agree to the </Text>
         <TouchableOpacity onPress={acceptTerms}><Text style={styles.termsText}>terms and conditions</Text>
@@ -174,6 +201,14 @@ const styles = StyleSheet.create({
          backgroundColor: 'white',    
 
     },
+
+    radioButtonWrapper: {
+      borderWidth: 1,
+      borderColor: 'darkblue',
+      borderRadius: 5,
+
+      
+  },
 
     infoIcon: {
       flexDirection: 'row',

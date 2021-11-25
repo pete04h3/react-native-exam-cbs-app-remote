@@ -6,8 +6,15 @@ import { useDispatch } from 'react-redux';
 import OnboardingImage2 from '../components/OnboardingImage2';
 // BUTTONS 
 import { TouchableOpacity } from 'react-native-gesture-handler';
+// RADIO BUTTONS
+import MyCheckBox from '../components/MyCheckBox';
+
 
 const OnboardingScreen2 = props => {
+
+  // radio buttons 
+
+
 
        // dispatch
        const dispatch = useDispatch();
@@ -31,9 +38,14 @@ const OnboardingScreen2 = props => {
         <Text style={styles.inLine} >Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna</Text>
         </View>
 
-        
-
-
+      <View style={styles.circleWrap}> 
+       <View style={styles.outerCircle1}>
+       </View>
+       <View style={styles.outerCircle2}>
+       </View>
+       <View style={styles.outerCircle3}>
+       </View>
+       </View>  
        
 
         <TouchableOpacity onPress={ () => props.navigation.navigate('ONBOARDINGSCREEN3') }>
@@ -66,6 +78,46 @@ const styles = StyleSheet.create({
    
 
     },
+
+    circleWrap: {
+      flexDirection: 'row',
+      marginBottom: 5,
+      
+    },  
+
+    outerCircle1: {
+      width: 12,
+      height: 12,
+      borderWidth: 1,
+      borderRadius: 100,
+      borderColor: 'grey',
+      backgroundColor: '#5050A5',
+      marginRight: 10,
+      
+        },
+    outerCircle2: {
+          width: 12,
+          height: 12,
+          borderWidth: 1,
+          borderRadius: 100,
+          borderColor: 'grey',
+          backgroundColor: '#5050A5',
+          opacity: 0.10,
+          marginRight: 10,
+
+            },
+            outerCircle3: {
+              width: 12,
+              height: 12,
+              borderWidth: 1,
+              borderRadius: 100,
+              borderColor: 'grey',
+              backgroundColor: '#5050A5',
+              opacity: 0.10,
+              marginRight: 10,
+
+                },
+
 
     containerWrap: {
       flex: 1,
@@ -138,7 +190,7 @@ const styles = StyleSheet.create({
         elevation: 3,
         width: 337,
         height: 61,
-        marginTop: 0,
+        marginTop: 10,
         backgroundColor: 'rgba(80, 80, 165, 1)',
         color: 'snow',
         shadowColor: "#000",

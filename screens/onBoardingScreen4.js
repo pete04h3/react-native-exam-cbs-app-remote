@@ -3,14 +3,14 @@ import { View, Text, Button, StyleSheet } from 'react-native';
 // DISPATCH
 import { useDispatch } from 'react-redux';
 // IMAGE
-import OnboardingImage3 from '../components/OnboardingImage3';
+import OnboardingImage4 from '../components/OnboardingImage4';
 // BUTTONS 
 import { TouchableOpacity } from 'react-native-gesture-handler';
 // RADIO BUTTONS
 import MyCheckBox from '../components/MyCheckBox';
 
 
-const OnboardingScreen3 = props => {
+const OnboardingScreen4 = props => {
 
   // radio buttons 
 
@@ -30,7 +30,7 @@ const OnboardingScreen3 = props => {
     <View style={styles.container}>
 
       <View style={styles.imgWrap}>
-        <OnboardingImage3 />
+        <OnboardingImage4 />
         </View>
 
       <View style={styles.containerWrap}>
@@ -48,7 +48,7 @@ const OnboardingScreen3 = props => {
        </View>  
        
 
-        <TouchableOpacity onPress={ () => props.navigation.navigate('ONBOARDINGSCREEN4') }>
+        <TouchableOpacity onPress={ () => props.navigation.navigate('SIGNUP') }>
           <View style={styles.button}>
             <Text style={styles.buttonText}>Next</Text>
           </View>
@@ -105,6 +105,8 @@ const styles = StyleSheet.create({
           borderColor: 'grey',
           backgroundColor: '#5050A5',
           marginRight: 10,
+          opacity: 0.10,
+
 
             },
             outerCircle3: {
@@ -114,7 +116,6 @@ const styles = StyleSheet.create({
               borderRadius: 100,
               borderColor: 'grey',
               backgroundColor: '#5050A5',
-              opacity: 0.10,
               marginRight: 10,
 
                 },
@@ -326,4 +327,4 @@ const styles = StyleSheet.create({
     
  });
 
-export default OnboardingScreen3;
+export default OnboardingScreen4;
