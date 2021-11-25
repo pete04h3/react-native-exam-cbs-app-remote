@@ -12,6 +12,7 @@ import NotificationScreen from './../screens/NotificationScreen';
 import { HeaderShownContext } from '@react-navigation/elements';
 import SignupScreen from './../screens/SignupScreen';
 import LoginScreen from './../screens/LoginScreen';
+import OnboardingScreen1 from '../screens/onBoardingScreen1';
 import { useSelector } from 'react-redux';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -26,7 +27,13 @@ const Navigation = props => {
     const loggedInUser = useSelector(state => state.user.loggedInUser);
 
     // remember this when using fonts!!
-    const [loaded] = useFonts({Teko: require('../assets/fonts/Teko-Medium.ttf'),});
+    const [loaded] = useFonts({
+    Teko: require('../assets/fonts/Teko-Medium.ttf'),
+    TekoLight: require('../assets/fonts/Teko-Light.ttf'),
+    TekoRegular: require('../assets/fonts/Teko-Regular.ttf'),
+    TekoSemiBold: require('../assets/fonts/Teko-SemiBold.ttf'),
+    TekoBold: require('../assets/fonts/Teko-Bold.ttf'),  
+  });
       if (!loaded) {return null;}
 
     return (
@@ -87,6 +94,7 @@ const Navigation = props => {
     ) : (
 
         <Stack.Navigator>
+            <Stack.Screen name="ONBOARDINGSCREEN1" component={OnboardingScreen1} options={{ headerShown: false }} />
             <Stack.Screen name="SIGNUP" component={SignupScreen} />
             <Stack.Screen name="LOGIN" component={LoginScreen} />
         </Stack.Navigator>
