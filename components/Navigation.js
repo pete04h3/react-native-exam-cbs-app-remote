@@ -18,6 +18,7 @@ import { useSelector } from 'react-redux';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 // remember this when using fonts!!
 import { useFonts } from 'expo-font';
+import { and } from 'react-native-reanimated';
 
 
 const Navigation = props => {
@@ -25,7 +26,7 @@ const Navigation = props => {
     const Stack = createNativeStackNavigator();
     const Tab = createBottomTabNavigator();
     const loggedInUser = useSelector(state => state.user.loggedInUser);
-    const signupUser = useSelector(state => state.user.signupUser);
+    const isValid = useSelector(state => state.user.isValid);
 
     // remember this when using fonts!!
     const [loaded] = useFonts({Teko: require('../assets/fonts/Teko-Medium.ttf'),});
@@ -33,8 +34,9 @@ const Navigation = props => {
 
     return (
     <NavigationContainer>
-        {signupUser !== undefined ? (
-        // {loggedInUser !== undefined ? (
+        
+        { isValid !== false ? (
+        // { loggedInUser !== undefined ?(
         
         <Tab.Navigator screenOptions={({ route }) => ({
             tabBarIcon: ({ focused, color, size }) => {
@@ -90,8 +92,8 @@ const Navigation = props => {
     ) : (
 
         <Stack.Navigator>
-            <Stack.Screen name="SIGNUPOUTER" component={SignupOnboardStackNavigator} options={{ title: 'SIGNUP' , headerShown: false }} />
             <Stack.Screen name="LOGIN" component={LoginScreen} />
+            <Stack.Screen name="SIGNUPOUTER" component={SignupOnboardStackNavigator} options={{ title: 'SIGNUP' , headerShown: false }} />
         </Stack.Navigator>
     
     )}

@@ -2,26 +2,25 @@ import React from 'react';
 import { View, Text, Button, StyleSheet, TextInput, TouchableOpacity, Image } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import { toggleDone } from './../store/actions/UserActions'
+import { toggleUserValid } from './../store/actions/UserActions'
 
 
 const OnboardUserinfoScreen = props => {
     
-    const isDone = useSelector(state => state.user.isDone) // the subscription
+    const isValid = useSelector(state => state.user.isValid) // the subscription
     const dispatch = useDispatch(); // helps to dispatch an action
 
+    const handleOnboardingUser = () => {
+        dispatch(toggleUserValid(!isValid)) // skifter fortegnet på boolean. action creater toggle happy.
+    }
     // const changeProfileImage = () => {
     //    props.src = '../assets/6d38ab105ed32e0c25e4f82e1e9ccd2a.png'; // not working
     // }
-
-    const handleOnboardingUser = () => {
-        dispatch(toggleDone(!isDone)) // skifter fortegnet på boolean. action creater toggle happy.
-        }
  return (
      <View style={styles.container}>
 
-<Text>Is User done with onboarding? {String(isDone)}</Text>      
-       <Button title="Flip user done" onPress={handleOnboardingUser} />
+<Text>Is User done with onboarding? {String(isValid)}</Text>      
+       {/* <Button title="Flip user done" onPress={handleOnboardingUser} /> */}
        
 
      <View style={styles.imgWrap}>
@@ -60,7 +59,7 @@ const OnboardUserinfoScreen = props => {
  </View>
 
 
- <TouchableOpacity>
+ <TouchableOpacity onPress={handleOnboardingUser}>
        <View style={styles.button}>
          <Text style={styles.buttonText}>Next</Text>
        </View>

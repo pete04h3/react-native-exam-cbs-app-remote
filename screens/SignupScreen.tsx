@@ -23,6 +23,9 @@ import { Checkbox } from 'react-native-paper';
 // INFO ICON
 import InformationIcon from '../components/InfoIcon';
 
+// import { useSelector } from 'react-redux';
+// import { toggleUserValid } from './../store/actions/UserActions'
+
 
 
 
@@ -50,6 +53,9 @@ const SignupScreen = (props: any) => {
 
   const [confirmPassword, setConfirmPassword] = useState("");
   const [confirmPasswordValid, setConfirmPasswordValid] = useState(false);
+
+  // const isValid = useSelector(state => state.user.isValid) // the subscription
+
 
   // dispatch
   const dispatch = useDispatch();

@@ -3,6 +3,9 @@ import { View, Text, Button, StyleSheet, TextInput } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { login, refreshToken, restoreUser } from '../store/actions/UserActions';
 import * as SecureStore from 'expo-secure-store';
+import { useSelector } from 'react-redux';
+import { toggleUserValid } from './../store/actions/UserActions'
+
 
 // IMAGE COMP
 import ImagesExample from './../components/ImageExample'
@@ -15,11 +18,13 @@ const LoginScreen = (props) => {
     const [email, onChangeEmail] = useState("");
     const [password, onChangePassword] = useState("");
     const dispatch = useDispatch();
+    const isValid = useSelector(state => state.user.isValid) // the subscription
 
     const handleLogin = () => {
         dispatch(login(email, password));
+        dispatch(toggleUserValid(!isValid)) // skifter fortegnet på boolean. action creater toggle happy.
     }
-    
+  
 
 
     const acceptTerms = () => {
@@ -43,6 +48,8 @@ const LoginScreen = (props) => {
                 console.log("refresh token");
                 refreshTokenString = await SecureStore.getItemAsync('refreshToken');
                 dispatch(refreshToken(refreshTokenString));
+            } else {
+              dispatch(toggleUserValid(!isValid))
             }
             console.log("no refresh token");
 
@@ -113,7 +120,7 @@ const LoginScreen = (props) => {
 
         <View style={styles.accountButton}>
            <Text style={styles.accountText}>Don't have an account?</Text>
-           <TouchableOpacity onPress={ () => props.navigation.navigate('SIGNUP') }>
+           <TouchableOpacity onPress={ () => props.navigation.navigate('SIGNUPOUTER') }>
             <Text style={styles.accountButtonText}>Sign up</Text>
         </TouchableOpacity>
         </View>

@@ -1,8 +1,8 @@
-import { LOGIN, SIGNUP, LOGOUT, REFRESH_TOKEN, TOGGLE_DONE } from "../actions/UserActions";
+import { LOGIN, SIGNUP, LOGOUT, REFRESH_TOKEN, TOGGLE_VALID } from "../actions/UserActions";
 
 const initialState = {
     loggedInUser: undefined,
-    isDone: false,
+    isValid: false,
     signupUser: undefined,
     token: undefined
 };
@@ -10,9 +10,9 @@ const initialState = {
 const UserReducer = (state = initialState, action) => {
     switch (action.type) {
 
-        case TOGGLE_DONE: 
+        case TOGGLE_VALID: 
         //state.isHappy = true; //NOO !!!! State mutation not allowed
-        return { ...state, isDone: action.payload } ;
+        return { ...state, isValid: action.payload } ;
 
         case REFRESH_TOKEN:
             return { ...state, token: action.payload };
