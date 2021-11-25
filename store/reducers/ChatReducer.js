@@ -19,11 +19,11 @@ const ChatReducer = (state = initialState, action) => {
 
         case NEW_CHATROOM:
             // add a new chatroom object to the chatroom array without state mutations!
-            const tempId = Math.random().toString();
+            // const tempId = Math.random().toString();
             //const chatRoom = {id: Math.random(), imageUrl: '', ...}
-            const chatRoom = new ChatRoom(tempId, undefined, action.payload, []);
+            // const chatRoom = new ChatRoom(action.payload.id, undefined, action.payload.chatroomName, []); // gemmer id som action.payload.id
 
-            return { ...state, chatRooms: [...state.chatRooms, chatRoom] };
+            return { ...state, chatRooms: [...state.chatRooms, action.payload] };
         case DELETE_CHATROOM:
             console.log(action.payload);
             console.log(state.chatRooms);

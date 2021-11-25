@@ -37,12 +37,13 @@ export const newChatRoom = (chatroomName) => {
         });
   
         const data = await response.json(); // json to javascript
-        console.log(data);
+        console.log(data); // kald tilbage fra server
         if (!response.ok) {
             //There was a problem..
         } else {
             // do something?
-            dispatch({ type: NEW_CHATROOM, payload: chatroomName })
+            const chatRoom = new ChatRoom(data.name, undefined, chatroomName, [])
+            dispatch({ type: NEW_CHATROOM, payload: chatRoom}) //gemmer id localt fra server. PAyload object
         }
     };
 };

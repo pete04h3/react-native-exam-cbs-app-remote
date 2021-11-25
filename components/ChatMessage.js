@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, Button, StyleSheet, Image } from 'react-native';
+import { useSelector } from 'react-redux';
 
 const ChatMessage = props => {
     //props.chatmessage
@@ -8,7 +9,9 @@ const ChatMessage = props => {
     //show time if time is not the same as previous time and same user
     //show date if this message contains a new date compared to previous.
     
-    const hardcodedUserId = '1';
+    const UserId = useSelector(state => state.user.loggedInUser).id; //henter id'et fra den bruger der er logget ind
+    // hvis den er undefined, så vil den vejle ved .id
+    // da siden kun er tilgængelig når man er logget ind er der ikke noget prob
 
     const hours = props.chatmessage.messageTimestamp.getHours();
     const minutes = props.chatmessage.messageTimestamp.getMinutes();
@@ -16,12 +19,13 @@ const ChatMessage = props => {
     // console.log("------------------");
     // console.log(props.chatmessage);
     const userIdOfMessage = props.chatmessage.user.id;
-    const isMe = hardcodedUserId === userIdOfMessage;
+    const isMe = UserId === userIdOfMessage;
 
     let name;
     if (!isMe){
         name = 'From ' + props.chatmessage.user.firstname + 'John Doe ' + props.chatmessage.user.lastname + 'sent at';
-    }
+    } else
+    name = 'From ' + props.chatmessage.user.email + ' ' + 'sent at';
     // console.log("----------------: " + props.img);
     // only display the image if this message is not written by me.
     let image;
@@ -33,7 +37,7 @@ const ChatMessage = props => {
 
     return (
         <View style={styles.outerContainer}>
-            <View style={[styles.reverseContainer, isMe ? styles.container : '']}>
+            <View style={[styles.container, isMe ? styles.reverseContainer : '']}>
                 {image}
                 <View style={[styles.messageView, isMe ? styles.messageViewFromMe : '']}>
                     <Text style={[styles.message, isMe ? styles.messageFromMe : '']}>
@@ -75,7 +79,7 @@ const styles = StyleSheet.create({
  messageView: {
     backgroundColor: '#EEEEEE',
     width: 200,
-    height: 70,
+    height: 40,
     marginRight: 12,
     borderTopLeftRadius: 15,
     borderTopRightRadius: 15,
