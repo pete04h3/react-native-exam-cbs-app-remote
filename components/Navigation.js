@@ -5,6 +5,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import ChatStackNavigator from './ChatStackNavigator';
+import SignupOnboardStackNavigator from './SignupOnboardStackNavigator';
 import HomeScreen from './../screens/HomeScreen';
 import EventStackNavigator from './EventStackNavigator';
 import MenuScreen from './../screens/MenuScreen';
@@ -24,6 +25,7 @@ const Navigation = props => {
     const Stack = createNativeStackNavigator();
     const Tab = createBottomTabNavigator();
     const loggedInUser = useSelector(state => state.user.loggedInUser);
+    const signupUser = useSelector(state => state.user.signupUser);
 
     // remember this when using fonts!!
     const [loaded] = useFonts({Teko: require('../assets/fonts/Teko-Medium.ttf'),});
@@ -31,7 +33,8 @@ const Navigation = props => {
 
     return (
     <NavigationContainer>
-        {loggedInUser !== undefined ? (
+        {signupUser !== undefined ? (
+        // {loggedInUser !== undefined ? (
         
         <Tab.Navigator screenOptions={({ route }) => ({
             tabBarIcon: ({ focused, color, size }) => {
@@ -87,7 +90,7 @@ const Navigation = props => {
     ) : (
 
         <Stack.Navigator>
-            <Stack.Screen name="SIGNUP" component={SignupScreen} />
+            <Stack.Screen name="SIGNUPOUTER" component={SignupOnboardStackNavigator} options={{ title: 'SIGNUP' , headerShown: false }} />
             <Stack.Screen name="LOGIN" component={LoginScreen} />
         </Stack.Navigator>
     

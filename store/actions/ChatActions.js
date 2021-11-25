@@ -9,11 +9,6 @@ export const NEW_CHATMESSAGE = 'NEW_CHATMESSAGE';
 
 export const FETCH_CHATROOMS = 'FETCH_CHATROOMS';
 
-export const toggleHappy = (isHappy) => {
-    return { type: TOGGLE_HAPPY, payload: isHappy };
-};
-
-
 
 export const newChatRoom = (chatroomName) => {
     return async (dispatch, getState) => { // redux thunk

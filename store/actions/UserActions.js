@@ -8,6 +8,12 @@ export const REFRESH_TOKEN = 'REFRESH_TOKEN';
 
 import * as SecureStore from 'expo-secure-store';
 
+export const TOGGLE_DONE = 'TOGGLE_DONE';
+
+export const toggleDone = (isDone) => {
+    return {type: TOGGLE_DONE, payload: isDone} 
+}
+
 //const api_key = 'AIzaSyBV2KOnzeYrwe6Lwz2B_NbMExB2Jo2aTNs'; // CHRISTIANS API_KEY 
 const api_key = 'AIzaSyCbs8r_RDoaoPymB2IUukOxQUkm5nV9YtI'; // PETERS API_KEY
 
