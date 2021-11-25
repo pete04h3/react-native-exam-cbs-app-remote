@@ -17,8 +17,10 @@ import LoginScreen from './../screens/LoginScreen';
 // BUTTONS 
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
-
+// CHECKBOX
 import { Checkbox } from 'react-native-paper';
+
+// INFO ICON
 import InformationIcon from '../components/InfoIcon';
 
 
@@ -32,7 +34,11 @@ const SignupScreen = (props: any) => {
    React.useEffect(() => {
       console.log('Checkbox set to', checked);
       // add css to signup button (opacity some thing)
-    }, [checked]); 
+    }, [checked]);
+    
+    const handleTerms = () => {
+      setChecked(!checked)
+    }
 
      // useState 
     const [changeName, setChangeName] = useState(''); // lift up
@@ -155,33 +161,34 @@ const SignupScreen = (props: any) => {
         color="#32305D"
         uncheckedColor="#32305D"
         status={checked ? 'checked' : 'unchecked'}
-        onPress={() => {  setChecked(!checked) 
+        onPress={() => handleTerms()}
+        /* onPress={() => {  setChecked(!checked)  
                           
           if (!checked ){                               
             console.log("Terms successfully accepted!");
             // RETURN VALID BUTTON 
             
-            /*  return (
+              return (
               <TouchableOpacity onPress={handleSignup}>       
               <View style={styles.buttonValid}>
                 <Text style={styles.buttonText}>Get access</Text>
               </View>
             </TouchableOpacity>
-            );  */
+            );  
           } else  {
             console.log("Terms not accepted!");
             //  RETURN DISABLED BUTTON
-         /*     return (
+         /    return (
             <TouchableOpacity onPress={handleSignup}>
           <View style={styles.button}>
             <Text style={styles.buttonText}>Get access</Text>
           </View>
         </TouchableOpacity> 
-          );  */
+          );  
         }
         
            
-      }}
+      }} */
           />
       
        </View>
@@ -195,8 +202,8 @@ const SignupScreen = (props: any) => {
     </View>
 
    
-    <TouchableOpacity disabled={!checked} onPress={handleSignup}>
-          <View style={styles.buttonValid}>
+    <TouchableOpacity disabled={!checked} style={ !checked ? styles.button : styles.buttonValid} onPress={handleSignup}>
+          <View>
             <Text style={styles.buttonText}>Get access</Text>
           </View>
       </TouchableOpacity>
