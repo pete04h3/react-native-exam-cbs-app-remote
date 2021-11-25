@@ -62,47 +62,8 @@ const SignupScreen = (props: any) => {
         dispatch(terms(checked, setChecked)); // working
         console.log(checked, setChecked);
     }
-   // #############################################################
-  // #############################################################  
-  // TESTING CHECKBOX VIEW SWAP // NOT WORKING ENTIRELY BUT ALMOST
 
-  /*  <View style={styles.container}>
-    <View style={styles.checkboxWrapper}>
-    <View style={styles.checkboxContainer}>
-      <View style={styles.checkBoxStyle}>
-        <View style={styles.check}>
-    <Checkbox
-    color="#32305D"
-    uncheckedColor="#32305D"
-    status={checked ? 'checked' : 'unchecked'}
-    onPress={() => { setChecked(!checked)}}
-      /> </View></View></View></View> </View>  
-      if (!checked ){                                   
-      console.log("Terms not accepted!");
-      // RETURN VALID BUTTON 
-      return (
-        <TouchableOpacity onPress={handleSignup}>
-        <View style={styles.button}>
-          <Text style={styles.buttonText}>Get access</Text>
-        </View>
-      </TouchableOpacity>
-      );
-    } else if (checked) {
-      console.log("Terms succesfully accepted!");
-      //  RETURN DISABLED BUTTON
-       return (
-      <TouchableOpacity onPress={handleSignup}>
-    <View style={styles.buttonValid}>
-      <Text style={styles.buttonText}>Get access</Text>
-    </View>
-  </TouchableOpacity>
-  );
-    }  */
-   
-  // #############################################################
-  // #############################################################  
-
-// RETURN SIGNUP VIEW 
+// RETURN SIGNUP VIEW
 
     return (
  
