@@ -42,7 +42,8 @@ export const newChatRoom = (chatroomName) => {
             //There was a problem..
         } else {
             // do something?
-            dispatch({ type: NEW_CHATROOM, payload: {id: data.name,  chatroomName }})
+            const chatRoom = new ChatRoom(data.name, undefined, chatroomName, []);
+            dispatch({ type: NEW_CHATROOM, payload: chatRoom})
         }
     };
 };
