@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { View, Text, Button, StyleSheet, Image } from 'react-native';
 
 const ChatMessage = props => {
@@ -8,7 +9,8 @@ const ChatMessage = props => {
     //show time if time is not the same as previous time and same user
     //show date if this message contains a new date compared to previous.
     
-    const hardcodedUserId = '1';
+    //const hardcodedUserId = '1';
+    const realTimeUserId = useSelector(state => state.user.loggedInUser).id;
 
     const hours = props.chatmessage.messageTimestamp.getHours();
     const minutes = props.chatmessage.messageTimestamp.getMinutes();
@@ -16,11 +18,14 @@ const ChatMessage = props => {
     // console.log("------------------");
     // console.log(props.chatmessage);
     const userIdOfMessage = props.chatmessage.user.id;
-    const isMe = hardcodedUserId === userIdOfMessage;
+    const isMe = realTimeUserId === userIdOfMessage;
 
     let name;
     if (!isMe){
-        name = 'From ' + props.chatmessage.user.firstname + 'John Doe ' + props.chatmessage.user.lastname + 'sent at';
+        name = 'From ' + props.chatmessage.user.email + ' ' + props.chatmessage.user.lastname + 'sent at'; // CHANGE props.chatmessage.user.email EMAIL TO FIRSTNAME
+    } else {
+        name = 'From ' + props.chatmessage.user.email + ' ' + props.chatmessage.user.lastname + 'sent at'; // CHANGE props.chatmessage.user.email EMAIL TO FIRSTNAME 
+
     }
     // console.log("----------------: " + props.img);
     // only display the image if this message is not written by me.
@@ -33,7 +38,7 @@ const ChatMessage = props => {
 
     return (
         <View style={styles.outerContainer}>
-            <View style={[styles.reverseContainer, isMe ? styles.container : '']}>
+            <View style={[styles.container, isMe ? styles.reverseContainer : '']}>
                 {image}
                 <View style={[styles.messageView, isMe ? styles.messageViewFromMe : '']}>
                     <Text style={[styles.message, isMe ? styles.messageFromMe : '']}>
@@ -50,14 +55,14 @@ const ChatMessage = props => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        flexDirection: 'row', // maybe remove
+        flexDirection: 'row', 
         paddingTop: 10,
  },
  timeContainer: {
     flex: 1,
     flexDirection: 'row',
     paddingTop: 3,
-    marginLeft: 56,
+    marginLeft: 10,
     marginBottom: 12,
 },
  reverseContainer: {
@@ -75,7 +80,7 @@ const styles = StyleSheet.create({
  messageView: {
     backgroundColor: '#EEEEEE',
     width: 200,
-    height: 70,
+    height: 43,
     marginRight: 12,
     borderTopLeftRadius: 15,
     borderTopRightRadius: 15,
