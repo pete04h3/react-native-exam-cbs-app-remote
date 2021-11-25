@@ -20,6 +20,8 @@ const MenuScreen = props => {
    const [isEventEnabled, setEventIsEnabled] = useState(false);
    const toggleEventSwitch = () => setEventIsEnabled(previousState => !previousState);
    
+   // FULL VIEW 
+   
    return (
       <View style={styles.container}>
          
