@@ -162,33 +162,6 @@ const SignupScreen = (props: any) => {
         uncheckedColor="#32305D"
         status={checked ? 'checked' : 'unchecked'}
         onPress={() => handleTerms()}
-        /* onPress={() => {  setChecked(!checked)  
-                          
-          if (!checked ){                               
-            console.log("Terms successfully accepted!");
-            // RETURN VALID BUTTON 
-            
-              return (
-              <TouchableOpacity onPress={handleSignup}>       
-              <View style={styles.buttonValid}>
-                <Text style={styles.buttonText}>Get access</Text>
-              </View>
-            </TouchableOpacity>
-            );  
-          } else  {
-            console.log("Terms not accepted!");
-            //  RETURN DISABLED BUTTON
-         /    return (
-            <TouchableOpacity onPress={handleSignup}>
-          <View style={styles.button}>
-            <Text style={styles.buttonText}>Get access</Text>
-          </View>
-        </TouchableOpacity> 
-          );  
-        }
-        
-           
-      }} */
           />
       
        </View>
