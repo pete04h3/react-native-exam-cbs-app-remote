@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { View, Text, Button, StyleSheet, Image } from 'react-native';
 import { useSelector } from 'react-redux';
 
@@ -9,9 +10,14 @@ const ChatMessage = props => {
     //show time if time is not the same as previous time and same user
     //show date if this message contains a new date compared to previous.
     
+<<<<<<< HEAD
     const UserId = useSelector(state => state.user.loggedInUser).id; //henter id'et fra den bruger der er logget ind
     // hvis den er undefined, så vil den vejle ved .id
     // da siden kun er tilgængelig når man er logget ind er der ikke noget prob
+=======
+    //const hardcodedUserId = '1';
+    const realTimeUserId = useSelector(state => state.user.loggedInUser).id;
+>>>>>>> peter4
 
     const hours = props.chatmessage.messageTimestamp.getHours();
     const minutes = props.chatmessage.messageTimestamp.getMinutes();
@@ -19,6 +25,7 @@ const ChatMessage = props => {
     // console.log("------------------");
     // console.log(props.chatmessage);
     const userIdOfMessage = props.chatmessage.user.id;
+<<<<<<< HEAD
     const isMe = UserId === userIdOfMessage;
 
     let name;
@@ -26,6 +33,17 @@ const ChatMessage = props => {
         name = 'From ' + props.chatmessage.user.firstname + 'John Doe ' + props.chatmessage.user.lastname + 'sent at';
     } else
     name = 'From ' + props.chatmessage.user.email + ' ' + 'sent at';
+=======
+    const isMe = realTimeUserId === userIdOfMessage;
+
+    let name;
+    if (!isMe){
+        name = 'From ' + props.chatmessage.user.email + ' ' + props.chatmessage.user.lastname + 'sent at'; // CHANGE props.chatmessage.user.email EMAIL TO FIRSTNAME
+    } else {
+        name = 'From ' + props.chatmessage.user.email + ' ' + props.chatmessage.user.lastname + 'sent at'; // CHANGE props.chatmessage.user.email EMAIL TO FIRSTNAME 
+
+    }
+>>>>>>> peter4
     // console.log("----------------: " + props.img);
     // only display the image if this message is not written by me.
     let image;
@@ -54,14 +72,14 @@ const ChatMessage = props => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        flexDirection: 'row', // maybe remove
+        flexDirection: 'row', 
         paddingTop: 10,
  },
  timeContainer: {
     flex: 1,
     flexDirection: 'row',
     paddingTop: 3,
-    marginLeft: 56,
+    marginLeft: 10,
     marginBottom: 12,
 },
  reverseContainer: {
@@ -79,7 +97,11 @@ const styles = StyleSheet.create({
  messageView: {
     backgroundColor: '#EEEEEE',
     width: 200,
+<<<<<<< HEAD
     height: 40,
+=======
+    height: 43,
+>>>>>>> peter4
     marginRight: 12,
     borderTopLeftRadius: 15,
     borderTopRightRadius: 15,
