@@ -10,14 +10,8 @@ const ChatMessage = props => {
     //show time if time is not the same as previous time and same user
     //show date if this message contains a new date compared to previous.
     
-<<<<<<< HEAD
-    const UserId = useSelector(state => state.user.loggedInUser).id; //henter id'et fra den bruger der er logget ind
-    // hvis den er undefined, så vil den vejle ved .id
-    // da siden kun er tilgængelig når man er logget ind er der ikke noget prob
-=======
     //const hardcodedUserId = '1';
     const realTimeUserId = useSelector(state => state.user.loggedInUser).id;
->>>>>>> peter4
 
     const hours = props.chatmessage.messageTimestamp.getHours();
     const minutes = props.chatmessage.messageTimestamp.getMinutes();
@@ -25,15 +19,6 @@ const ChatMessage = props => {
     // console.log("------------------");
     // console.log(props.chatmessage);
     const userIdOfMessage = props.chatmessage.user.id;
-<<<<<<< HEAD
-    const isMe = UserId === userIdOfMessage;
-
-    let name;
-    if (!isMe){
-        name = 'From ' + props.chatmessage.user.firstname + 'John Doe ' + props.chatmessage.user.lastname + 'sent at';
-    } else
-    name = 'From ' + props.chatmessage.user.email + ' ' + 'sent at';
-=======
     const isMe = realTimeUserId === userIdOfMessage;
 
     let name;
@@ -43,7 +28,6 @@ const ChatMessage = props => {
         name = 'From ' + props.chatmessage.user.email + ' ' + props.chatmessage.user.lastname + 'sent at'; // CHANGE props.chatmessage.user.email EMAIL TO FIRSTNAME 
 
     }
->>>>>>> peter4
     // console.log("----------------: " + props.img);
     // only display the image if this message is not written by me.
     let image;
@@ -97,11 +81,7 @@ const styles = StyleSheet.create({
  messageView: {
     backgroundColor: '#EEEEEE',
     width: 200,
-<<<<<<< HEAD
-    height: 40,
-=======
     height: 43,
->>>>>>> peter4
     marginRight: 12,
     borderTopLeftRadius: 15,
     borderTopRightRadius: 15,
