@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Image } from 'react-native'
 
-const OnboardingImage1 = () => (
+const OnboardingImage2 = () => (
    <Image style={{
       width: 200, 
       height: 130,
@@ -16,9 +16,9 @@ const OnboardingImage1 = () => (
    
    
    
-   }} source = {require('../assets/onboardingimg.png')} />
+   }} source = {require('../assets/events@3x@3x1.png')} />
 )
 
 
 
-export default OnboardingImage1;
+export default OnboardingImage2;

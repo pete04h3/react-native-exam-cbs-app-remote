@@ -7,7 +7,7 @@ import OnboardingImage1 from '../components/OnboardingImage1';
 // BUTTONS 
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
-const OnboardingScreen1 = props => {
+const OnboardingScreen3 = props => {
 
        // dispatch
        const dispatch = useDispatch();
@@ -34,7 +34,7 @@ const OnboardingScreen1 = props => {
 
        
 
-        <TouchableOpacity onPress={ () => props.navigation.navigate('ONBOARDINGSCREEN2') }>
+        <TouchableOpacity onPress={ () => props.navigation.navigate('ONBOARDINGSCREEN4') }>
           <View style={styles.button}>
             <Text style={styles.buttonText}>Next</Text>
           </View>
@@ -268,4 +268,4 @@ const styles = StyleSheet.create({
     
  });
 
-export default OnboardingScreen1;
+export default OnboardingScreen3;

@@ -3,11 +3,11 @@ import { View, Text, Button, StyleSheet } from 'react-native';
 // DISPATCH
 import { useDispatch } from 'react-redux';
 // IMAGE
-import OnboardingImage1 from '../components/OnboardingImage1';
+import OnboardingImage2 from '../components/OnboardingImage2';
 // BUTTONS 
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
-const OnboardingScreen1 = props => {
+const OnboardingScreen2 = props => {
 
        // dispatch
        const dispatch = useDispatch();
@@ -21,20 +21,22 @@ const OnboardingScreen1 = props => {
    
  return (
     <View style={styles.container}>
-      <View style={styles.containerWrap}>
-        <View style={styles.headLineWrapper}>
-        <Text style={styles.headLine} >Student Life at Copenhagen Business School</Text>
-        <Text style={styles.inLine} >BY</Text>
+
+<View style={styles.imgWrap}>
+        <OnboardingImage2 />
         </View>
 
-        <View style={styles.imgWrap}>
-        <OnboardingImage1 />
+      <View style={styles.containerWrap}>
+        <View style={styles.headLineWrapper}>
+        <Text style={styles.inLine} >Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna</Text>
         </View>
+
+        
 
 
        
 
-        <TouchableOpacity onPress={ () => props.navigation.navigate('ONBOARDINGSCREEN2') }>
+        <TouchableOpacity onPress={ () => props.navigation.navigate('ONBOARDINGSCREEN3') }>
           <View style={styles.button}>
             <Text style={styles.buttonText}>Next</Text>
           </View>
@@ -149,7 +151,7 @@ const styles = StyleSheet.create({
 
       buttonText: {
         textAlign: 'left',
-        justifyContent: 'center',
+        justifyContent: 'flex-start',
         padding: 10,
         color: 'white',
         textTransform: 'none',
@@ -268,4 +270,4 @@ const styles = StyleSheet.create({
     
  });
 
-export default OnboardingScreen1;
+export default OnboardingScreen2;
