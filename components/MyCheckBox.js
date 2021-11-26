@@ -38,12 +38,15 @@ const styles = StyleSheet.create({
         height: 10,
         flexDirection: 'row',
         color: 'black',
+    
         
     },
     radioButtonWrapper: {
         borderWidth: 1,
         borderColor: 'darkblue',
         borderRadius: 5,
+        
+        
         
 
         

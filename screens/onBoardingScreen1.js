@@ -39,7 +39,17 @@ const OnboardingScreen1 = props => {
             <Text style={styles.buttonText}>Next</Text>
           </View>
         </TouchableOpacity>
+
+        
+        <TouchableOpacity onPress={ () => props.navigation.navigate('SIGNUP') }>
+          <View>
+            <Text style={styles.buttonSkipText}>Skip onboarding tutorial</Text>
+          </View>
+        </TouchableOpacity>
+
         </View>
+
+        
 
 
 
@@ -148,7 +158,7 @@ const styles = StyleSheet.create({
       },
 
       buttonText: {
-        textAlign: 'left',
+        textAlign: 'center',
         justifyContent: 'center',
         padding: 10,
         color: 'white',
@@ -156,6 +166,13 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         
         
+      },
+
+      buttonSkipText: {
+        textAlign: 'center',
+        color: 'lightgrey',
+        marginTop: 20,
+        paddingVertical: 20,
       },
 
       laterButton: {

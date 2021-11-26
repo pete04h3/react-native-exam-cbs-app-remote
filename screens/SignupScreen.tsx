@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View,  Text, Image, Button, StyleSheet, TextInput, Platform, } from 'react-native';
+import { View,  Text, Image, Button, StyleSheet, TextInput, Platform, SafeAreaView, } from 'react-native';
 
 // DISPATCH
 import { useDispatch } from 'react-redux';
@@ -25,6 +25,7 @@ import { RadioButton } from 'react-native-paper';
 // INFO ICON
 import InformationIcon from '../components/InfoIcon';
 import RadioButtons from '../components/MyCheckBox';
+import TermsAndConditions from '../components/Termsandconditions';
 
 
 
@@ -32,18 +33,33 @@ import RadioButtons from '../components/MyCheckBox';
 const SignupScreen = (props: any) => {
 
  
-    const [checked, setChecked] = useState('false');
+    const [checked, setChecked] = useState(''); // useState has to be empty! 
   
     React.useEffect(() => {
       console.log('Checkbox set to', checked);
-      // add css to signup button (opacity some thing)
     }, [checked]);
     
     const handleRadio = () => {
       setChecked(!checked as any)
     }
 
-    //Checkbox 
+    // READING TERMS COMPONENT
+    const [shouldShow, setShouldShow] = useState('');
+
+    const handleTerms = () => {
+      setShouldShow(!shouldShow as any)
+      console.log(shouldShow, setShouldShow);
+
+      
+    }
+
+    React.useEffect(() => {
+      console.log('Opening terms and condition module', shouldShow);
+    }, [shouldShow]);
+
+   
+
+    // OLD Checkbox 
  /*   const [checked, setChecked] = useState(false);
  
    React.useEffect(() => {
@@ -78,11 +94,34 @@ const SignupScreen = (props: any) => {
         console.log(checked, setChecked);
     }
 
+
+
+   
+  
+
 // RETURN SIGNUP VIEW
 
     return (
  
     <View style={styles.container}>
+
+{/*TERMS AND CONDITIONS MODULE*/}  
+
+     <SafeAreaView  style={styles.container}>
+     <View style={styles.termsContainer}>
+
+      {shouldShow ?
+     (
+
+     <TermsAndConditions />
+
+     ) : null}
+   
+    </View>
+    </SafeAreaView>
+   
+     {/*TERMS AND CONDITIONS MODULE END */}  
+
 
         <View style={styles.imgWrap}>
         <ImagesExample />
@@ -91,7 +130,7 @@ const SignupScreen = (props: any) => {
 
 
         <View style={styles.headLineWrapper}><Text style={styles.headLine}>Sign up to get access</Text></View>
-      
+
     <View style={styles.wrapper}>
 
         
@@ -155,12 +194,15 @@ const SignupScreen = (props: any) => {
       </View>
       </View>
         <Text style={styles.termsLabel} > I agree to the </Text>
-        <TouchableOpacity onPress={acceptTerms}><Text style={styles.termsText}>terms and conditions</Text>
+        <TouchableOpacity onPress={() => handleTerms()}><Text style={styles.termsText}>terms and conditions</Text>
         </TouchableOpacity>
     </View>
 </View>
 
     </View>
+      
+      
+  
 
    
     <TouchableOpacity disabled={!checked} style={ !checked ? styles.button : styles.buttonValid} onPress={handleSignup}>
@@ -182,8 +224,7 @@ const SignupScreen = (props: any) => {
 
     
 
-    
-
+  
     
  );
 
@@ -198,7 +239,18 @@ const styles = StyleSheet.create({
          flex: 1,
          justifyContent: 'center',
          alignItems: 'center',
-         backgroundColor: 'white',    
+         backgroundColor: 'white',
+         zIndex: 2,    
+
+    },
+
+    termsContainer: {
+      flex: 0,
+      height: 600,
+      margin: 20,
+      marginTop: 660,
+      zIndex: 999,
+      backgroundColor: 'white',
 
     },
 
@@ -206,6 +258,10 @@ const styles = StyleSheet.create({
       borderWidth: 1,
       borderColor: 'darkblue',
       borderRadius: 5,
+    /*   width: 27,
+      height: 27,
+      alignItems: 'center',
+      justifyContent: 'center', */
 
       
   },
@@ -230,6 +286,7 @@ const styles = StyleSheet.create({
       flexDirection: 'row',
       alignContent: 'center',
       paddingVertical: 15,
+
     },
     text: {
       lineHeight: 30,
@@ -257,6 +314,7 @@ const styles = StyleSheet.create({
         height: 239,
         borderRadius: 5,
         marginBottom: 40,
+
     },
 
     wrapperInline: {
@@ -266,6 +324,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         shadowColor: '#AAAAAA29',
         width: 300,
+
         
         
     },
@@ -288,6 +347,7 @@ const styles = StyleSheet.create({
             },
         shadowOpacity: 0.25,
         shadowRadius: 3.84,
+
       },
 
       buttonValid: {
@@ -356,6 +416,7 @@ const styles = StyleSheet.create({
           marginRight: 115,
           marginBottom: 20,
           fontFamily: "Teko",
+
           
       },
 
