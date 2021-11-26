@@ -37,20 +37,64 @@ const Events = props => {
             <View style={styles.flexRow}><Text style={styles.textTime}>Mon, 1. Apr · 15.00 - 18.00</Text></View>
             <View style={styles.flexRow}><Text style={styles.textLocation}>Dalgas Have, 2000 Frederiksberg</Text></View>
          {/*    <Text style={styles.text}>{props.event.eventName}</Text>
-            <Text style={styles.text}>{props.event.eventName}</Text>
-            <Text style={styles.text}>{props.event.eventName}</Text> */}
+         {/*    <Text style={styles.text}>{props.event.eventType}</Text>
+            <Text style={styles.text}>{props.event.eventTime}</Text>
+            <Text style={styles.text}>{props.event.eventLocation}</Text> */}
 
        </View>
         </View>
+
+        <View style={styles.iconView} >
+                <Image
+                    style={styles.iconsTime}
+                    // source={props.event.imageUrl}/>
+                    source={require('./../assets/alarmclock.png')}/>
+            
+            </View>
+
+            <View style={styles.iconView}>
+                <Image
+                    style={styles.iconsLocation}
+                    // source={props.event.imageUrl}/>
+                    source={require('./../assets/marker.png')}/>
+            
+            </View>
         
     </TouchableOpacity>
+
+    
  );
 }
 
 const styles = StyleSheet.create({
 
     flexRow: {
-        flexDirection: 'row',
+        flexDirection: 'column',
+    },
+
+    icons: {
+        width: 10,
+        height: 10,
+    },
+
+    iconsTime: {
+        marginTop: -36,
+        marginLeft: 12,
+        width: 10,
+        height: 10,
+        position: 'absolute',
+    },
+
+    iconsLocation: {
+        marginTop: -20,
+        marginLeft: 12,
+        width: 10,
+        height: 15,
+        position: 'absolute',
+    },
+
+    iconView: {
+        flex: 1,
     },
     event: {
         flexDirection: 'row',
@@ -122,6 +166,7 @@ const styles = StyleSheet.create({
         fontSize: 12,
         position: 'relative',
         marginTop: -90,
+        marginLeft: 30,
         margin: 12,
         fontWeight: 'bold',
     },
@@ -129,7 +174,8 @@ const styles = StyleSheet.create({
         color: 'rgba(255, 255, 255, 1)',
         fontSize: 12,
         position: 'relative',
-        marginTop: -75,
+        marginTop: -73,
+        marginLeft: 30,
         margin: 12,
     },
 
