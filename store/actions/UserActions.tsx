@@ -105,7 +105,7 @@ export const login = (email: string, password: string) => {
 };
 
 
-export const signup = (email: any, password: any, propsNav: any) => {
+export const signup = (email: any, password: any, props: any) => {
     // console.log(email + " " + password);
     return async (dispatch: any, getState: any) => { // redux thunk
         // console.log("again" + email + " " + password);
@@ -155,7 +155,7 @@ export const signup = (email: any, password: any, propsNav: any) => {
             console.log('find navn her', responseRealtime);
             const user = new User(dataRealtime.name, '', '', '', email, '', '', '', false);
             dispatch({ type: SIGNUP, payload: { user, token: data.idToken } })
-            propsNav.navigation.navigate('OnboardUserinfoScreen') // working
+            props.navigation.navigate('OnboardUserinfoScreen') // working
         }
     };
 };
