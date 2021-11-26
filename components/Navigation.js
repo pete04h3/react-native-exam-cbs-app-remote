@@ -7,6 +7,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import ChatStackNavigator from './ChatStackNavigator';
 import HomeScreen from './../screens/HomeScreen';
 import EventStackNavigator from './EventStackNavigator';
+import SignupOnboardStackNavigator from './SignupOnboardStackNavigator';
 import MenuScreen from './../screens/MenuScreen';
 import NotificationScreen from './../screens/NotificationScreen';
 import { HeaderShownContext } from '@react-navigation/elements';
@@ -31,6 +32,7 @@ const Navigation = props => {
     const Stack = createNativeStackNavigator();
     const Tab = createBottomTabNavigator();
     const loggedInUser = useSelector(state => state.user.loggedInUser);
+    const isValid = useSelector(state => state.user.isValid);
 
     // remember this when using fonts!!
     const [loaded] = useFonts({
@@ -44,7 +46,9 @@ const Navigation = props => {
 
     return (
     <NavigationContainer>
-        {loggedInUser !== undefined ? (
+
+       { isValid !== false && loggedInUser !== undefined  ? (
+        // { loggedInUser !== undefined ?(
         
         <Tab.Navigator screenOptions={({ route }) => ({
             tabBarIcon: ({ focused, color, size }) => {
@@ -93,19 +97,20 @@ const Navigation = props => {
         <Tab.Screen name="HOME" component={HomeScreen} />
         <Tab.Screen name="DISCOVEROUTER" component={EventStackNavigator} options={{ title: 'DISCOVER', headerShown: false }} />
         <Tab.Screen name="CHATOUTER" component={ChatStackNavigator} options={{ title: 'CHAT' , headerShown: false }} />
-        <Tab.Screen name="NOTIFCATIONS" component={NotificationScreen} />
+{/*         <Tab.Screen name="NOTIFCATIONS" component={NotificationScreenToggle} /> */}        
         <Tab.Screen name="MENU" component={MenuScreen} />
         </Tab.Navigator>
 
     ) : (
 
         <Stack.Navigator>
-            <Stack.Screen name="ONBOARDINGSCREEN1" component={OnboardingScreen1} options={{ headerShown: false }} />
+            {/* <Stack.Screen name="ONBOARDINGSCREEN1" component={OnboardingScreen1} options={{ headerShown: false }} />
             <Stack.Screen name="ONBOARDINGSCREEN2" component={OnboardingScreen2} options={{ headerShown: false }} />
             <Stack.Screen name="ONBOARDINGSCREEN3" component={OnboardingScreen3} options={{ headerShown: false }} />
-            <Stack.Screen name="ONBOARDINGSCREEN4" component={OnboardingScreen4} options={{ headerShown: false }} />
-            <Stack.Screen name="SIGNUP" component={SignupScreen} />
-            <Stack.Screen name="LOGIN" component={LoginScreen} />
+            <Stack.Screen name="ONBOARDINGSCREEN4" component={OnboardingScreen4} options={{ headerShown: false }} /> */}
+{/*             <Stack.Screen name="SIGNUP" component={SignupScreen} />*/} 
+          <Stack.Screen name="SIGNUPOUTER" component={SignupOnboardStackNavigator} options={{ title: 'SIGNUP' , headerShown: false }} />
+          <Stack.Screen name="LOGIN" component={LoginScreen} />
         </Stack.Navigator>
     
     )}

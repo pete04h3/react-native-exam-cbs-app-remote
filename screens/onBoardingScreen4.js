@@ -1,23 +1,30 @@
 import React, { useState } from 'react';
 import { View, Text, Button, StyleSheet } from 'react-native';
 // DISPATCH
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 // IMAGE
 import OnboardingImage4 from '../components/OnboardingImage4';
 // BUTTONS 
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import { TOGGLE_VALID } from '../store/actions/UserActions';
+import { toggleUserValid } from '../store/actions/UserActions';
+// SCREENS
+import HomeScreen from './HomeScreen';
 // RADIO BUTTONS
 import MyCheckBox from '../components/MyCheckBox';
 
 
 const OnboardingScreen4 = props => {
+// dispatch
+const dispatch = useDispatch();
 
-  // radio buttons 
+const isValid = useSelector((state) => state.user.isValid)
 
+const handleUser = () => {
+dispatch(toggleUserValid(!isValid));
 
-
-       // dispatch
-       const dispatch = useDispatch();
+}
+    
 
           // useState  
     const [someThing, someThingElse] = useState(''); // lift up
@@ -48,7 +55,7 @@ const OnboardingScreen4 = props => {
        </View>  
        
 
-        <TouchableOpacity onPress={ () => props.navigation.navigate('SIGNUP') }>
+        <TouchableOpacity onPress={ () =>  handleUser() /*  props.navigation.navigate('HOME') */ }>
           <View style={styles.button}>
             <Text style={styles.buttonText}>Next</Text>
           </View>

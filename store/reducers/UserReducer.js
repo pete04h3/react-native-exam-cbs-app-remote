@@ -1,12 +1,19 @@
-import { LOGIN, SIGNUP, LOGOUT, REFRESH_TOKEN } from "../actions/UserActions";
+import { LOGIN, SIGNUP, LOGOUT, REFRESH_TOKEN, TOGGLE_VALID } from "../actions/UserActions";
 
 const initialState = {
     loggedInUser: undefined,
+    isValid: false,
     token: undefined
 };
 
 const UserReducer = (state = initialState, action) => {
     switch (action.type) {
+    //state.stateName = true; //NOO !!!! State mutation not allowed
+    // DO THIS INSTEAD;
+
+        case TOGGLE_VALID: 
+        return { ...state, isValid: action.payload };
+
         case REFRESH_TOKEN:
             return { ...state, token: action.payload };
         

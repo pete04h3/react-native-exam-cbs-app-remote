@@ -4,6 +4,9 @@ import { View, Text, Button, StyleSheet } from 'react-native';
 import { useDispatch } from 'react-redux';
 // IMAGE
 import ImageNotificationScreen from '../components/ImageNotificationScreen';
+
+//SCREENS
+import OnboardingScreen1 from './onBoardingScreen1';
 // BUTTONS 
 import { TouchableOpacity } from 'react-native-gesture-handler';
 const NotificationScreen = props => {
@@ -36,7 +39,7 @@ const NotificationScreen = props => {
           </View>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={ () => props.navigation.navigate('CHATOUTER') }>
+        <TouchableOpacity onPress={ () => props.navigation.navigate('ONBOARDINGSCREEN1') }>
           <View style={styles.laterButton}>
             <Text style={styles.laterButtonText}>Maybe later</Text>
           </View>

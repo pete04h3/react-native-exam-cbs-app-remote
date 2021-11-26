@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { View,  Text, Image, Button, StyleSheet, TextInput, Platform, SafeAreaView, } from 'react-native';
+// VALID
+import { toggleUserValid } from './../store/actions/UserActions';
 
 // DISPATCH
 import { useDispatch } from 'react-redux';
@@ -86,7 +88,7 @@ const SignupScreen = (props: any) => {
     const dispatch = useDispatch();
 
     const handleSignup = () => {
-        dispatch(signup(changeName, changePassword)); // working
+        dispatch(signup(changeName, changePassword, props)); // working
     }
 
     const acceptTerms = () => {

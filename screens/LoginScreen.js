@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, Button, StyleSheet, TextInput } from 'react-native';
 import { useDispatch } from 'react-redux';
-import { login, refreshToken, restoreUser } from '../store/actions/UserActions';
+import { login, refreshToken, restoreUser, toggleUserValid } from '../store/actions/UserActions';
 import * as SecureStore from 'expo-secure-store';
 
 // IMAGE COMP
@@ -43,6 +43,8 @@ const LoginScreen = (props) => {
                 console.log("refresh token");
                 refreshTokenString = await SecureStore.getItemAsync('refreshToken');
                 dispatch(refreshToken(refreshTokenString));
+            } else {
+              dispatch(toggleUserValid(!isValid));
             }
             console.log("no refresh token");
 

@@ -7,10 +7,17 @@ import OnboardingImage1 from '../components/OnboardingImage1';
 // BUTTONS 
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
+import { toggleUserValid } from '../store/actions/UserActions';
+
+import { TOGGLE_VALID } from '../store/actions/UserActions';
+
+
 const OnboardingScreen1 = props => {
 
        // dispatch
        const dispatch = useDispatch();
+      
+       
 
           // useState  
     const [someThing, someThingElse] = useState(''); // lift up
@@ -41,7 +48,7 @@ const OnboardingScreen1 = props => {
         </TouchableOpacity>
 
         
-        <TouchableOpacity onPress={ () => props.navigation.navigate('SIGNUP') }>
+        <TouchableOpacity onPress={ () => props.navigation.navigate('LOGIN') }>
           <View>
             <Text style={styles.buttonSkipText}>Skip onboarding tutorial</Text>
           </View>

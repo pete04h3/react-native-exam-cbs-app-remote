@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { View, Switch, Text, TouchableOpacity, Button, StyleSheet } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { logout } from './../store/actions/UserActions';
+
+import { toggleUserValid } from './../store/actions/UserActions';
 
 // IMAGE COMP
 import ImagesAvatar from './../components/imageAvatar';
@@ -19,6 +22,13 @@ const MenuScreen = props => {
    const toggleSwitch = () => setIsEnabled(previousState => !previousState);
    const [isEventEnabled, setEventIsEnabled] = useState(false);
    const toggleEventSwitch = () => setEventIsEnabled(previousState => !previousState);
+   
+   // VALID
+   const isValid = useSelector(state => state.user.isValid) // the subscription
+   
+   const isnotvalid = () => {
+   dispatch(toggleUserValid(!isValid)) // skifter fortegnet på boolean. action creater toggle happy.
+   }
    
    return (
       <View style={styles.container}>
@@ -94,7 +104,7 @@ const MenuScreen = props => {
 
         <Line />
 
-         <TouchableOpacity onPress={() => dispatch(logout())}>
+         <TouchableOpacity  onPress={() => dispatch(logout(), isnotvalid())} >
           <View style={styles.button}>
             <Text style={styles.buttonText}>Log out</Text>
           </View>
