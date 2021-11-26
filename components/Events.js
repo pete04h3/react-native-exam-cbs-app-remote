@@ -5,6 +5,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 
 import TimeIcon from './TimeIcon';
 import LocationIcon from './LocationIcon';
+import InformationIcon from './InfoIcon';
 
 
 const Events = props => {
@@ -12,11 +13,21 @@ const Events = props => {
     console.log(props.event.eventId);
     let image = props.event.imageUrl
     return (
+        
+      
         <TouchableOpacity onPress={() => navigation.navigate("Event", {id: props.event.eventId})}>
 
-     
-           
+      
+
         <View style={styles.flatListWrapper}>
+            
+        <Image
+         style={styles.iconsLike}
+         // source={props.event.imageUrl}/>
+         source={require('./../assets/rating.png')}/> 
+        
+        <View style={styles.Box}/>
+
         <LinearGradient
         // Background Linear Gradient
         colors={['rgba(0,0,0,0.8)', 'transparent']}
@@ -59,6 +70,8 @@ const Events = props => {
                     source={require('./../assets/marker.png')}/>
             
             </View>
+
+        
         
     </TouchableOpacity>
 
@@ -72,9 +85,33 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
     },
 
+    Box: {
+        backgroundColor: 'rgba(80, 80, 165, 1)',
+        borderBottomLeftRadius: 5,
+        borderBottomRightRadius: 5,
+        borderTopLeftRadius: 0,
+        borderTopRightRadius: 0,
+        borderRadius: 0,
+        width: 37,
+        height: 37,
+        position: 'absolute',
+        marginLeft: 280,
+/*         alignSelf: 'flex-end',*/        
+        zIndex: 9,
+    },  
+
     icons: {
         width: 10,
         height: 10,
+    },
+
+    iconsLike: {
+        marginTop: 12,
+        marginLeft: 292,
+        width: 13.5,
+        height: 13,
+        position: 'absolute',
+        zIndex: 10,
     },
 
     iconsTime: {
