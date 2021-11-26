@@ -21,8 +21,9 @@ const EventsScreen = props => {
    
 
    return (
-      <View style={styles.container}>
+      <View style={styles.container} >
           
+          <View>
           <FlatList
             data={events}
             renderItem={itemData => (
@@ -30,6 +31,7 @@ const EventsScreen = props => {
             )}
             keyExtractor={item => item.eventId}
         />
+        </View>
       </View>
  );
 }
@@ -39,6 +41,13 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center'
+   },
+
+   flatListWrapper: {
+      width: 300,
+      borderRadius: 5,
+      borderWidth: 1,
+      borderColor: 'red',
    },
    
 });
