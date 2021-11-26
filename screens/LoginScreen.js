@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import { View, Text, Button, StyleSheet, TextInput } from 'react-native';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { login, refreshToken, restoreUser, toggleUserValid } from '../store/actions/UserActions';
 import * as SecureStore from 'expo-secure-store';
+
+
+
 
 // IMAGE COMP
 import ImagesExample from './../components/ImageExample'
@@ -12,12 +15,18 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 
 
 const LoginScreen = (props) => {
+
+  // VALID
+  const isValid = useSelector((state) => state.user.isValid);
+
+  
     const [email, onChangeEmail] = useState("");
     const [password, onChangePassword] = useState("");
     const dispatch = useDispatch();
 
     const handleLogin = () => {
         dispatch(login(email, password));
+        dispatch(toggleUserValid(!isValid));
     }
     
 
