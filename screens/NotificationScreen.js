@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import { View, Text, Button, StyleSheet } from 'react-native';
 // DISPATCH
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 // IMAGE
 import ImageNotificationScreen from '../components/ImageNotificationScreen';
+
+// UPDATE NOTIFICATIONS
+import { updateNotifications } from '../store/actions/UserActions';
 
 //SCREENS
 import OnboardingScreen1 from './onBoardingScreen1';
@@ -15,10 +18,11 @@ const NotificationScreen = props => {
        const dispatch = useDispatch();
 
           // useState  
-    const [someThing, someThingElse] = useState(''); // lift up
+/*     const [someThing, someThingElse] = useState(''); // lift up*/ 
+       const userInfoId = useSelector((state) => state.user.loggedInUser?.id );
 
        const handleNotifications = () => {
-           dispatch(notifications(someThing, someThingElse)); // not working
+           dispatch(updateNotifications(true, userInfoId, props)); // working
        }
    
  return (

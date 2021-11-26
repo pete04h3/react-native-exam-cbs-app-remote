@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, Button, StyleSheet } from 'react-native';
 // DISPATCH
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 // IMAGE
 import OnboardingImage1 from '../components/OnboardingImage1';
 // BUTTONS 
@@ -16,8 +16,17 @@ const OnboardingScreen1 = props => {
 
        // dispatch
        const dispatch = useDispatch();
-      
-       
+
+       //VALIDATE
+
+       const isValid = useSelector((state) => state.user.isValid)
+
+       const handleUser = () => {
+      dispatch(toggleUserValid(!isValid));
+    }
+
+   
+  
 
           // useState  
     const [someThing, someThingElse] = useState(''); // lift up
@@ -48,7 +57,7 @@ const OnboardingScreen1 = props => {
         </TouchableOpacity>
 
         
-        <TouchableOpacity onPress={ () => props.navigation.navigate('LOGIN') }>
+        <TouchableOpacity onPress={ () => handleUser() }>
           <View>
             <Text style={styles.buttonSkipText}>Skip onboarding tutorial</Text>
           </View>
