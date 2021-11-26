@@ -22,6 +22,7 @@ import { Checkbox } from 'react-native-paper';
 
 // INFO ICON
 import InformationIcon from '../components/InfoIcon';
+import { any } from 'prop-types';
 
 // import { useSelector } from 'react-redux';
 // import { toggleUserValid } from './../store/actions/UserActions'
@@ -36,6 +37,8 @@ const SignupScreen = (props: any) => {
 
   React.useEffect(() => {
     console.log('Checkbox set to', checked);
+    console.log(props.route.name);
+
     // add css to signup button (opacity some thing)
   }, [checked]);
 
@@ -61,8 +64,7 @@ const SignupScreen = (props: any) => {
   const dispatch = useDispatch();
 
   const handleSignup = () => {
-    dispatch(signup(changeName, changePassword));
-    props.navigation.navigate('OnboardUserinfoScreen') // working
+    dispatch(signup(changeName, changePassword, props));
   }
 
   const acceptTerms = () => {

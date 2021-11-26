@@ -8,7 +8,7 @@ export const fetchEvents = () => {
 
                                     // Find this link for YOUR firebase, in the "Realtime Database"-tab in the firebase console
                                     // You must use YOUR link and not this link, to save data in your database and not mine.
-        const response = await fetch('https://kvaliapp-baa85-default-rtdb.europe-west1.firebasedatabase.app/events.json?auth=' +  token, {
+        const response = await fetch('https://kvaliapp-c1e89-default-rtdb.europe-west1.firebasedatabase.app/events.json?auth=' +  token, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'

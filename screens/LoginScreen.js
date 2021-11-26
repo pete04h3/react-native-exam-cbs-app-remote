@@ -22,7 +22,6 @@ const LoginScreen = (props) => {
 
     const handleLogin = () => {
         dispatch(login(email, password));
-        dispatch(toggleUserValid(!isValid)) // skifter fortegnet på boolean. action creater toggle happy.
     }
   
 

@@ -35,7 +35,7 @@ const Navigation = props => {
     return (
     <NavigationContainer>
         
-        { isValid !== false ? (
+        { isValid !== false && loggedInUser !== undefined  ? (
         // { loggedInUser !== undefined ?(
         
         <Tab.Navigator screenOptions={({ route }) => ({

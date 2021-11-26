@@ -15,15 +15,13 @@ const OnboardUserinfoScreen = props => {
     
     const isValid = useSelector(state => state.user.isValid) // the subscription
     // const loggedInUser = useSelector(state => state.user.loggedInUser).token;
-    const token = useSelector(state => state.user.token);
-    
-    console.log(token);
-    const [name, onChangeName] = useState('');
-    const [studyProg, onChangeStudyprog] = useState('');
 
+
+    const [fullName, onChangeName] = useState('');
+    const [studyProg, onChangeStudyprog] = useState('');
     
     const handleOnboardingUser = () => {
-        dispatch(updateUser(name, studyProg, token))
+        dispatch(updateUser(fullName, studyProg))
         // dispatch(toggleUserValid(!isValid)) // skifter fortegnet på boolean. action creater toggle happy.
     }
     // const changeProfileImage = () => {
@@ -57,7 +55,7 @@ const OnboardUserinfoScreen = props => {
    <View style={styles.wrapperInline}>
        <Text style={styles.placeHolder}>What is your name?</Text>
        <View style={styles.infoIcon}>
-       <TextInput placeholder="First name and last name" label="Name" style={styles.textInput} keyboardType="email-address" onChangeText={onChangeName} value={name} />
+       <TextInput placeholder="First name and last name" label="Name" style={styles.textInput} keyboardType="email-address" onChangeText={onChangeName} value={fullName} />
        </View>
    </View>
 
