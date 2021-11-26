@@ -1,51 +1,58 @@
 import React, { useState } from 'react';
-import { View, Text, Button, StyleSheet } from 'react-native';
+import { View, Text, Button, StyleSheet, Image } from 'react-native';
 // DISPATCH
 import { useDispatch } from 'react-redux';
-// IMAGE
-import ImageNotificationScreen from '../components/ImageNotificationScreen';
+
 // BUTTONS 
 import { TouchableOpacity } from 'react-native-gesture-handler';
+// RADIO BUTTONS
+// import MyCheckBox from '../components/CheckBox';
 
-import { useSelector } from 'react-redux';
-import { updateNotifications } from '../store/actions/UserActions';
+const OnboardingImage2 = () => (
+    <Image style={{
+       width: 272, 
+       height: 427,
+       alignItems: 'center',
+       justifyContent: 'center',
+       marginTop: 52,
+       margin: 12,
+    }} source = {require('./../assets/onboardingimg2.png')} />
+ )
+ 
 
-const NotificationScreen = props => {
+const OnboardingScreen2 = props => {
 
- // dispatch
- const dispatch = useDispatch();
+  // radio buttons 
 
- // useState  
-/*     const [someThing, someThingElse] = useState(''); // lift up*/ 
-const userInfoId = useSelector((state) => state.user.loggedInUser?.id );
-
-const handleNotifications = () => {
-  dispatch(updateNotifications(true, userInfoId, props)); // working
-}
    
  return (
     <View style={styles.container}>
-         <View style={styles.imgWrap}>
-        <ImageNotificationScreen />
-       
+
+      <View style={styles.imgWrap}>
+        <OnboardingImage2 />
         </View>
+
+      <View style={styles.containerWrap}>
         <View style={styles.headLineWrapper}>
-        <Text style={styles.headLine} >Stay in the loop</Text>
-        <Text style={styles.inLine} >Enable notifications to stay updated on new messages and more.</Text>
+        <Text style={styles.inLine} >Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna</Text>
         </View>
 
+      <View style={styles.circleWrap}> 
+       <View style={styles.outerCircle1}>
+       </View>
+       <View style={styles.outerCircle2}>
+       </View>
+       <View style={styles.outerCircle3}>
+       </View>
+       </View>  
+       
 
-        <TouchableOpacity onPress={handleNotifications}>
+        <TouchableOpacity onPress={ () => props.navigation.navigate('ONBOARDINGSCREEN3') }>
           <View style={styles.button}>
-            <Text style={styles.buttonText}>Turn on notifications</Text>
+            <Text style={styles.buttonText}>Next</Text>
           </View>
         </TouchableOpacity>
-
-        <TouchableOpacity onPress={ () => props.navigation.navigate('CHATOUTER') }>
-          <View style={styles.laterButton}>
-            <Text style={styles.laterButtonText}>Maybe later</Text>
-          </View>
-        </TouchableOpacity>
+        </View>
 
 
 
@@ -65,28 +72,85 @@ const styles = StyleSheet.create({
          flex: 1,
          justifyContent: 'center',
          alignItems: 'center',
-         backgroundColor: 'white',    
+         backgroundColor: 'white', 
+         
+   
 
     },
+
+    circleWrap: {
+      flexDirection: 'row',
+      marginBottom: 5,
+      
+    },  
+
+    outerCircle1: {
+      width: 12,
+      height: 12,
+      borderWidth: 1,
+      borderRadius: 100,
+      borderColor: 'grey',
+      backgroundColor: '#5050A5',
+      marginRight: 10,
+      
+        },
+    outerCircle2: {
+          width: 12,
+          height: 12,
+          borderWidth: 1,
+          borderRadius: 100,
+          borderColor: 'grey',
+          backgroundColor: '#5050A5',
+          opacity: 0.10,
+          marginRight: 10,
+
+            },
+            outerCircle3: {
+              width: 12,
+              height: 12,
+              borderWidth: 1,
+              borderRadius: 100,
+              borderColor: 'grey',
+              backgroundColor: '#5050A5',
+              opacity: 0.10,
+              marginRight: 10,
+
+                },
+
+
+    containerWrap: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: 'white', 
+      marginTop: 272,
+      
+
+
+ },
 
     inLine: {
         flex: 0,
         justifyContent: 'center',
         alignItems: 'center',
         textAlign: 'center',
-        color: '#32305D',
-        fontSize: 12,
+        color: '#707070',
+        fontSize: 16,
         fontWeight: 'normal',
         marginRight: 0,
         width: 300,
-        marginTop: 10,
+        marginTop: 0,
+        marginBottom: 20,
+       
+
     
     },
 
     imgWrap: {
-        width: 200,
-        marginTop: 30,
-        marginBottom: 20,
+        width: 300,
+        height: 200,
+        marginTop: 0,
+        marginBottom: 0,
         
     },
 
@@ -117,21 +181,31 @@ const styles = StyleSheet.create({
     },
 
     button: {
-        alignItems: 'center',
-        justifyContent: 'center',
+        alignItems: 'flex-start',
+        justifyContent: 'flex-start',
         paddingVertical: 12,
         paddingHorizontal: 4,
         borderRadius: 4,
         elevation: 3,
-        width: 300,
-        marginTop: 30,
+        width: 337,
+        height: 61,
+        marginTop: 10,
         backgroundColor: 'rgba(80, 80, 165, 1)',
         color: 'snow',
+        shadowColor: "#000",
+        shadowOffset: {
+	        width: 0,
+	        height: 2,
+            },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        elevation: 5,
+        
       },
 
       buttonText: {
         textAlign: 'left',
-        justifyContent: 'center',
+        justifyContent: 'flex-start',
         padding: 10,
         color: 'white',
         textTransform: 'none',
@@ -191,11 +265,13 @@ const styles = StyleSheet.create({
           justifyContent: 'center',
           alignItems: 'center',
           textAlign: 'center',
-          color: 'rgba(80, 80, 165, 1)',
-          fontSize: 26,
-          fontWeight: 'bold',
+          color: '#32305D',
+          fontSize: 32,
+          fontWeight: 'normal',
           marginRight: 0,
           marginBottom: 0,
+          fontFamily: "TekoRegular",
+
           
       },
 
@@ -248,4 +324,4 @@ const styles = StyleSheet.create({
     
  });
 
-export default NotificationScreen;
+export default OnboardingScreen2;

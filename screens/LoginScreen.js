@@ -21,7 +21,7 @@ const LoginScreen = (props) => {
     const isValid = useSelector(state => state.user.isValid) // the subscription
 
     const handleLogin = () => {
-        dispatch(login(email, password));
+        dispatch(login(email, password, isValid));
     }
   
 

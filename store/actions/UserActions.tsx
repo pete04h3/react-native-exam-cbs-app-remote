@@ -11,6 +11,7 @@ import * as SecureStore from 'expo-secure-store';
 
 export const TOGGLE_VALID = 'TOGGLE_VALID';
 import Navigation from "../../components/Navigation";
+import { bool } from "prop-types";
 
 export const toggleUserValid = (isValid: any) => {
     return { type: TOGGLE_VALID, payload: isValid }
@@ -69,7 +70,7 @@ export const refreshToken = (refreshToken: string) => {
     };
 }
 
-export const login = (email: string, password: string) => {
+export const login = (email: string, password: string, isValid: any) => {
     return async (dispatch: any) => { // redux thunk
         const response = await fetch('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=' + api_key, {
             method: 'POST',
@@ -100,6 +101,7 @@ export const login = (email: string, password: string) => {
             SecureStore.setItemAsync('expiration', JSON.stringify(expiration));
             SecureStore.setItemAsync('refreshToken', data.refreshToken);
             dispatch({ type: LOGIN, payload: { user, token: data.idToken } })
+            dispatch(toggleUserValid(!isValid));
         }
     };
 };
@@ -140,7 +142,7 @@ export const signup = (email: any, password: any, propsNav: any) => {
                 studyProgramme: "",
                 chatToggle: "",
                 eventToggle: "",
-                notifications: "",
+                notifications: false,
 
             })
         });
@@ -153,7 +155,7 @@ export const signup = (email: any, password: any, propsNav: any) => {
             //There was a problem..
         } else {
             console.log('find navn her', responseRealtime);
-            const user = new User(dataRealtime.name, '', '', '', email, '', '', '');
+            const user = new User(dataRealtime.name, '', '', '', email, '', '', '', false);
             dispatch({ type: SIGNUP, payload: { user, token: data.idToken } })
             propsNav.navigation.navigate('OnboardUserinfoScreen') // working
         }
@@ -161,7 +163,7 @@ export const signup = (email: any, password: any, propsNav: any) => {
 };
 
 
-export const updateUser = (fullName: string, studyProg: string, userInfoId: string, isValid: any) => {
+export const updateUser = (fullName: string, studyProg: string, userInfoId: string, isValid: any, props: any) => {
     // console.log(name, studyProg, token);
     // console.log(email + " " + password);
     console.log('vi er her0');
@@ -178,7 +180,6 @@ export const updateUser = (fullName: string, studyProg: string, userInfoId: stri
             },
             body: JSON.stringify({
                 firstname: fullName,
-
                 studyProgramme: studyProg,
             })
         });
@@ -189,8 +190,45 @@ export const updateUser = (fullName: string, studyProg: string, userInfoId: stri
             //There was a problem..
             console.log(response);
         } else {
-            console.log(isValid);
-            dispatch(toggleUserValid(!isValid));
+            props.navigation.navigate('NOTIFCATIONS') // working
+            // dispatch(toggleUserValid(!isValid));
+            //     const user = new User(data.localId, data.firstname, '', '', email, data.studyProg);
+            //    dispatch({type: SIGNUP, payload: { user, token: data.idToken } })
+        }
+    };
+};
+
+export const updateNotifications = (setNotification: any, userInfoId: string, props: any) => {
+    // console.log(name, studyProg, token);
+    // console.log(email + " " + password);
+    console.log('vi er her');
+    console.log(setNotification, userInfoId);
+    return async (dispatch: any, getState: any) => { // redux thunk
+
+
+        const token = getState().user.token;
+        // console.log("again" + email + " " + password);
+        const response = await fetch('https://kvaliapp-c1e89-default-rtdb.europe-west1.firebasedatabase.app/userinfo/' + userInfoId + '/.json?auth=' + token, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                notifications: setNotification,
+            })
+        });
+
+        const data = await response.json(); // json to javascript
+        console.log(data);
+        if (!response.ok) {
+            //There was a problem..
+            console.log(response);
+        } else {
+            console.log(setNotification, userInfoId);
+
+            //console.log(isValid);
+            //dispatch(toggleUserValid(!isValid));
+            props.navigation.navigate('ONBOARDINGSCREEN1') // working
             //     const user = new User(data.localId, data.firstname, '', '', email, data.studyProg);
             //    dispatch({type: SIGNUP, payload: { user, token: data.idToken } })
         }

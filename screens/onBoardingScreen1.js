@@ -1,54 +1,74 @@
 import React, { useState } from 'react';
-import { View, Text, Button, StyleSheet } from 'react-native';
+import { View, Text, Button, StyleSheet, Image} from 'react-native';
 // DISPATCH
-import { useDispatch } from 'react-redux';
-// IMAGE
-import ImageNotificationScreen from '../components/ImageNotificationScreen';
+import { useDispatch, useSelector } from 'react-redux';
+
 // BUTTONS 
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
-import { useSelector } from 'react-redux';
-import { updateNotifications } from '../store/actions/UserActions';
+import { toggleUserValid } from '../store/actions/UserActions';
 
-const NotificationScreen = props => {
+// import { TOGGLE_VALID } from '../store/actions/UserActions';
 
- // dispatch
- const dispatch = useDispatch();
+const OnboardingImage1 = () => (
+    <Image style={{
+       width: 200, 
+       height: 130,
+       alignItems: 'center',
+       justifyContent: 'center',
+       marginRight: 20,
+    }} source = {require('../assets/onboardingimg.png')} />
+ )
 
- // useState  
-/*     const [someThing, someThingElse] = useState(''); // lift up*/ 
-const userInfoId = useSelector((state) => state.user.loggedInUser?.id );
+const OnboardingScreen1 = props => {
 
-const handleNotifications = () => {
-  dispatch(updateNotifications(true, userInfoId, props)); // working
-}
+       // dispatch
+       const dispatch = useDispatch();
+
+       //VALIDATE
+
+       const isValid = useSelector((state) => state.user.isValid)
+
+       const handleUser = () => {
+      dispatch(toggleUserValid(!isValid));
+    }
+
+          // useState  
+    const [someThing, someThingElse] = useState(''); // lift up
+
+       const handleNotifications = () => {
+           dispatch(notifications(someThing, someThingElse)); // not working
+       }
    
  return (
     <View style={styles.container}>
-         <View style={styles.imgWrap}>
-        <ImageNotificationScreen />
-       
-        </View>
+      <View style={styles.containerWrap}>
         <View style={styles.headLineWrapper}>
-        <Text style={styles.headLine} >Stay in the loop</Text>
-        <Text style={styles.inLine} >Enable notifications to stay updated on new messages and more.</Text>
+        <Text style={styles.headLine} >Student Life at Copenhagen Business School</Text>
+        <Text style={styles.inLine} >BY</Text>
+        </View>
+
+        <View style={styles.imgWrap}>
+        <OnboardingImage1 />
         </View>
 
 
-        <TouchableOpacity onPress={handleNotifications}>
+       
+
+        <TouchableOpacity onPress={ () => props.navigation.navigate('ONBOARDINGSCREEN2') }>
           <View style={styles.button}>
-            <Text style={styles.buttonText}>Turn on notifications</Text>
+            <Text style={styles.buttonText}>Next</Text>
           </View>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={ () => props.navigation.navigate('CHATOUTER') }>
-          <View style={styles.laterButton}>
-            <Text style={styles.laterButtonText}>Maybe later</Text>
+        
+        <TouchableOpacity onPress={ () => handleUser() }>
+          <View>
+            <Text style={styles.buttonSkipText}>Skip onboarding tutorial</Text>
           </View>
         </TouchableOpacity>
 
-
-
+        </View>
 
 
 
@@ -65,28 +85,43 @@ const styles = StyleSheet.create({
          flex: 1,
          justifyContent: 'center',
          alignItems: 'center',
-         backgroundColor: 'white',    
+         backgroundColor: 'white', 
+         
+   
 
     },
+
+    containerWrap: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: 'white', 
+      marginTop: 200,
+      
+
+
+ },
 
     inLine: {
         flex: 0,
         justifyContent: 'center',
         alignItems: 'center',
         textAlign: 'center',
-        color: '#32305D',
-        fontSize: 12,
+        color: '#707070',
+        fontSize: 26,
         fontWeight: 'normal',
         marginRight: 0,
         width: 300,
         marginTop: 10,
+        fontFamily: "Teko",
+
     
     },
 
     imgWrap: {
         width: 200,
-        marginTop: 30,
-        marginBottom: 20,
+        marginTop: 0,
+        marginBottom: 0,
         
     },
 
@@ -124,13 +159,22 @@ const styles = StyleSheet.create({
         borderRadius: 4,
         elevation: 3,
         width: 300,
-        marginTop: 30,
+        marginTop: 0,
         backgroundColor: 'rgba(80, 80, 165, 1)',
         color: 'snow',
+        shadowColor: "#000",
+        shadowOffset: {
+	        width: 0,
+	        height: 2,
+            },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        elevation: 5,
+        
       },
 
       buttonText: {
-        textAlign: 'left',
+        textAlign: 'center',
         justifyContent: 'center',
         padding: 10,
         color: 'white',
@@ -138,6 +182,13 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         
         
+      },
+
+      buttonSkipText: {
+        textAlign: 'center',
+        color: 'lightgrey',
+        marginTop: 20,
+        paddingVertical: 20,
       },
 
       laterButton: {
@@ -191,11 +242,13 @@ const styles = StyleSheet.create({
           justifyContent: 'center',
           alignItems: 'center',
           textAlign: 'center',
-          color: 'rgba(80, 80, 165, 1)',
-          fontSize: 26,
-          fontWeight: 'bold',
+          color: '#32305D',
+          fontSize: 32,
+          fontWeight: 'normal',
           marginRight: 0,
           marginBottom: 0,
+          fontFamily: "TekoRegular",
+
           
       },
 
@@ -237,15 +290,9 @@ const styles = StyleSheet.create({
           borderStyle: 'solid',
           textDecorationLine: 'underline',
           fontSize: 12,
-          
-          
-         
+           
       },
-
-     
-    
-
     
  });
 
-export default NotificationScreen;
+export default OnboardingScreen1;

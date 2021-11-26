@@ -50,8 +50,6 @@ const Navigation = props => {
                 iconName = focused ? 'search-outline' : 'search-outline';
               } else if (route.name === 'CHATOUTER') {
                 iconName = focused ? 'chatbubble-outline' : 'chatbubble-outline';
-            } else if (route.name === 'NOTIFCATIONS') {
-                iconName = focused ? 'notifications-outline' : 'notifications-outline';
               }  else if (route.name === 'MENU') {
                 iconName = focused ? 'menu-outline' : 'menu-outline';
               } 
@@ -85,7 +83,6 @@ const Navigation = props => {
         <Tab.Screen name="HOME" component={HomeScreen} />
         <Tab.Screen name="DISCOVEROUTER" component={EventStackNavigator} options={{ title: 'DISCOVER', headerShown: false }} />
         <Tab.Screen name="CHATOUTER" component={ChatStackNavigator} options={{ title: 'CHAT' , headerShown: false }} />
-        <Tab.Screen name="NOTIFCATIONS" component={NotificationScreen} />
         <Tab.Screen name="MENU" component={MenuScreen} />
         </Tab.Navigator>
 
