@@ -6,7 +6,6 @@ export const TOGGLE_HAPPY = 'TOGGLE_HAPPY';
 export const NEW_CHATROOM = 'NEW_CHATROOM';
 export const DELETE_CHATROOM = 'DELETE_CHATROOM';
 export const NEW_CHATMESSAGE = 'NEW_CHATMESSAGE';
-
 export const FETCH_CHATROOMS = 'FETCH_CHATROOMS';
 
 

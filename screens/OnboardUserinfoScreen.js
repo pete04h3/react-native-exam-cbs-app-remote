@@ -3,15 +3,28 @@ import { View, Text, Button, StyleSheet, TextInput, TouchableOpacity, Image } fr
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { toggleUserValid } from './../store/actions/UserActions'
+import { updateUser } from './../store/actions/UserActions'
+import User from "../models/User";
+import { useState } from 'react';
+import { onChange } from 'react-native-reanimated';
 
 
 const OnboardUserinfoScreen = props => {
     
-    const isValid = useSelector(state => state.user.isValid) // the subscription
     const dispatch = useDispatch(); // helps to dispatch an action
+    
+    const isValid = useSelector(state => state.user.isValid) // the subscription
+    // const loggedInUser = useSelector(state => state.user.loggedInUser).token;
+    const token = useSelector(state => state.user.token);
+    
+    console.log(token);
+    const [name, onChangeName] = useState('');
+    const [studyProg, onChangeStudyprog] = useState('');
 
+    
     const handleOnboardingUser = () => {
-        dispatch(toggleUserValid(!isValid)) // skifter fortegnet på boolean. action creater toggle happy.
+        dispatch(updateUser(name, studyProg, token))
+        // dispatch(toggleUserValid(!isValid)) // skifter fortegnet på boolean. action creater toggle happy.
     }
     // const changeProfileImage = () => {
     //    props.src = '../assets/6d38ab105ed32e0c25e4f82e1e9ccd2a.png'; // not working
@@ -44,13 +57,13 @@ const OnboardUserinfoScreen = props => {
    <View style={styles.wrapperInline}>
        <Text style={styles.placeHolder}>What is your name?</Text>
        <View style={styles.infoIcon}>
-       <TextInput placeholder="First name and last name" label="Name" style={styles.textInput} keyboardType="email-address" />
+       <TextInput placeholder="First name and last name" label="Name" style={styles.textInput} keyboardType="email-address" onChangeText={onChangeName} value={name} />
        </View>
    </View>
 
        <View style={styles.wrapperInline}>
        <Text style={styles.placeHolder}>Study program</Text>
-       <TextInput placeholder="Study program" label="Study" style={styles.textInput} secureTextEntry={true} />
+       <TextInput placeholder="Study program" label="Study" style={styles.textInput} onChangeText={onChangeStudyprog} value={studyProg} />
        </View>
 
     

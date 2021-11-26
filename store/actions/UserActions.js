@@ -33,6 +33,7 @@ export const logout = () => {
     SecureStore.setItemAsync('user', "");
     SecureStore.setItemAsync('expiration', "");
     SecureStore.setItemAsync('refreshToken', "");
+
     return {type: LOGOUT };
 };
 
@@ -131,6 +132,38 @@ export const signup = (email, password) => {
            
             const user = new User(data.localId, '', '', '', email);
            dispatch({type: SIGNUP, payload: { user, token: data.idToken } })
+       }
+   };
+};
+
+export const updateUser = (idToken) => {
+    // console.log(name, studyProg, token);
+    // console.log(email + " " + password);
+   return async dispatch => { // redux thunk
+    // console.log("again" + email + " " + password);
+       const response = await fetch('https://identitytoolkit.googleapis.com/v1/accounts:update?key=' +  api_key, {
+           method: 'POST',
+           headers: {
+               'Content-Type': 'application/json'
+           },
+           body: JSON.stringify({ //javascript to json
+               //key value pairs of data you want to send to server
+               // ..
+               idToken: idToken,
+            //    firstname: name,
+            //    studyProgramme: studyProg,
+               returnSecureToken: true
+           })
+       });
+ 
+       const data = await response.json(); // json to javascript
+       console.log(data);
+       if (!response.ok) {
+           //There was a problem..
+       } else {
+           
+        //     const user = new User(data.localId, data.firstname, '', '', email, data.studyProg);
+        //    dispatch({type: SIGNUP, payload: { user, token: data.idToken } })
        }
    };
 };

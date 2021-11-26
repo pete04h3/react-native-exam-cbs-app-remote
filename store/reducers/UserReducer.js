@@ -3,7 +3,6 @@ import { LOGIN, SIGNUP, LOGOUT, REFRESH_TOKEN, TOGGLE_VALID } from "../actions/U
 const initialState = {
     loggedInUser: undefined,
     isValid: false,
-    signupUser: undefined,
     token: undefined
 };
 
