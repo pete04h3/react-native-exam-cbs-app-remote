@@ -34,7 +34,7 @@ const Events = props => {
 
         <LinearGradient
         // Background Linear Gradient
-        colors={['rgba(0,0,0,0.8)', 'transparent']}
+        colors={['rgba(0,0,0,0.8)', 'black']}
         style={styles.background}
       />
        
@@ -47,14 +47,11 @@ const Events = props => {
             </View>
             
             <Text style={styles.text}>{props.event.eventName}</Text>
-            <Text style={styles.textSmall}>CBS yoga</Text>
+            <Text style={styles.textSmall}>{props.event.eventType}</Text>
             <View style={styles.timeLocationWrap}>
-            <View style={styles.flexRow}><Text style={styles.textTime}>Mon, 1. Apr · 15.00 - 18.00</Text></View>
-            <View style={styles.flexRow}><Text style={styles.textLocation}>Dalgas Have, 2000 Frederiksberg</Text></View>
-         {/*    <Text style={styles.text}>{props.event.eventName}</Text>
-         {/*    <Text style={styles.text}>{props.event.eventType}</Text>
-            <Text style={styles.text}>{props.event.eventTime}</Text>
-            <Text style={styles.text}>{props.event.eventLocation}</Text> */}
+            <View style={styles.flexRow}><Text style={styles.textTime}>{props.event.eventTime}</Text></View>
+            <View style={styles.flexRow}><Text style={styles.textLocation}>{props.event.eventLocation}</Text></View>
+      
 
        </View>
         </View>
