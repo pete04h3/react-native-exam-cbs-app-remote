@@ -22,7 +22,18 @@ const EventsScreen = props => {
 
    return (
       <View style={styles.container} >
-          
+
+{/*LINE SEPERATOR // MAYBE IT SHOULD BE IN EVENT.JS COMPONENT INSTEAD*/}
+
+   <View style={{flexDirection: 'row', marginTop: 30, alignItems: 'center'}}>
+    <View style={{flex: 0.8, height: 1, backgroundColor: 'rgba(0, 0, 0, 0.51)'}} />
+    <View>
+    <Text style={{width: 100, textAlign: 'center', fontSize: 12, fontWeight: 'bold', color:  'rgba(0, 0, 0, 0.51)'}}>1st of April</Text>
+    </View>
+    <View style={{flex: 9, height: 1, backgroundColor:  'rgba(0, 0, 0, 0.51)'}} />
+    </View>
+   {/*LINE SEPERATOR END // MAYBE IT SHOULD BE IN EVENT.JS COMPONENT INSTEAD*/}
+       
           <View>
           <FlatList
             data={events}
@@ -31,8 +42,13 @@ const EventsScreen = props => {
             )}
             keyExtractor={item => item.eventId}
         />
+        
         </View>
+
+        
       </View>
+
+      
  );
 }
 

@@ -13,6 +13,10 @@ const Events = props => {
     console.log(props.event.eventId);
     let image = props.event.imageUrl
     return (
+
+    <View>
+
+  
         
       
         <TouchableOpacity onPress={() => navigation.navigate("Event", {id: props.event.eventId})}>
@@ -74,7 +78,7 @@ const Events = props => {
         
         
     </TouchableOpacity>
-
+    </View>
     
  );
 }
