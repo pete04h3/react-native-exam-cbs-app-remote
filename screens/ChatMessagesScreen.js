@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { View, Text, Button, StyleSheet, FlatList, Image, TextInput } from 'react-native';
+import { View, Text, Button, StyleSheet, FlatList, Image, TextInput} from 'react-native';
 import { ChatRooms } from './../dummy-data/DummyData';
 import ChatMessage from './../components/ChatMessage';
 import { useDispatch, useSelector } from 'react-redux';
 import { newChatMessage } from '../store/actions/ChatActions';
 import { signup } from '../store/actions/UserActions'; // Test
 import Message from '../models/Message';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const ChatMessagesScreen = props => {
     const dispatch = useDispatch();

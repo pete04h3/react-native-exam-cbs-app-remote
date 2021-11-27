@@ -87,18 +87,18 @@ const LoginScreen = (props) => {
 
       <View style={styles.wrapper}>
 
-      <View style={styles.wrapperInline}>
+      <SafeAreaView style={styles.wrapperInline}>
           <Text style={styles.placeHolder}>Email</Text>
           <View style={styles.infoIcon}>
           <TextInput placeholder="sije19ab@cbs.student.dk" label="Email" style={styles.textInput} keyboardType="email-address" onChangeText={onChangeEmail} value={email} />
           <InformationIcon />
           </View>
-      </View>
+      </SafeAreaView>
 
-          <View style={styles.wrapperInline}>
+          <SafeAreaView style={styles.wrapperInline}>
           <Text style={styles.placeHolder}>Password</Text>
           <TextInput placeholder="********" label="Password" style={styles.textInput} secureTextEntry={true} onChangeText={onChangePassword} value={password} />
-          </View>
+          </SafeAreaView>
 
        
 

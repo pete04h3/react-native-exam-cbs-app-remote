@@ -96,11 +96,6 @@ const SignupScreen = (props: any) => {
         console.log(checked, setChecked);
     }
 
-
-
-   
-  
-
 // RETURN SIGNUP VIEW
 
     return (
@@ -135,8 +130,8 @@ const SignupScreen = (props: any) => {
 
     <View style={styles.wrapper}>
 
-        
-        <View style={styles.wrapperInline}>
+    <SafeAreaView>
+        <SafeAreaView style={styles.wrapperInline}>
         
         <Input
             secure={false}
@@ -146,8 +141,8 @@ const SignupScreen = (props: any) => {
             text={changeName} nameValid={nameValid}
             onValid={ (valid: any) => setNameValid(valid)}
             setContent={ (content: any) => setChangeName(content)}/>
-        </View>
-        <View style={styles.wrapperInline}>
+        </SafeAreaView>
+        <SafeAreaView style={styles.wrapperInline}>
         <Input 
             secure={true}
             placeholder="********"
@@ -156,8 +151,8 @@ const SignupScreen = (props: any) => {
             text={changePassword} nameValid={passwordValid}
             onValid={ (valid: any) => setPasswordValid(valid)}
             setContent={ (content: any) => setChangePassword(content)}/>
-        </View>
-        <View style={styles.wrapperInline}>
+        </SafeAreaView>
+        <SafeAreaView style={styles.wrapperInline}>
          <Input
             secure={true}
             placeholder="********"
@@ -166,9 +161,9 @@ const SignupScreen = (props: any) => {
             text={confirmPassword} nameValid={confirmPasswordValid}
             onValid={ (valid: any) => setConfirmPasswordValid(valid)}
             setContent={ (content: any) => setConfirmPassword(content)}/>
-        </View>
+        </SafeAreaView>
         
-
+        </SafeAreaView>
 <View style={styles.checkboxWrapper}>
     <View style={styles.checkboxContainer}>
       <View style={styles.checkBoxStyle}>
@@ -242,7 +237,7 @@ const styles = StyleSheet.create({
          justifyContent: 'center',
          alignItems: 'center',
          backgroundColor: 'white',
-         zIndex: 2,    
+         //zIndex: 2,    
 
     },
 
@@ -251,7 +246,7 @@ const styles = StyleSheet.create({
       height: 600,
       margin: 20,
       marginTop: 660,
-      zIndex: 999,
+      //zIndex: 999,
       backgroundColor: 'white',
 
     },

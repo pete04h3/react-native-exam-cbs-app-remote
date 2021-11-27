@@ -1,29 +1,42 @@
 import React , {Component, useState} from 'react';
-import { View, Text, ScrollView, Dimensions, TouchableOpacity } from 'react-native';
+import { View, Text, ScrollView, Dimensions, TouchableOpacity, Modal } from 'react-native';
 
-const isCloseToBottom = ({layoutMeasurement, contentOffset, contentSize}) => {
+
+
+
+   
+
+const TermsAndConditions = props => {
+
+  const isCloseToBottom = ({layoutMeasurement, contentOffset, contentSize}) => {
     const paddingToBottom = 20;
     return layoutMeasurement.height + contentOffset.y >=
       contentSize.height - paddingToBottom;
 };
-   
+  const [modalVisible, setModalVisible] = useState(true);
 
-class TermsAndConditions extends Component{
+  const [accepted, setAccepted] = useState('false');
+  
 
-  state = {
-      accepted: false
-  }
-
-  render(){
+ 
     return (
      <View style={styles.container}>
+       <Modal visible={modalVisible} onRequestClose={() => setModalVisible(false)}>
+        <View style={styles.modal}>
+          <View style={styles.modalHeader}>
+          <TouchableOpacity style={styles.closeButton} onPress={() => setModalVisible(false)}>
+  <Text style={styles.modalHeaderCloseText}>X</Text>
+</TouchableOpacity> 
+          </View>
+          <View style={styles.modalContent}>
+            
             <Text style={styles.title}>Terms and conditions</Text>
             <ScrollView 
             style={styles.tcContainer}
-            onScroll={({nativeEvent}) => {
+            scrollEventThrottle={({nativeEvent}) => {
                 if (isCloseToBottom(nativeEvent)) {
-                  this.setState({
-                      accepted: true
+                  useState({
+                      accepted
                   })
                 }
               }}
@@ -42,13 +55,17 @@ Unauthorised use of this website may give rise to a claim for damages and/or be 
                 <Text style={styles.tcP}>The use of this website is subject to the following terms of use</Text>
             </ScrollView>
 
-            <TouchableOpacity disabled={ !this.state.accepted } 
-            onPress={ ()=>alert("Terms and conditions accepted")  } style={ this.state.accepted ? styles.button : styles.buttonDisabled }><Text style={styles.buttonLabel}>Accept</Text></TouchableOpacity>
+            <TouchableOpacity disabled={ !accepted } 
+            onPress={ ()=>alert("Terms and conditions accepted")  } style={ accepted ? styles.button : styles.buttonDisabled }><Text style={styles.buttonLabel}>Accept</Text></TouchableOpacity>
+          </View>
+          </View>
+      </Modal>
       </View>
+      
     );
   }
 
-}
+
 
 const { width , height } = Dimensions.get('window');
 
@@ -58,6 +75,11 @@ const styles = {
     marginTop: 20,
     marginLeft: 10,
     marginRight: 10
+  },
+
+  closeButton:{
+    width: 20,
+    height: 20,
   },
   title: {
       fontSize: 22,
@@ -100,8 +122,50 @@ const styles = {
       fontSize: 14,
       color: '#FFF',
       alignSelf: 'center'
-  }
+  },
+  modal: {
+    flex: 1,
+    margin: 50,
+    padding: 5,
+    backgroundColor: "white",
+    shadowColor: "black",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+  /* The content of the modal takes all the vertical space not used by the header. */
+  modalContent: {
+    flex: 1,
+    
+  },
+  modalHeader: {
+    flexDirection: "row",
+    justifyContent: 'flex-end',
+    alignSelf: 'flex-end',
+  },
+  /* The header takes up all the vertical space not used by the close button. */
+  modalHeaderContent: {
+    flexGrow: 1,
+    justifyContent: 'flex-end',
+    alignSelf: 'flex-end',
+  },
+  modalHeaderCloseText: {
+    textAlign: "center",
+    paddingLeft: 5,
+    paddingRight: 5,
+    alignSelf: 'flex-end',
+    justifyContent: 'flex-end',
+    fontWeight: 'bold',
+    fontSize: 15,
+    
+    
 
-}
+},
+};
+
 
 export default TermsAndConditions;
