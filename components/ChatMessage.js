@@ -24,10 +24,10 @@ const ChatMessage = props => {
     let name;
     if (!isMe){
         name = 'From ' + props.chatmessage.user.email + ' ' + props.chatmessage.user.lastname + 'sent at'; // CHANGE props.chatmessage.user.email EMAIL TO FIRSTNAME
-    } else {
+    }/*  else {
         name = 'From ' + props.chatmessage.user.email + ' ' + props.chatmessage.user.lastname + 'sent at'; // CHANGE props.chatmessage.user.email EMAIL TO FIRSTNAME 
 
-    }
+    } */
     // console.log("----------------: " + props.img);
     // only display the image if this message is not written by me.
     let image;
@@ -38,6 +38,7 @@ const ChatMessage = props => {
     }    
 
     return (
+      
         <View style={styles.outerContainer}>
             <View style={[styles.container, isMe ? styles.reverseContainer : '']}>
                 {image}
@@ -47,9 +48,10 @@ const ChatMessage = props => {
                 </View>
             </View>
             <View style={[styles.timeContainer, isMe ? styles.reverseContainer : '']}>
-                <Text style={styles.time}>{name}  {hours}:{minutes}</Text>
+                <Text style={styles.time}>{name} {hours}:{minutes}</Text>
             </View>
         </View>
+       
     );
 }
 
@@ -57,8 +59,15 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         flexDirection: 'row', 
-        paddingTop: 10,
+        paddingTop: 10,    
  },
+
+ 
+ outerContainer: {
+ 
+    
+ },
+
  timeContainer: {
     flex: 1,
     flexDirection: 'row',
@@ -83,25 +92,32 @@ const styles = StyleSheet.create({
     width: 200,
     height: 43,
     marginRight: 12,
-    borderTopLeftRadius: 15,
-    borderTopRightRadius: 15,
-    borderBottomLeftRadius: 5,
-    borderBottomRightRadius: 15,
+    marginLeft: 12,
+    borderTopLeftRadius: 12,
+    borderTopRightRadius: 12,
+    borderBottomLeftRadius: 4,
+    borderBottomRightRadius: 12,
     padding: 10,
  },
  messageViewFromMe: {
      backgroundColor: '#5050A5',
      right: 0,
      marginRight: 5,
+     borderTopLeftRadius: 12,
+     borderTopRightRadius: 12,
+     borderBottomLeftRadius: 12,
+     borderBottomRightRadius: 4,
      
     
  },
  tinyLogo: {
-     marginTop: -5
+     marginTop: 10,
+     width: 36,
+     height: 36,
  },
  time: {
     color: '#333333',
-    marginLeft: 60,
+    marginLeft: 40,
     fontSize: 11,
 },
 });

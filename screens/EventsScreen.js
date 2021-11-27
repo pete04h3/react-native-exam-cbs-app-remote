@@ -4,7 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 import { useDispatch, useSelector } from 'react-redux';
 import Events from '../components/Events';
 
-import {fetchEvents } from './../store/actions/EventAction';
+import { fetchEvents } from './../store/actions/EventAction';
 import defaultStyles from './../GeneralStyles';
 
 const EventsScreen = props => {

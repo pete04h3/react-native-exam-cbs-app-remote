@@ -1,6 +1,9 @@
-import React from 'react';
+ import React from 'react';
 import { View, Text, Button, StyleSheet } from 'react-native';
 import { useSelector } from 'react-redux';
+import EventsScreen from './EventsScreen';
+import EventScreen from './EventScreen';
+import Event from '../models/Events';
 
 const HomeScreen = props => {
 
@@ -10,9 +13,9 @@ const isValid = useSelector((state) => state.user.isValid)
  }, [isValid]); 
 
  return (
-    <View>
-        <Text>This is the home screen</Text>
-    </View>
+   <View>
+     <Text>Homescreen</Text>
+   </View>
  );
 }
 
@@ -20,4 +23,7 @@ const styles = StyleSheet.create({
  
 });
 
-export default HomeScreen;
+export default HomeScreen; 
+
+
+

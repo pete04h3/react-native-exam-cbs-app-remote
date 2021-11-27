@@ -42,6 +42,7 @@ const ChatMessagesScreen = props => {
                     source={require('./../assets/6d38ab105ed32e0c25e4f82e1e9ccd2a.png')}/>
                 
                 <TextInput
+                    placeholder="Write message"
                     style={styles.textInput}
                     onChangeText={text => onChangeText(text)}
                     value={value}/>
@@ -57,6 +58,8 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'space-between',
+        backgroundColor: 'white',
+
         
     },
     messages: {
@@ -84,8 +87,9 @@ const styles = StyleSheet.create({
         
     },
     tinyLogo: {
-        
-        marginTop: -5
+        marginTop: 0,
+        width: 36,
+        height: 36,
     },
 });
 

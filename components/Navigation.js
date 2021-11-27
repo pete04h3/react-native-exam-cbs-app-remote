@@ -97,7 +97,7 @@ const Navigation = props => {
         <Tab.Screen name="HOME" component={HomeScreen} />
         <Tab.Screen name="DISCOVEROUTER" component={EventStackNavigator} options={{ title: 'DISCOVER', headerShown: false }} />
         <Tab.Screen name="CHATOUTER" component={ChatStackNavigator} options={{ title: 'CHAT' , headerShown: false }} />
-{/*         <Tab.Screen name="NOTIFCATIONS" component={NotificationScreenToggle} /> */}        
+{/*     <Tab.Screen name="NOTIFCATIONS" component={NotificationScreenToggle} />*/}      
         <Tab.Screen name="MENU" component={MenuScreen} />
         </Tab.Navigator>
 
@@ -108,7 +108,7 @@ const Navigation = props => {
             <Stack.Screen name="ONBOARDINGSCREEN2" component={OnboardingScreen2} options={{ headerShown: false }} />
             <Stack.Screen name="ONBOARDINGSCREEN3" component={OnboardingScreen3} options={{ headerShown: false }} />
             <Stack.Screen name="ONBOARDINGSCREEN4" component={OnboardingScreen4} options={{ headerShown: false }} /> */}
-{/*             <Stack.Screen name="SIGNUP" component={SignupScreen} />*/} 
+            {/* <Stack.Screen name="SIGNUP" component={SignupScreen} />*/} 
           <Stack.Screen name="SIGNUPOUTER" component={SignupOnboardStackNavigator} options={{ title: 'SIGNUP' , headerShown: false }} />
           <Stack.Screen name="LOGIN" component={LoginScreen} />
         </Stack.Navigator>
