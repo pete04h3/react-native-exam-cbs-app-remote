@@ -17,7 +17,7 @@ export const newChatRoom = (chatroomName) => {
                                     // You must use YOUR link and not this link, to save data in your database and not mine.
                                     // CHRISTIANS LINK : https://kvaliapp-default-rtdb.europe-west1.firebasedatabase.app/chatrooms.json?auth=' +  token,
 
-        const response = await fetch('https://kvaliapp-c1e89-default-rtdb.europe-west1.firebasedatabase.app/chatrooms.json?auth=' +  token, {
+        const response = await fetch('https://kvaliapp-184d1-default-rtdb.europe-west1.firebasedatabase.app/chatrooms.json?auth=' +  token, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -48,7 +48,7 @@ export const fetchChatRooms = () => {
 
                                     // Find this link for YOUR firebase, in the "Realtime Database"-tab in the firebase console
                                     // You must use YOUR link and not this link, to save data in your database and not mine.
-        const response = await fetch('https://kvaliapp-c1e89-default-rtdb.europe-west1.firebasedatabase.app/chatrooms.json?auth=' +  token, {
+        const response = await fetch('https://kvaliapp-184d1-default-rtdb.europe-west1.firebasedatabase.app/chatrooms.json?auth=' +  token, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
@@ -95,7 +95,7 @@ export const newChatMessage = (chatRoomId, message) => {
         // console.log("message", message);
                                     // Find this link for YOUR firebase, in the "Realtime Database"-tab in the firebase console
                                     // You must use YOUR link and not this link, to save data in your database and not mine.
-        const response = await fetch('https://kvaliapp-c1e89-default-rtdb.europe-west1.firebasedatabase.app/chatrooms/' + chatRoomId + '/messages.json?auth=' +  token, {
+        const response = await fetch('https://kvaliapp-184d1-default-rtdb.europe-west1.firebasedatabase.app/chatrooms/' + chatRoomId + '/messages.json?auth=' +  token, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

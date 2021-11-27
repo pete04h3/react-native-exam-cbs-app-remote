@@ -8,7 +8,7 @@ const TimeIcon = () => (
        width: 20, 
        height: 20,
        marginLeft: -50,
-       marginTop: 9,    
+       marginTop: 9,    ç
     }} source = {require('./../assets/alarmclock.png')} />
  )
 
@@ -35,17 +35,13 @@ const TimeIcon = () => (
 const Events = props => {
     const navigation = useNavigation(); 
     console.log(props.event.eventId);
+    console.log(props.event.eventName);
     let image = props.event.imageUrl
     return (
 
     <View>
-
-  
-        
       
         <TouchableOpacity onPress={() => navigation.navigate("Event", {id: props.event.eventId})}>
-
-      
 
         <View style={styles.flatListWrapper}>
             
