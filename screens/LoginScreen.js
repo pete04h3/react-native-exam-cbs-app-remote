@@ -3,6 +3,7 @@ import { View, Text, Button, StyleSheet, TextInput } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { login, refreshToken, restoreUser, toggleUserValid } from '../store/actions/UserActions';
 import * as SecureStore from 'expo-secure-store';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 
 
@@ -87,18 +88,18 @@ const LoginScreen = (props) => {
 
       <View style={styles.wrapper}>
 
-      <SafeAreaView style={styles.wrapperInline}>
+      <View style={styles.wrapperInline}>
           <Text style={styles.placeHolder}>Email</Text>
           <View style={styles.infoIcon}>
           <TextInput placeholder="sije19ab@cbs.student.dk" label="Email" style={styles.textInput} keyboardType="email-address" onChangeText={onChangeEmail} value={email} />
           <InformationIcon />
           </View>
-      </SafeAreaView>
+      </View>
 
-          <SafeAreaView style={styles.wrapperInline}>
+          <View style={styles.wrapperInline}>
           <Text style={styles.placeHolder}>Password</Text>
           <TextInput placeholder="********" label="Password" style={styles.textInput} secureTextEntry={true} onChangeText={onChangePassword} value={password} />
-          </SafeAreaView>
+          </View>
 
        
 

@@ -36,7 +36,7 @@ const ChatScreen = (props) => {
         <View style={styles.banner}>
 
           <Text style={styles.bannerTxt}>Enable notifications to stay in the loop</Text> 
-          <TouchableOpacity style={styles.smallBox} onPress={ () => props.navigation.navigate('NOTIFCATIONS')} >
+          <TouchableOpacity style={styles.smallBox} onPress={ () => props.navigation.navigate('MENU')} >
           <NotificationIcon />
           </TouchableOpacity> 
           

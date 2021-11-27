@@ -84,8 +84,8 @@ const MenuScreen = props => {
 
 <Switch 
       style={styles.eventSwitch}
-      trackColor={{ false: "#AAAAAA", true: "#BABADD"}}
-      thumbColor={setEventIsEnabled ? "#F5F5F5" : "#F5F5F5"}
+      trackColor={{ false: "#AAAAAA", true: "#BABADD" }} 
+      thumbColor={isEventEnabled ? "#5050A5" : "#F5F5F5"}
       ios_backgroundColor="#3e3e3e"
       onValueChange={toggleEventSwitch}
       value={isEventEnabled} />
