@@ -94,7 +94,7 @@ const Navigation = props => {
             }
           })}
         >
-        <Tab.Screen name="HOME" component={HomeScreen} />
+        <Tab.Screen name="HOME" component={HomeScreen} options={{ title: 'FEED'}} />
         <Tab.Screen name="DISCOVEROUTER" component={EventStackNavigator} options={{ title: 'DISCOVER', headerShown: false }} />
         <Tab.Screen name="CHATOUTER" component={ChatStackNavigator} options={{ title: 'CHAT', headerShown: false }} />
 {/*     <Tab.Screen name="NOTIFCATIONS" component={NotificationScreenToggle} />*/}      

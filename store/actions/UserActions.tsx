@@ -69,6 +69,10 @@ export const refreshToken = (refreshToken: string) => {
     };
 }
 
+// #############
+// POSTFUNCTIONS
+// #############
+
 export const login = (email: string, password: string) => {
     return async (dispatch: any) => { // redux thunk
         const response = await fetch('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=' + api_key, {
@@ -229,6 +233,154 @@ export const updateNotifications = (setNotification: any, userInfoId: string, pr
             //console.log(isValid);
             //dispatch(toggleUserValid(!isValid));
             props.navigation.navigate('ONBOARDINGSCREEN1') // working
+            //     const user = new User(data.localId, data.firstname, '', '', email, data.studyProg);
+            //    dispatch({type: SIGNUP, payload: { user, token: data.idToken } })
+        }
+    };
+};
+
+// #############################################
+// UPDATE Going and Interested FROM DB FUNCTIONS
+// #############################################
+
+export const updateGoingUser = (eventId: any, user: any) => {
+    // console.log(name, studyProg, token);
+    // console.log(email + " " + password);
+    console.log('vi er her');
+    console.log(eventId, user)
+    return async (dispatch: any, getState: any) => { // redux thunk
+
+        const token = getState().user.token;
+        // console.log("again" + email + " " + password);
+        const response = await fetch('https://kvaliapp-baa85-default-rtdb.europe-west1.firebasedatabase.app/events/' + eventId + '/goingUsers.json?auth=' + token, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                ...user
+            })
+        });
+
+        const data = await response.json(); // json to javascript
+        console.log(data);
+        if (!response.ok) {
+            //There was a problem..
+            console.log(response);
+        } else {
+            console.log('goingUserAdded');
+
+            //console.log(isValid);
+            //dispatch(toggleUserValid(!isValid));
+            //     const user = new User(data.localId, data.firstname, '', '', email, data.studyProg);
+            //    dispatch({type: SIGNUP, payload: { user, token: data.idToken } })
+        }
+    };
+};
+
+export const updateInterestedUser = (eventId: any, user: any) => {
+    // console.log(name, studyProg, token);
+    // console.log(email + " " + password);
+    console.log('vi er her');
+    console.log(eventId, user)
+    return async (dispatch: any, getState: any) => { // redux thunk
+
+        const token = getState().user.token;
+        // console.log("again" + email + " " + password);
+        const response = await fetch('https://kvaliapp-baa85-default-rtdb.europe-west1.firebasedatabase.app/events/' + eventId + '/interestedUsers.json?auth=' + token, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                ...user
+            })
+        });
+
+        const data = await response.json(); // json to javascript
+        console.log(data);
+        if (!response.ok) {
+            //There was a problem..
+            console.log(response);
+        } else {
+            console.log('interestedUserAdded');
+
+            //console.log(isValid);
+            //dispatch(toggleUserValid(!isValid));
+            //     const user = new User(data.localId, data.firstname, '', '', email, data.studyProg);
+            //    dispatch({type: SIGNUP, payload: { user, token: data.idToken } })
+        }
+    };
+};
+
+// ########################
+// DELETE FROM DB FUNCTIONS
+// ########################
+
+export const updateDeleteInterestedUser = (eventId: any, user: any) => {
+    // console.log(name, studyProg, token);
+    // console.log(email + " " + password);
+    console.log('vi er her');
+    console.log(eventId, user)
+    return async (dispatch: any, getState: any) => { // redux thunk
+
+        const token = getState().user.token;
+        // console.log("again" + email + " " + password);
+        const response = await fetch('https://kvaliapp-baa85-default-rtdb.europe-west1.firebasedatabase.app/events/' + eventId + '/interestedUsers.json?auth=' + token, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                ...user
+            })
+        });
+
+        const data = await response.json(); // json to javascript
+        console.log(data);
+        if (!response.ok) {
+            //There was a problem..
+            console.log(response);
+        } else {
+            console.log('interestedUserDeleted');
+
+            //console.log(isValid);
+            //dispatch(toggleUserValid(!isValid));
+            //     const user = new User(data.localId, data.firstname, '', '', email, data.studyProg);
+            //    dispatch({type: SIGNUP, payload: { user, token: data.idToken } })
+        }
+    };
+};
+
+export const updateDeleteGoingUser = (eventId: any, user: any) => {
+    // console.log(name, studyProg, token);
+    // console.log(email + " " + password);
+    console.log('vi er her');
+    console.log(eventId, user)
+    return async (dispatch: any, getState: any) => { // redux thunk
+
+        const token = getState().user.token;
+        // console.log("again" + email + " " + password);
+        const response = await fetch('https://kvaliapp-baa85-default-rtdb.europe-west1.firebasedatabase.app/events/' + eventId + '/goingUsers.json?auth=' + token, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                ...user
+            })
+        });
+
+        const data = await response.json(); // json to javascript
+        console.log(data);
+        if (!response.ok) {
+            //There was a problem..
+            console.log(response);
+        } else {
+            console.log('goingUserDeleted');
+
+            //console.log(isValid);
+            //dispatch(toggleUserValid(!isValid));
             //     const user = new User(data.localId, data.firstname, '', '', email, data.studyProg);
             //    dispatch({type: SIGNUP, payload: { user, token: data.idToken } })
         }

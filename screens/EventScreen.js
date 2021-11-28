@@ -4,17 +4,52 @@ import { useNavigation } from '@react-navigation/native';
 import { useDispatch, useSelector } from 'react-redux';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Divider } from 'react-native-paper';
+import UserGoingInterested from '../models/UserGoingInterested';
+
+// REDUX STORE USER ACTION
+import { updateInterestedUser } from '../store/actions/UserActions';
+import { updateGoingUser } from '../store/actions/UserActions';
+import { updateDeleteInterestedUser } from '../store/actions/UserActions';
+import { updateDeleteGoingUser } from '../store/actions/UserActions';
 
 import defaultStyles from './../GeneralStyles';import { ScrollView } from 'react-native-gesture-handler';
 ;
 
 const EventScreen = props => {
-   
+
    const { id } = props.route.params;
    const singleEvent = useSelector(state => state.event.events).find(singleEvent => singleEvent.eventId === id); // state is defined // event: EventReducer in app.js // Initialstate events: []
    console.log(singleEvent.eventName);
-   // const chatMessages = useSelector(state => state.chat.chatRooms).find(room => room.chatRoomId === id).messages;
+   const eventId = singleEvent.eventId
+   const userEmail = useSelector(state => state.user.loggedInUser?.email );
+   console.log(userEmail);
+   const dispatch = useDispatch(); // helps to dispatch an action
 
+   const user = new UserGoingInterested(userEmail);
+
+   // POST TO DB
+
+   const handleGoingUser = () => {
+      dispatch(updateGoingUser(eventId, user));
+   };
+   
+   const handleInterestedUser = () => {
+      dispatch(updateInterestedUser(id, user));
+
+   };
+
+   // DELETE FROM DB
+/* 
+   const handleGoingUser = () => {
+      dispatch(updateDeleteGoingUser(eventId, user));
+   };
+   
+   const handleInterestedUser = () => {
+      dispatch(updateDeleteInterestedUser(id, user));
+
+   }; */
+
+   
    return (
 
       <SafeAreaView style={styles.container}>
@@ -70,7 +105,7 @@ const EventScreen = props => {
           style={styles.tinyLogoStar}
           // source={props.event.imageUrl}/>
           source={require('./../assets/eventstar.png')}/> 
-      <TouchableOpacity style={styles.intBtn} /* onPress={ () => props.navigation.navigate('MENU')} */ >
+      <TouchableOpacity style={styles.intBtn} onPress={handleInterestedUser} >
    
       <Text style={styles.eventBtnText}> Interested </Text>
          
@@ -81,7 +116,7 @@ const EventScreen = props => {
           // source={props.event.imageUrl}/>
           source={require('./../assets/eventcalender.png')}/> 
 
-      <TouchableOpacity style={styles.goingBtn} /* onPress={ () => props.navigation.navigate('MENU')} */ >
+      <TouchableOpacity style={styles.goingBtn} onPress={handleGoingUser} >
    
       <Text style={styles.eventBtnTextGoing}> Going </Text>
          

@@ -1,4 +1,4 @@
-class Event {
+class Feed {
     constructor(eventId, eventName, imageUrl, eventType, eventTime, eventLocation, interestedUsers, goingUsers ) {
       this.eventId = eventId;
       this.imageUrl = imageUrl;
@@ -11,4 +11,4 @@ class Event {
     }
   }
 
-  export default Event;
+  export default Feed;
