@@ -46,20 +46,22 @@ const OnboardUserinfoScreen = props => {
  return (
      <View style={styles.container}>
 
-<Text>Is User done with onboarding? {String(isValid)}</Text>      
+{/* <Text>Is User done with onboarding? {String(isValid)}</Text>    */}   
        {/* <Button title="Flip user done" onPress={handleOnboardingUser} /> */}
        
 
      <View style={styles.imgWrap}>
+     <Image style={styles.mediumLogo} source={require('../assets/logo.png')}/>
      </View>
      <View style={styles.headLineWrapper}><Text style={styles.headLine}>Before we start...</Text></View>
-
+     <Text style={styles.placeHolderProfileHeader}>Profile picture</Text>
      <View style={styles.profileimgcontainer}>
+       <View style={styles.border}>
      <Image style={styles.profileimg} source={require('../assets/default-profile-image.png')}/>
-     
+     </View>
 
      <TouchableOpacity>
-     <Text style={styles.placeHolder}>Profile picture</Text>
+     
        <View style={styles.smallbutton}>
          <Text style={styles.buttonText}>Upload</Text>
        </View>
@@ -71,10 +73,11 @@ const OnboardUserinfoScreen = props => {
    <View style={styles.wrapperInline}>
        <Text style={styles.placeHolder}>What is your name?</Text>
        <View style={styles.infoIcon}>
-       <TextInput placeholder="First name and last name" label="Name" style={styles.textInput} keyboardType="email-address" onChangeText={onChangeName} value={fullName} />
+       <TextInput required placeholder="First name and last name" label="Name" style={styles.textInput} keyboardType="email-address" onChangeText={onChangeName} value={fullName} />
        </View>
    </View>
-
+   </View>
+   <View style={styles.wrapper}>
        <View style={styles.wrapperInline}>
        <Text style={styles.placeHolder}>Study program</Text>
        <TextInput placeholder="Study program" label="Study" style={styles.textInput} onChangeText={onChangeStudyprog} value={studyProgramme} />
@@ -105,8 +108,11 @@ const styles = StyleSheet.create({
          justifyContent: 'center',
          alignItems: 'center',
          backgroundColor: 'white',
+         marginTop: -40,
   
     },
+   
+
   
     infoIcon: {
       flexDirection: 'row',
@@ -142,6 +148,7 @@ const styles = StyleSheet.create({
         shadowColor: '#AAAAAA29',
         width: 300,
         height: 70,
+        
     },
   
     button: {
@@ -220,6 +227,20 @@ const styles = StyleSheet.create({
         margin: 12,
         marginTop: 1,
     },
+
+    placeHolderProfileHeader : {
+      fontWeight: 'bold',
+      textAlign: 'left',
+      alignSelf: 'flex-start',
+      fontSize: 12,
+      color: '#32305D',
+      textTransform: 'uppercase',
+      paddingHorizontal: 12,
+      marginTop: 0,
+      margin: 7,
+      marginLeft: 28,
+
+  },
   
     placeHolder : {
         fontWeight: 'bold',
@@ -235,14 +256,32 @@ const styles = StyleSheet.create({
     flexDirection: 'row-reverse',
     justifyContent: 'space-between',
     width: 300,
-    marginBottom: 30
+    marginBottom: 30,
+    borderRadius: 5,
     },
 
     profileimg: {
         width: 80,
         height: 80,
         borderRadius: 50,
-        marginTop: -5,
+        marginTop: 4,
+        marginBottom: 6,
+        marginLeft: 4,
+        borderWidth: 1,
+        borderRadius: 100,
+        borderColor: 'white',
+      
+        
+    },
+
+    border: {
+      width: 90,
+      height: 90,
+      borderRadius: 100,
+      marginTop: -28,
+      borderWidth: 1,
+      borderRadius: 100,
+      borderColor: 'lightgrey',
     },
   
     
