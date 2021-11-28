@@ -156,7 +156,7 @@ export const signup = (email: any, password: any, props: any) => {
 
         const dataRealtime = await responseRealtime.json(); // json to javascript
 
-        console.log(dataRealtime, 'prøv og se den her hahahahahhahahahahahahahahaha');
+        console.log(dataRealtime, 'Logging dataRealtime');
         console.log(data);
         if (!response.ok && !responseRealtime.ok) {
             //There was a problem..
