@@ -5,6 +5,9 @@ export const TERMS = "TERMS";
 export const LOGIN = 'LOGIN';
 export const LOGOUT = 'LOGOUT';
 export const REFRESH_TOKEN = 'REFRESH_TOKEN';
+export const EVENT_NOTIFICATIONS_TOGGLE = 'EVENT_NOTIFICATIONS_TOGGLE';
+export const CHAT_NOTIFICATIONS_TOGGLE = 'CHAT_NOTIFICATIONS_TOGGLE';
+export const UPDATE_SIGNUP_INFORMATION = 'UPDATE_SIGNUP_INFORMATION';
 
 import { useSelector } from 'react-redux';
 import * as SecureStore from 'expo-secure-store';
@@ -142,9 +145,11 @@ export const signup = (email: any, password: any, props: any) => {
                 imageUrl: "",
                 email: email,
                 studyProgramme: "",
-                chatToggle: "",
-                eventToggle: "",
-                notifications: false,
+                chatToggle: false,
+                eventToggle: false,
+               
+                
+
 
             })
         });
@@ -157,7 +162,7 @@ export const signup = (email: any, password: any, props: any) => {
             //There was a problem..
         } else {
             console.log('find navn her', responseRealtime);
-            const user = new User(dataRealtime.name, '', '', '', email, '', '', '', false);
+            const user = new User(dataRealtime.name, '', '', '', email, '', 'false', false);
             dispatch({ type: SIGNUP, payload: { user, token: data.idToken } })
             props.navigation.navigate('OnboardUserinfoScreen') // working
         }
@@ -165,25 +170,24 @@ export const signup = (email: any, password: any, props: any) => {
 };
 
 
-export const updateUser = (fullName: string, studyProg: string, userInfoId: string, isValid: any, props: any) => {
+export const updateUser = (fullName: string, studyProgramme: string, userInfo: any, isValid: any, props: any) => {
     // console.log(name, studyProg, token);
     // console.log(email + " " + password);
     console.log('vi er her0');
-    console.log(fullName, studyProg, userInfoId, isValid);
+    console.log(fullName, studyProgramme, userInfo, isValid);
     return async (dispatch: any, getState: any) => { // redux thunk
 
 
         const token = getState().user.token;
         // console.log("again" + email + " " + password);
-        const response = await fetch('https://kvaliapp-baa85-default-rtdb.europe-west1.firebasedatabase.app/userinfo/' + userInfoId + '/.json?auth=' + token, {
+        const response = await fetch('https://kvaliapp-baa85-default-rtdb.europe-west1.firebasedatabase.app/userinfo/' + userInfo.id + '/.json?auth=' + token, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
                 firstname: fullName,
-
-                studyProgramme: studyProg,
+                studyProgramme: studyProgramme,
             })
         });
 
@@ -194,31 +198,31 @@ export const updateUser = (fullName: string, studyProg: string, userInfoId: stri
             console.log(response);
         } else {
             console.log(isValid);
-            //dispatch(toggleUserValid(!isValid));
             props.navigation.navigate('NOTIFICATIONS') // working
-            //     const user = new User(data.localId, data.firstname, '', '', email, data.studyProg);
-            //    dispatch({type: SIGNUP, payload: { user, token: data.idToken } })
+            const user = new User(userInfo.id, fullName, userInfo.lastname, userInfo.imageUrl, userInfo.email, studyProgramme, userInfo.chatToggle, userInfo.eventToggle);
+            dispatch({type: UPDATE_SIGNUP_INFORMATION, payload: user })
         }
     };
 };
 
-export const updateNotifications = (setNotification: any, userInfoId: string, props: any) => {
+export const updateNotifications = (userInfo: any, props: any) => {
     // console.log(name, studyProg, token);
     // console.log(email + " " + password);
     console.log('vi er her');
-    console.log(setNotification, userInfoId);
+    console.log(userInfo);
     return async (dispatch: any, getState: any) => { // redux thunk
 
 
         const token = getState().user.token;
         // console.log("again" + email + " " + password);
-        const response = await fetch('https://kvaliapp-baa85-default-rtdb.europe-west1.firebasedatabase.app/userinfo/' + userInfoId + '/.json?auth=' + token, {
+        const response = await fetch('https://kvaliapp-baa85-default-rtdb.europe-west1.firebasedatabase.app/userinfo/' + userInfo.id + '/.json?auth=' + token, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                notifications: setNotification,
+                chatToggle: true,
+                eventToggle: true,
             })
         });
 
@@ -228,10 +232,11 @@ export const updateNotifications = (setNotification: any, userInfoId: string, pr
             //There was a problem..
             console.log(response);
         } else {
-            console.log(setNotification, userInfoId);
-
-            //console.log(isValid);
-            //dispatch(toggleUserValid(!isValid));
+            console.log(userInfo);
+            const user = new User(userInfo.id, userInfo.firstname, userInfo.lastname, userInfo.imageUrl, userInfo.email, userInfo.studyProgramme, true, true);
+            //SecureStore.setItemAsync('user', JSON.stringify(user));
+            dispatch({type: EVENT_NOTIFICATIONS_TOGGLE, payload: user })
+            dispatch({type: CHAT_NOTIFICATIONS_TOGGLE, payload: user })
             props.navigation.navigate('ONBOARDINGSCREEN1') // working
             //     const user = new User(data.localId, data.firstname, '', '', email, data.studyProg);
             //    dispatch({type: SIGNUP, payload: { user, token: data.idToken } })
@@ -381,6 +386,85 @@ export const updateDeleteGoingUser = (eventId: any, user: any) => {
 
             //console.log(isValid);
             //dispatch(toggleUserValid(!isValid));
+            //     const user = new User(data.localId, data.firstname, '', '', email, data.studyProg);
+            //    dispatch({type: SIGNUP, payload: { user, token: data.idToken } })
+        }
+    };
+};
+
+// CHAT TOGGLE 
+
+export const toggleChatNotification = (userInfo: any, setNotificationsBoolean: boolean) => {
+    // console.log(name, studyProg, token);
+    // console.log(email + " " + password);
+    console.log('vi er her');
+    console.log(userInfo);
+    return async (dispatch: any, getState: any) => { // redux thunk
+
+
+        const token = getState().user.token;
+        // console.log("again" + email + " " + password);
+        const response = await fetch('https://kvaliapp-baa85-default-rtdb.europe-west1.firebasedatabase.app/userinfo/' + userInfo.id + '/.json?auth=' + token, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                chatToggle: !setNotificationsBoolean,
+                
+            })
+        });
+
+        const data = await response.json(); // json to javascript
+        console.log(data);
+        if (!response.ok) {
+            //There was a problem..
+            console.log(response);
+        } else {
+            console.log(userInfo);
+            const user = new User(userInfo.id, userInfo.firstname, userInfo.lastname, userInfo.imageUrl, userInfo.email, userInfo.studyProgramme, !setNotificationsBoolean, userInfo.eventToggle);
+            //SecureStore.setItemAsync('user', JSON.stringify(user));
+            dispatch({type: CHAT_NOTIFICATIONS_TOGGLE, payload: user })
+            //     const user = new User(data.localId, data.firstname, '', '', email, data.studyProg);
+            //    dispatch({type: SIGNUP, payload: { user, token: data.idToken } })
+        }
+    };
+};
+
+// EVENT TOGGLE
+
+export const toggleEventNotification = (userInfo: any, setNotificationsBoolean: boolean) => {
+    // console.log(name, studyProg, token);
+    // console.log(email + " " + password);
+    console.log('vi er her');
+    console.log(userInfo);
+    return async (dispatch: any, getState: any) => { // redux thunk
+
+
+        const token = getState().user.token;
+        // console.log("again" + email + " " + password);
+        const response = await fetch('https://kvaliapp-baa85-default-rtdb.europe-west1.firebasedatabase.app/userinfo/' + userInfo.id + '/.json?auth=' + token, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                eventToggle: !setNotificationsBoolean,
+                
+            })
+        });
+
+        const data = await response.json(); // json to javascript
+        console.log(data);
+        if (!response.ok) {
+            //There was a problem..
+            console.log(response);
+        } else {
+            console.log(userInfo);
+            const user = new User(userInfo.id, userInfo.firstname, userInfo.lastname, userInfo.imageUrl, userInfo.email, userInfo.studyProgramme, userInfo.chatToggle, !setNotificationsBoolean);
+            //SecureStore.setItemAsync('user', JSON.stringify(user));
+            dispatch({type: EVENT_NOTIFICATIONS_TOGGLE, payload: user })
+           
             //     const user = new User(data.localId, data.firstname, '', '', email, data.studyProg);
             //    dispatch({type: SIGNUP, payload: { user, token: data.idToken } })
         }

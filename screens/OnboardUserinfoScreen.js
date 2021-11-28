@@ -23,9 +23,9 @@ const OnboardUserinfoScreen = props => {
     const [studyProgramme, onChangeStudyprog] = useState('');
 
     
-    const userInfoId = useSelector((state) => state.user.loggedInUser?.id );
+    const userInfo = useSelector((state) => state.user?.loggedInUser);
 
-    console.log('User', userInfoId)
+    console.log('User', userInfo)
   
     /*      const userInfo = useSelector((state:any) => state.user.loggedInUser);
   
@@ -33,7 +33,7 @@ const OnboardUserinfoScreen = props => {
   
     const handleOnboardingUser = () => {
   
-      dispatch(updateUser(fullName, studyProgramme, userInfoId, isValid, props));
+      dispatch(updateUser(fullName, studyProgramme, userInfo, isValid, props));
   
       //dispatch(toggleUserValid(!isValid))
   

@@ -14,6 +14,16 @@ import { TOGGLE_VALID } from '../store/actions/UserActions';
 
 const OnboardingScreen1 = props => {
 
+  const userInfo = useSelector((state) => state.user?.loggedInUser );
+
+  React.useEffect(() => {
+
+    console.log('her', userInfo);
+
+ 
+
+ }, [userInfo]);
+
        // dispatch
        const dispatch = useDispatch();
 
