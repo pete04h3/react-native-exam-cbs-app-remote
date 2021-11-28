@@ -34,14 +34,18 @@ export const terms = (checked: any, setChecked: any) => {
 };
 
 export const logout = () => {
+    console.log('User logout confirmed!');
     SecureStore.setItemAsync('userToken', "");
     SecureStore.setItemAsync('user', "");
     SecureStore.setItemAsync('expiration', "");
     SecureStore.setItemAsync('refreshToken', "");
     return { type: LOGOUT };
+   
+
 };
 
 export const refreshToken = (refreshToken: string) => {
+    console.log('Running refreshToken');
 
     return async (dispatch: any) => { // redux thunk
         console.log("refreshToken");
@@ -77,6 +81,7 @@ export const refreshToken = (refreshToken: string) => {
 // #############
 
 export const login = (email: string, password: string) => {
+    console.log('Running login');
     return async (dispatch: any) => { // redux thunk
         const response = await fetch('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=' + api_key, {
             method: 'POST',
@@ -113,6 +118,8 @@ export const login = (email: string, password: string) => {
 
 
 export const signup = (email: any, password: any, props: any) => {
+    console.log('Running signup');
+
     // console.log(email + " " + password);
     return async (dispatch: any, getState: any) => { // redux thunk
         // console.log("again" + email + " " + password);
@@ -161,7 +168,7 @@ export const signup = (email: any, password: any, props: any) => {
         if (!response.ok && !responseRealtime.ok) {
             //There was a problem..
         } else {
-            console.log('find navn her', responseRealtime);
+            console.log('Logging responseRealtime', responseRealtime);
             const user = new User(dataRealtime.name, '', '', '', email, '', 'false', false);
             dispatch({ type: SIGNUP, payload: { user, token: data.idToken } })
             props.navigation.navigate('OnboardUserinfoScreen') // working
@@ -173,7 +180,7 @@ export const signup = (email: any, password: any, props: any) => {
 export const updateUser = (fullName: string, studyProgramme: string, userInfo: any, isValid: any, props: any) => {
     // console.log(name, studyProg, token);
     // console.log(email + " " + password);
-    console.log('vi er her0');
+    console.log('Running updateUser');
     console.log(fullName, studyProgramme, userInfo, isValid);
     return async (dispatch: any, getState: any) => { // redux thunk
 
@@ -208,7 +215,7 @@ export const updateUser = (fullName: string, studyProgramme: string, userInfo: a
 export const updateNotifications = (userInfo: any, props: any) => {
     // console.log(name, studyProg, token);
     // console.log(email + " " + password);
-    console.log('vi er her');
+    console.log('Running updateNotifications');
     console.log(userInfo);
     return async (dispatch: any, getState: any) => { // redux thunk
 
@@ -251,7 +258,7 @@ export const updateNotifications = (userInfo: any, props: any) => {
 export const updateGoingUser = (eventId: any, user: any) => {
     // console.log(name, studyProg, token);
     // console.log(email + " " + password);
-    console.log('vi er her');
+    console.log('Running updateGoingUser');
     console.log(eventId, user)
     return async (dispatch: any, getState: any) => { // redux thunk
 
@@ -286,7 +293,7 @@ export const updateGoingUser = (eventId: any, user: any) => {
 export const updateInterestedUser = (eventId: any, user: any) => {
     // console.log(name, studyProg, token);
     // console.log(email + " " + password);
-    console.log('vi er her');
+    console.log('Running updateInterestedUser');
     console.log(eventId, user)
     return async (dispatch: any, getState: any) => { // redux thunk
 
@@ -325,7 +332,7 @@ export const updateInterestedUser = (eventId: any, user: any) => {
 export const updateDeleteInterestedUser = (eventId: any, user: any) => {
     // console.log(name, studyProg, token);
     // console.log(email + " " + password);
-    console.log('vi er her');
+    console.log('Running updateDeleteInterestedUser');
     console.log(eventId, user)
     return async (dispatch: any, getState: any) => { // redux thunk
 
@@ -360,7 +367,7 @@ export const updateDeleteInterestedUser = (eventId: any, user: any) => {
 export const updateDeleteGoingUser = (eventId: any, user: any) => {
     // console.log(name, studyProg, token);
     // console.log(email + " " + password);
-    console.log('vi er her');
+    console.log('Running updateDeleteGoingUser');
     console.log(eventId, user)
     return async (dispatch: any, getState: any) => { // redux thunk
 
@@ -397,7 +404,7 @@ export const updateDeleteGoingUser = (eventId: any, user: any) => {
 export const toggleChatNotification = (userInfo: any, setNotificationsBoolean: boolean) => {
     // console.log(name, studyProg, token);
     // console.log(email + " " + password);
-    console.log('vi er her');
+    console.log('Running toggleChatNotification');
     console.log(userInfo);
     return async (dispatch: any, getState: any) => { // redux thunk
 
@@ -436,7 +443,7 @@ export const toggleChatNotification = (userInfo: any, setNotificationsBoolean: b
 export const toggleEventNotification = (userInfo: any, setNotificationsBoolean: boolean) => {
     // console.log(name, studyProg, token);
     // console.log(email + " " + password);
-    console.log('vi er her');
+    console.log('Running toggleEventNotification');
     console.log(userInfo);
     return async (dispatch: any, getState: any) => { // redux thunk
 
