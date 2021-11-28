@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, Button, StyleSheet, FlatList, TextInput, Image } from 'react-native';
+import { View, Text, TouchableOpacity, TouchableWithoutFeedback, Button, StyleSheet, FlatList, TextInput, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useDispatch, useSelector } from 'react-redux';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { Divider } from 'react-native-paper';
 
-import defaultStyles from './../GeneralStyles';;
+import defaultStyles from './../GeneralStyles';import { ScrollView } from 'react-native-gesture-handler';
+;
 
 const EventScreen = props => {
    
@@ -14,7 +17,8 @@ const EventScreen = props => {
 
    return (
 
-      <View style={styles.container}>
+      <SafeAreaView style={styles.container}>
+      <ScrollView>
       <View style={styles.section1}>
 <View style={styles.banner}>
 
@@ -100,12 +104,35 @@ const EventScreen = props => {
       </View>
       </View>
       </View>
-      
-      
-      
-      
-      
+
+      <View style={styles.section2}>
+      <Text style={styles.loremIpsum}>
+      Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor…
+      </Text>
+      <TouchableWithoutFeedback>
+      <Text style={styles.showMore}>Show more</Text>
+    </TouchableWithoutFeedback>
       </View>
+
+
+       <View style={styles.section3}>
+         <Text style={styles.scheduleTxt}>Schedule</Text>
+         <View style={styles.scheduleHours}>
+            <Text style={styles.scheduleTxtSmall}>16:00   Welcome and snacks</Text> 
+            <Divider />
+            <Text style={styles.scheduleTxtSmall}>17:00    Presentation</Text> 
+            <Divider />
+            <Text style={styles.scheduleTxtSmall}>22:00   Party and drinks</Text> 
+            <Divider />
+            <Text style={styles.scheduleTxtSmall}>23:00   Goodbye</Text> 
+            <Divider />
+         </View>
+      </View>
+      
+      
+      
+      </ScrollView>
+      </SafeAreaView>
       
       
  
@@ -117,7 +144,52 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: -10,
+        marginTop: -20,
+   },
+
+   scheduleHours: {
+      flexDirection: 'column',
+      justifyContent: 'space-around',
+      alignSelf: 'center',
+      marginTop: -15,
+      marginBottom: 20,
+      
+   },
+
+   
+   scheduleTxtSmall: {
+      fontSize: 14,
+      color: 'black',
+      margin: 5,
+      borderBottomWidth: 1,
+      borderBottomColor: 'red',
+      
+      
+      
+   },
+
+
+   scheduleTxt: {
+      fontSize: 26,
+      fontFamily: 'Teko',
+      color: '#32305D',
+      margin: 19,
+      textTransform: 'uppercase',
+   },
+
+   showMore: {
+      fontSize: 16, 
+      fontWeight: 'bold', 
+      color: '#5050A5', 
+      alignSelf: 'center',
+      marginBottom: 20,
+   },
+
+   loremIpsum: {
+      textAlign: 'center',
+      alignSelf: 'center',
+      fontSize: 14,
+      margin: 19,
    },
 
    blueMsgBox: {
@@ -206,7 +278,43 @@ const styles = StyleSheet.create({
 
 
    section1: {
+      
+      marginBottom: 30,
       backgroundColor: 'white',
+      shadowColor: "#000",
+      shadowOffset: {
+         width: 0,
+         height: 2,
+          },
+      shadowOpacity: 0.25,
+      shadowRadius: 3.84,
+      elevation: 5,
+   },
+
+   section2: {
+      marginBottom: 30,
+      backgroundColor: 'white',
+      shadowColor: "#000",
+      shadowOffset: {
+         width: 0,
+         height: 2,
+          },
+      shadowOpacity: 0.25,
+      shadowRadius: 3.84,
+      elevation: 5,
+   },
+
+   section3: {
+      
+      backgroundColor: 'white',
+      shadowColor: "#000",
+      shadowOffset: {
+         width: 0,
+         height: 2,
+          },
+      shadowOpacity: 0.25,
+      shadowRadius: 3.84,
+      elevation: 5,
    },
 
 
