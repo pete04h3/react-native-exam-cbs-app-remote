@@ -16,7 +16,7 @@ const EventScreen = props => {
 
       <View style={styles.container}>
       <View style={styles.section1}>
-            <View style={styles.banner}>
+<View style={styles.banner}>
 
 <Text style={styles.bannerTxt}>Part of collection</Text> 
 <Text style={styles.eventSubline3White}>{singleEvent.eventType}</Text>
@@ -43,6 +43,16 @@ const EventScreen = props => {
          <View style={styles.eventTxtWrap}>
          <Text style={styles.eventSubline}> CBS Students </Text>
          <Text style={styles.eventSubline2}> View page </Text>
+        
+         </View>
+
+         <View style={styles.blueMsgBox}>
+
+         <Image
+          style={styles.ChatIcon}
+          // source={props.event.imageUrl}/>
+          source={require('./../assets/chat-icon-events.png')}/>  
+            
          </View>
    
           
@@ -73,6 +83,7 @@ const EventScreen = props => {
          
       </TouchableOpacity> 
       </View>
+      <View style={styles.sectionWrapper}>
       <Text style={styles.blackDot}>.</Text>
       <View style={styles.flexBoxIcons}>
       <Image
@@ -81,17 +92,13 @@ const EventScreen = props => {
           source={require('./../assets/blackstar.png')}/> 
     <Text style={styles.eventSubline2BlackInt}>145 Interested</Text>
 
-  
-    
       <Image
           style={styles.tinyLogoBlackStar}
           // source={props.event.imageUrl}/>
           source={require('./../assets/blackcalender.png')}/> 
            <Text style={styles.eventSubline2Black}>35 Going</Text>
       </View>
-     
-
-
+      </View>
       </View>
       
       
@@ -109,7 +116,31 @@ const styles = StyleSheet.create({
    container: {
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        marginTop: -10,
+   },
+
+   blueMsgBox: {
+      width: 37,
+      height: 37,
+      backgroundColor: '#5050A5',
+      alignSelf: 'flex-end',
+      marginLeft: 150,
+      marginBottom: 7.5,
+      borderRadius: 5,
+      shadowColor: "#000",
+      shadowOffset: {
+         width: 0,
+         height: 2,
+          },
+      shadowOpacity: 0.25,
+      shadowRadius: 3.84,
+      elevation: 5,
+
+   },
+
+   sectionWrapper: {
+      marginTop: -25,
    },
 
    smallFlex: {
@@ -135,6 +166,8 @@ const styles = StyleSheet.create({
       flexDirection: 'row',
       alignSelf: 'center',
       margin: 5,
+      
+      
    },
 
    flexBoxIcons: {
@@ -205,7 +238,7 @@ const styles = StyleSheet.create({
       height: 40,
       width: 122,
       justifyContent: 'center',
-      marginTop: 17.5,
+      marginTop: 12,
       marginLeft: 150,
       borderRadius: 5,
      },
@@ -215,6 +248,14 @@ const styles = StyleSheet.create({
       height: 36,
       marginTop: 8,
       margin: 10,
+   },
+
+   ChatIcon: {
+      width: 20,
+      height: 19,
+      marginTop: 10,
+      margin: 10,
+      alignSelf: 'center',
    },
 
    tinyLogo: {
@@ -321,8 +362,9 @@ const styles = StyleSheet.create({
       fontSize: 12,
       color: 'white',
       fontWeight: 'bold',
-      marginTop: 43,
+      marginTop: 35,
       marginLeft: -110,
+      paddingVertical: -10,
    
    },
 
@@ -380,7 +422,7 @@ const styles = StyleSheet.create({
     textAlign: 'left',
     justifyContent: 'center',
     paddingHorizontal: 20,
-    paddingVertical: 20,
+    paddingVertical: 15,
     fontSize: 14,
     fontWeight: 'bold',
    },
