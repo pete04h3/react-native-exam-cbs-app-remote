@@ -91,7 +91,7 @@ const LoginScreen = (props) => {
       <View style={styles.wrapperInline}>
           <Text style={styles.placeHolder}>Email</Text>
           <View style={styles.infoIcon}>
-          <TextInput placeholder="sije19ab@cbs.student.dk" label="Email" style={styles.textInput} keyboardType="email-address" onChangeText={onChangeEmail} value={email} />
+          <TextInput required placeholder="sije19ab@cbs.student.dk" label="Email" style={styles.textInput} keyboardType="email-address" onChangeText={onChangeEmail} value={email} />
           <InformationIcon />
           </View>
       </View>

@@ -16,6 +16,8 @@ const TermsAndConditions = props => {
   const [modalVisible, setModalVisible] = useState(true);
 
   const [accepted, setAccepted] = useState('false');
+  const toggleAccepted = () => setAccepted(previousState => !previousState);
+
   
 
  
@@ -35,9 +37,7 @@ const TermsAndConditions = props => {
             style={styles.tcContainer}
             scrollEventThrottle={({nativeEvent}) => {
                 if (isCloseToBottom(nativeEvent)) {
-                  useState({
-                      accepted
-                  })
+                  toggleAccepted(accepted);
                 }
               }}
             >
@@ -55,8 +55,8 @@ Unauthorised use of this website may give rise to a claim for damages and/or be 
                 <Text style={styles.tcP}>The use of this website is subject to the following terms of use</Text>
             </ScrollView>
 
-            <TouchableOpacity disabled={ !accepted } 
-            onPress={ ()=>alert("Terms and conditions accepted")  } style={ accepted ? styles.button : styles.buttonDisabled }><Text style={styles.buttonLabel}>Accept</Text></TouchableOpacity>
+          {/*   <TouchableOpacity disabled={ !accepted } 
+            onPress={ ()=>alert("Terms and conditions accepted")  } style={ accepted ? styles.button : styles.buttonDisabled }><Text style={styles.buttonLabel}>Accept</Text></TouchableOpacity> */}
           </View>
           </View>
       </Modal>
