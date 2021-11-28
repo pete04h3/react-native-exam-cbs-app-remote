@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { View, Text, Button, StyleSheet, FlatList, TextInput } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-
 import ChatRoom from './../components/ChatRoom'
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -37,7 +36,7 @@ const ChatScreen = (props) => {
         <View style={styles.banner}>
 
           <Text style={styles.bannerTxt}>Enable notifications to stay in the loop</Text> 
-          <TouchableOpacity style={styles.smallBox} onPress={ () => props.navigation.navigate('NOTIFCATIONS')} >
+          <TouchableOpacity style={styles.smallBox} onPress={ () => props.navigation.navigate('MENU')} >
           <NotificationIcon />
           </TouchableOpacity> 
           

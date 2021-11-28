@@ -26,7 +26,13 @@ const ChatRoom = (props) => {
             <View style={styles.imageView}>
                 <Image
                     style={styles.tinyLogo}
-                    source={props.chatroom.imageUrl}
+                    //IMG FROM DB
+                    //source={props.chatroom.imageUrl}
+
+                    //HARDCODED IMG
+                     source={{
+                        uri: 'https://pbs.twimg.com/profile_images/882154870014439424/hVdbTvdZ_400x400.jpg',
+                      }} 
                    
                                                   />
             </View>
@@ -79,6 +85,7 @@ const styles = StyleSheet.create({
     tinyLogo: {
      width: 50,
      height: 50,
+     borderRadius: 100,
    },
  });
 export default ChatRoom;
