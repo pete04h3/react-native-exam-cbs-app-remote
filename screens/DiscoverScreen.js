@@ -18,7 +18,8 @@ import filter from 'lodash.filter';  // needs to be here for the search filterin
 
 const DiscoverScreen = props => {
 
-const API_ENDPOINT = `https://randomuser.me/api/?seed=1&page=1&results=20`; // change to our firebase api
+// SEARCH API_ENDPOINT - THIS LINK NEEDS TO MATCH THE DB
+const API_ENDPOINT = `https://randomuser.me/api/?seed=1&page=1&results=20`; // change to your firebase api
 
 // GENERAL CONSTS FOR useState
 // state variables defined for search
@@ -126,7 +127,6 @@ const [fullData, setFullData] = useState([]);
     </TouchableOpacity>
 
     
-{/*UNCOMMENT THIS TO GET ALL THREE BUTTONS*/}
 
     <TouchableOpacity title="All Student organisations" style={styles.button2} onPress={() => props.navigation.navigate("Events")}>
     <Image style={styles.image} source={require("./../assets/IMG_8080.png")}/>
@@ -142,7 +142,7 @@ const [fullData, setFullData] = useState([]);
         </Text>     
     </TouchableOpacity> 
 
-      
+  
   {/* // WORKING SEARCH FLATLIST UNCOMMENT TO SEE */}
 
    {/*  <Text style={styles.text}>Search events</Text>
