@@ -7,7 +7,7 @@ import Events from '../components/Events';
 import { fetchEvents } from './../store/actions/EventAction';
 import defaultStyles from './../GeneralStyles';
 
-const HomeScreen = props => {
+const EventScreen = props => {
 
    const events = useSelector(state => state.event.events); // state is defined // event: EventReducer in app.js // Initialstate events: []
    
@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
    
 });
 
-export default HomeScreen;
+export default EventScreen;
 
 
 

@@ -92,6 +92,7 @@ const [fullData, setFullData] = useState([]);
 
   function renderHeader() {
     return (
+      
       <View
         style={{
           backgroundColor: '#fff',
@@ -126,8 +127,10 @@ const [fullData, setFullData] = useState([]);
         </Text>     
     </TouchableOpacity>
 
-    
-
+  {/*// COMMENT OUT THESE TWO LAST TOUCHABLEOPACITY BEFORE UNCOMMENTING THE SEARCH FLATLIST */}
+   {/*####################################################################################*/}
+     {/*################################################################################*/}
+     
     <TouchableOpacity title="All Student organisations" style={styles.button2} onPress={() => props.navigation.navigate("Events")}>
     <Image style={styles.image} source={require("./../assets/IMG_8080.png")}/>
     <Text style={styles.eventTouchText}>
@@ -140,12 +143,12 @@ const [fullData, setFullData] = useState([]);
     <Text style={styles.eventTouchText}>
         ALL POSTS
         </Text>     
-    </TouchableOpacity> 
+    </TouchableOpacity>  
 
   
   {/* // WORKING SEARCH FLATLIST UNCOMMENT TO SEE */}
 
-   {/*  <Text style={styles.text}>Search events</Text>
+ {/*     <Text style={styles.text}>Search events</Text>
     <FlatList
       ListHeaderComponent={renderHeader}
       data={data}
@@ -163,7 +166,7 @@ const [fullData, setFullData] = useState([]);
           </View>
         </View>
       )}
-    />  */}
+    />   */}
 
   </View>
 
