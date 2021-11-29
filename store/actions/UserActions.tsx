@@ -15,12 +15,24 @@ import * as SecureStore from 'expo-secure-store';
 export const TOGGLE_VALID = 'TOGGLE_VALID';
 import Navigation from "../../components/Navigation";
 
+// #################
+// TOGGLE USER VALID
+// #################
+
 export const toggleUserValid = (isValid: any) => {
     return { type: TOGGLE_VALID, payload: isValid }
 }
 
+// #############
+// API KEY
+// #############
+
 //const api_key = 'AIzaSyBV2KOnzeYrwe6Lwz2B_NbMExB2Jo2aTNs'; // CHRISTIANS API_KEY 
 const api_key = 'AIzaSyCbs8r_RDoaoPymB2IUukOxQUkm5nV9YtI'; // PETERS API_KEY
+
+// #############
+// RESTORE USER
+// #############
 
 export const restoreUser = (user: any, token: any) => {
     return { type: LOGIN, payload: { user, token } };
@@ -33,6 +45,9 @@ export const terms = (checked: any, setChecked: any) => {
     return { type: TERMS };
 };
 
+// #############
+// LOGOUT
+// #############
 export const logout = (isValid: any) => {
     console.log('User logout confirmed!');
     SecureStore.deleteItemAsync('userToken',);
@@ -50,6 +65,10 @@ export const logout = (isValid: any) => {
    
 
 };
+
+// #############
+// REFRESH TOKEN
+// #############
 
 export const refreshToken = (refreshToken: string) => {
     console.log('Running refreshToken');
@@ -85,6 +104,10 @@ export const refreshToken = (refreshToken: string) => {
 
 // #############
 // POSTFUNCTIONS
+// #############
+
+// #############
+// LOGIN
 // #############
 
 export const login = (email: string, password: string, isValid: any) => {
@@ -148,6 +171,10 @@ export const login = (email: string, password: string, isValid: any) => {
 };
 
 
+// #######
+// SIGNUP
+// #######
+
 export const signup = (email: any, password: any, props: any) => {
     console.log('Running signup');
 
@@ -194,7 +221,11 @@ export const signup = (email: any, password: any, props: any) => {
 
         const dataRealtime = await responseRealtime.json(); // json to javascript
 
+        // #############
+        // UPDATE ID
+        // #############
         // UPDATE ID 
+
     const realTimeUpdate = await fetch('https://kvaliapp-baa85-default-rtdb.europe-west1.firebasedatabase.app/userinfo/' + dataRealtime.name + '/.json?auth=' + data.idToken, {
     method: 'PATCH',
     headers: {
@@ -232,7 +263,9 @@ const realTimeUpdateAwait = await realTimeUpdate.json();
 
 
 
-
+// ###########################
+// UPDATE USER ONBOARDING FLOW
+// ###########################
 
 export const updateUser = (fullName: string, studyProgramme: string, userInfo: any, isValid: any, props: any) => {
     // console.log(name, studyProg, token);
@@ -270,6 +303,10 @@ export const updateUser = (fullName: string, studyProgramme: string, userInfo: a
         }
     };
 };
+
+// ###########################
+// UPDATE NOTIFCATIONS 
+// ###########################
 
 export const updateNotifications = (userInfo: any, props: any) => {
     // console.log(name, studyProg, token);
@@ -315,6 +352,10 @@ export const updateNotifications = (userInfo: any, props: any) => {
 // UPDATE Going and Interested FROM DB FUNCTIONS
 // #############################################
 
+// ###########################
+// UPDATE GOING USER
+// ###########################
+
 export const updateGoingUser = (eventId: any, user: any) => {
     // console.log(name, studyProg, token);
     // console.log(email + " " + password);
@@ -349,6 +390,10 @@ export const updateGoingUser = (eventId: any, user: any) => {
         }
     };
 };
+
+// ###########################
+// UPDATE INTERESTED USER
+// ###########################
 
 export const updateInterestedUser = (eventId: any, user: any) => {
     // console.log(name, studyProg, token);
@@ -426,6 +471,10 @@ export const updateDeleteInterestedUser = (eventId: any, user: any) => {
     };
 };
 
+// ###########################
+// UPDATE DELETE GOING USER
+// ###########################
+
 export const updateDeleteGoingUser = (eventId: any, user: any) => {
     // console.log(name, studyProg, token);
     // console.log(email + " " + password);
@@ -463,6 +512,9 @@ export const updateDeleteGoingUser = (eventId: any, user: any) => {
 };
 
 // CHAT TOGGLE 
+// ###########################
+// TOGGLE CHAT NOTIFICATIONS
+// ###########################
 
 export const toggleChatNotification = (userInfo: any, setNotificationsBoolean: boolean) => {
     // console.log(name, studyProg, token);
@@ -503,6 +555,9 @@ export const toggleChatNotification = (userInfo: any, setNotificationsBoolean: b
 };
 
 // EVENT TOGGLE
+// ###########################
+// TOGGLE EVENT NOTIFICATIONS
+// ###########################
 
 export const toggleEventNotification = (userInfo: any, setNotificationsBoolean: boolean) => {
     // console.log(name, studyProg, token);
