@@ -22,12 +22,15 @@ export const fetchFeed = () => {
         for(const key in data) {
             
             feed.push(new Feed(key, data[key].feedName, data[key].imageUrl, data[key].feedType, data[key].feedTime, data[key].feedLocation));
+            console.log("feed from db has been pushed to app feed array");
         }
 
         if (!response.ok) {
             //There was a problem..
+            console.log("response not ok!");
         } else {
             // do something?
+            console.log("dispatching feed");
             dispatch({ type: FETCH_FEED, payload: feed })
         }
     };

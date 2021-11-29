@@ -17,9 +17,7 @@ const HomeScreen = props => {
       dispatch(fetchFeed()); // fetch feed from FeedActions.js
    }, []);
 
-   console.log("Array is:", feeds);
 
-   
 
    return (
       <View style={styles.container} >

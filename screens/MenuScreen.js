@@ -40,6 +40,13 @@ const MenuScreen = props => {
 
    dispatch(toggleEventNotification(userInfo, userInfo.eventToggle));
   }
+/* 
+  const editProfile = () => {
+    console.log("edit profile")
+    //dispatch(editProfile()) 
+    props.navigation.navigate('OnboardUserinfoScreen') 
+}
+ */
    
    
    // SWITCH TOGGLERS // one for chats and one for events.
@@ -69,7 +76,7 @@ const MenuScreen = props => {
         </View>
       </View>
 
-        <TouchableOpacity onPress={() => dispatch(editProfile())}> 
+        <TouchableOpacity /* onPress={() => editProfile() } */> 
           <View style={styles.buttonEditProfile}>
             <Text style={styles.EditProfileButtonText}>Edit profile</Text>
           </View>

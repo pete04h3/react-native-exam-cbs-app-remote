@@ -27,7 +27,7 @@ const UserReducer = (state = initialState, action) => {
             return { ...state, token: action.payload };
         
         case LOGOUT:
-            return {...state, loggedInUser: undefined, token: undefined };
+            return {...state, loggedInUser: undefined, token: undefined, isValid: false };
 
         case SIGNUP:
             return { ...state, loggedInUser: action.payload.user, token: action.payload.token };
@@ -35,7 +35,7 @@ const UserReducer = (state = initialState, action) => {
 
         case LOGIN:
             return { ...state, loggedInUser: action.payload.user, 
-                token: action.payload.token };
+                token: action.payload.token, isValid: true };
 
     default:
         return state;

@@ -35,10 +35,10 @@ export const terms = (checked: any, setChecked: any) => {
 
 export const logout = (isValid: any) => {
     console.log('User logout confirmed!');
-    SecureStore.setItemAsync('userToken', "");
-    SecureStore.setItemAsync('user', "");
-    SecureStore.setItemAsync('expiration', "");
-    SecureStore.setItemAsync('refreshToken', "");
+    SecureStore.deleteItemAsync('userToken',);
+    SecureStore.deleteItemAsync('user',);
+    SecureStore.deleteItemAsync('expiration',);
+    SecureStore.deleteItemAsync('refreshToken',);
 
     return async (dispatch: any) => {
 
@@ -77,7 +77,7 @@ export const refreshToken = (refreshToken: string) => {
         if (!response.ok) {
             //There was a problem..
         } else {
-
+            
             dispatch({ type: REFRESH_TOKEN, payload: data.id_token })
         }
     };
@@ -137,8 +137,8 @@ export const login = (email: string, password: string, isValid: any) => {
             expiration.setSeconds(expiration.getSeconds() + parseInt(data.expiresIn));
             SecureStore.setItemAsync('expiration', JSON.stringify(expiration));
             SecureStore.setItemAsync('refreshToken', data.refreshToken);
-            dispatch({ type: LOGIN, payload: { user, token: data.idToken } })
-            dispatch(toggleUserValid(!isValid));
+            dispatch({ type: LOGIN, payload: { user, token: data.idToken, isValid: true } })
+            //dispatch(toggleUserValid(!isValid));
         }
        
 
@@ -215,8 +215,15 @@ const realTimeUpdateAwait = await realTimeUpdate.json();
         if (!response.ok && !responseRealtime.ok) {
             //There was a problem..
         } else {
-            console.log('Logging responseRealtime', responseRealtime);
+            console.log('Logging responseRealtime');
             const user = new User(realTimeUpdateAwait.id, '', '', '', email, '', 'false', false);
+            SecureStore.setItemAsync('userToken', data.idToken);
+            SecureStore.setItemAsync('user', JSON.stringify(user));
+            let expiration = new Date();
+            //token sættes en time foran
+            expiration.setSeconds(expiration.getSeconds() + parseInt(data.expiresIn));
+            SecureStore.setItemAsync('expiration', JSON.stringify(expiration));
+            SecureStore.setItemAsync('refreshToken', data.refreshToken);
             dispatch({ type: SIGNUP, payload: { user, token: data.idToken } })
             props.navigation.navigate('OnboardUserinfoScreen') // working
         }
@@ -258,6 +265,7 @@ export const updateUser = (fullName: string, studyProgramme: string, userInfo: a
             console.log(isValid);
             props.navigation.navigate('NOTIFICATIONS') // working
             const user = new User(userInfo.id, fullName, userInfo.lastname, userInfo.imageUrl, userInfo.email, studyProgramme, userInfo.chatToggle, userInfo.eventToggle);
+            SecureStore.setItemAsync('user', JSON.stringify(user));
             dispatch({type: UPDATE_SIGNUP_INFORMATION, payload: user })
         }
     };
@@ -293,6 +301,7 @@ export const updateNotifications = (userInfo: any, props: any) => {
             console.log(userInfo);
             const user = new User(userInfo.id, userInfo.firstname, userInfo.lastname, userInfo.imageUrl, userInfo.email, userInfo.studyProgramme, true, true);
             //SecureStore.setItemAsync('user', JSON.stringify(user));
+            SecureStore.setItemAsync('user', JSON.stringify(user));
             dispatch({type: EVENT_NOTIFICATIONS_TOGGLE, payload: user })
             dispatch({type: CHAT_NOTIFICATIONS_TOGGLE, payload: user })
             props.navigation.navigate('ONBOARDINGSCREEN1') // working
@@ -367,6 +376,7 @@ export const updateInterestedUser = (eventId: any, user: any) => {
             console.log(response);
         } else {
             console.log('interestedUserAdded');
+            
 
             //console.log(isValid);
             //dispatch(toggleUserValid(!isValid));
@@ -406,6 +416,7 @@ export const updateDeleteInterestedUser = (eventId: any, user: any) => {
             console.log(response);
         } else {
             console.log('interestedUserDeleted');
+            SecureStore.setItemAsync('user', JSON.stringify(user));
 
             //console.log(isValid);
             //dispatch(toggleUserValid(!isValid));
@@ -441,6 +452,7 @@ export const updateDeleteGoingUser = (eventId: any, user: any) => {
             console.log(response);
         } else {
             console.log('goingUserDeleted');
+            SecureStore.setItemAsync('user', JSON.stringify(user));
 
             //console.log(isValid);
             //dispatch(toggleUserValid(!isValid));
@@ -482,6 +494,7 @@ export const toggleChatNotification = (userInfo: any, setNotificationsBoolean: b
             console.log(userInfo);
             const user = new User(userInfo.id, userInfo.firstname, userInfo.lastname, userInfo.imageUrl, userInfo.email, userInfo.studyProgramme, !setNotificationsBoolean, userInfo.eventToggle);
             //SecureStore.setItemAsync('user', JSON.stringify(user));
+            SecureStore.setItemAsync('user', JSON.stringify(user));
             dispatch({type: CHAT_NOTIFICATIONS_TOGGLE, payload: user })
             //     const user = new User(data.localId, data.firstname, '', '', email, data.studyProg);
             //    dispatch({type: SIGNUP, payload: { user, token: data.idToken } })
@@ -521,6 +534,7 @@ export const toggleEventNotification = (userInfo: any, setNotificationsBoolean: 
             console.log(userInfo);
             const user = new User(userInfo.id, userInfo.firstname, userInfo.lastname, userInfo.imageUrl, userInfo.email, userInfo.studyProgramme, userInfo.chatToggle, !setNotificationsBoolean);
             //SecureStore.setItemAsync('user', JSON.stringify(user));
+            SecureStore.setItemAsync('user', JSON.stringify(user));
             dispatch({type: EVENT_NOTIFICATIONS_TOGGLE, payload: user })
            
             //     const user = new User(data.localId, data.firstname, '', '', email, data.studyProg);

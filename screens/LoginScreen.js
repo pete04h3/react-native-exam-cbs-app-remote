@@ -33,6 +33,14 @@ const LoginScreen = (props) => {
     const acceptTerms = () => {
       dispatch(login(email, password)); // not working
   }
+
+  const goToSignUp = () => {
+    if (isValid !== false) {
+      dispatch(toggleUserValid(!isValid));
+    }
+    props.navigation.navigate('SIGNUP') 
+  }
+ 
     
   // SECURE STORAGE, USERTOKEN, USER, EXPERIATION & REFRESHTOKEN
 
@@ -43,6 +51,9 @@ const LoginScreen = (props) => {
 
           try {
             expiration = new Date(JSON.parse(await SecureStore.getItemAsync('expiration')));
+            console.log("Running application");
+            console.log("Expiration is:" , expiration);
+            console.log("Current time is:" , new Date()); 
             
             // if expiration.....
             console.log("expiration", expiration);
@@ -50,14 +61,17 @@ const LoginScreen = (props) => {
             if (expiration < new Date()) { // then it is expired
                 console.log("refresh token");
                 refreshTokenString = await SecureStore.getItemAsync('refreshToken');
+                console.log(refreshTokenString);
                 dispatch(refreshToken(refreshTokenString));
-            } else {
-              dispatch(toggleUserValid(!isValid));
-            }
+            } 
             console.log("no refresh token");
 
             userToken = await SecureStore.getItemAsync('userToken');
             user = JSON.parse(await SecureStore.getItemAsync('user'));
+
+            if (userToken) {
+              dispatch(restoreUser(user, userToken));
+            }
             
             // console.log(userToken);
             // console.log(user);
@@ -68,7 +82,7 @@ const LoginScreen = (props) => {
             console.log(e);
           }
     
-          dispatch(restoreUser(user, userToken));
+         
         };
     
         bootstrapAsync();
@@ -123,7 +137,7 @@ const LoginScreen = (props) => {
 
         <View style={styles.accountButton}>
            <Text style={styles.accountText}>Don't have an account?</Text>
-           <TouchableOpacity onPress={ () => props.navigation.navigate('SIGNUP') }>
+           <TouchableOpacity onPress={ () => handleLogin()}>
             <Text style={styles.accountButtonText}>Sign up</Text>
         </TouchableOpacity>
         </View>
