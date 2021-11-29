@@ -105,12 +105,31 @@ export const login = (email: string, password: string, isValid: any) => {
         });
 
         const data = await response.json(); // json to javascript
+        const responseRealtime = await fetch('https://kvaliapp-baa85-default-rtdb.europe-west1.firebasedatabase.app/userinfo.json?auth=' + data.idToken, {
+
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+
+        });
+
+        const dataRealtime = await responseRealtime.json();
+        let userInfo; 
+        console.log("The response" , dataRealtime);
+        for (const key in dataRealtime) {
+            if (dataRealtime[key].email === email) {
+                console.log("user found" , dataRealtime[key])
+                userInfo = dataRealtime[key];
+            }
+        }
+        
         console.log(data);
         if (!response.ok) {
             //There was a problem..
         } else {
 
-            const user = new User(data.localId, '', '', '', email);
+            const user = new User(userInfo.id, userInfo.firstname, userInfo.lastname, userInfo.imageUrl, userInfo.email, userInfo.studyProgramme, userInfo.chatToggle, userInfo.eventToggle);
             SecureStore.setItemAsync('userToken', data.idToken);
             SecureStore.setItemAsync('user', JSON.stringify(user));
             let expiration = new Date();
@@ -121,6 +140,10 @@ export const login = (email: string, password: string, isValid: any) => {
             dispatch({ type: LOGIN, payload: { user, token: data.idToken } })
             dispatch(toggleUserValid(!isValid));
         }
+       
+
+
+
     };
 };
 

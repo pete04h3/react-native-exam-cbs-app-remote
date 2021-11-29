@@ -6,6 +6,7 @@ import { createStore, combineReducers, applyMiddleware } from 'redux';
 import ChatReducer from './store/reducers/ChatReducer';
 import UserReducer from './store/reducers/UserReducer';
 import EventReducer from './store/reducers/EventReducer';
+import FeedReducer from './store/reducers/FeedReducer';
 import { Provider } from 'react-redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import ReduxThunk from 'redux-thunk';
@@ -16,6 +17,7 @@ const rootReducer = combineReducers({
   chat: ChatReducer,
   user: UserReducer,
   event: EventReducer,
+  feed: FeedReducer,
   //posts: PostReducer
 });
 

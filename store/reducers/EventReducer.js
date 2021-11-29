@@ -1,5 +1,5 @@
 import Event from "../../models/Events";
-import { FETCH_EVENTS} from "../actions/EventAction";
+import { FETCH_EVENTS } from "../actions/EventAction";
 
 const initialState = {
     events: [] // new array

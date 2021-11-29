@@ -2,41 +2,36 @@ import React, { useState } from 'react';
 import { View, Text, Button, StyleSheet, FlatList, TextInput } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useDispatch, useSelector } from 'react-redux';
-import Events from '../components/Events';
-
-import { fetchEvents } from './../store/actions/EventAction';
+import Feed from '../components/Feed';
+import { fetchFeed } from './../store/actions/FeedAction';
 import defaultStyles from './../GeneralStyles';
 
-const EventScreen = props => {
+const HomeScreen = props => {
 
-   const events = useSelector(state => state.event.events); // state is defined // event: EventReducer in app.js // Initialstate events: []
-   
+
+   const feeds = useSelector(state => state.feed.feed); // state is defined // feed: FeedReducer in app.js // Initialstate feed: []
    const dispatch = useDispatch(); // helps to dispatch an action
 
-   const isValid = useSelector((state) => state.user.isValid)
-   React.useEffect(() => {
-    console.log('User account is set to', isValid);
-  }, [isValid]); 
-
    React.useEffect(() => { // peform side effects inside funtion
-      console.log("fetching events");
-      dispatch(fetchEvents()); // fetch events from EventsActions.js
+      console.log("fetching feed");
+      dispatch(fetchFeed()); // fetch feed from FeedActions.js
    }, []);
+
+   console.log("Array is:", feeds);
 
    
 
    return (
       <View style={styles.container} >
 
-
        
           <View>
           <FlatList
-            data={events}
+            data={feeds}
             renderItem={itemData => (
-                <Events event={itemData.item}></Events>
+                <Feed feed={itemData.item}></Feed>
             )}
-            keyExtractor={item => item.eventId}
+            keyExtractor={item => item.feedId}
         />
         
         </View>
@@ -64,9 +59,4 @@ const styles = StyleSheet.create({
    
 });
 
-export default EventScreen;
-
-
-
-
-
+export default HomeScreen;

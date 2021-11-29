@@ -7,6 +7,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import ChatStackNavigator from './ChatStackNavigator';
 import HomeScreen from './../screens/HomeScreen';
 import EventStackNavigator from './EventStackNavigator';
+import FeedStackNavigator from './FeedStackNavigator';
 import SignupOnboardStackNavigator from './SignupOnboardStackNavigator';
 import MenuScreen from './../screens/MenuScreen';
 import NotificationScreen from './../screens/NotificationScreen';
@@ -94,7 +95,7 @@ const Navigation = props => {
             }
           })}
         >
-        <Tab.Screen name="HOME" component={HomeScreen} options={{ title: 'FEED'}} />
+        <Tab.Screen name="HOME" component={FeedStackNavigator} options={{ title: 'FEED' , headerShown: false }} />
         <Tab.Screen name="DISCOVEROUTER" component={EventStackNavigator} options={{ title: 'DISCOVER', headerShown: false }} />
         <Tab.Screen name="CHATOUTER" component={ChatStackNavigator} options={{ title: 'CHAT', headerShown: false }} />
 {/*     <Tab.Screen name="NOTIFCATIONS" component={NotificationScreenToggle} />*/}      

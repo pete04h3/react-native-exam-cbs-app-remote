@@ -15,12 +15,12 @@ import defaultStyles from './../GeneralStyles';
 import { ScrollView } from 'react-native-gesture-handler';
 
 
-const EventScreen = props => {
+const FeedScreen = props => {
 
    const { id } = props.route.params;
-   const singleEvent = useSelector(state => state.event.events).find(singleEvent => singleEvent.eventId === id); // state is defined // event: EventReducer in app.js // Initialstate events: []
-   console.log(singleEvent.eventName);
-   const eventId = singleEvent.eventId
+   const singleFeed = useSelector(state => state.feed.feed).find(singleFeed => singleFeed.feedId === id); // state is defined // event: EventReducer in app.js // Initialstate events: []
+   console.log(singleFeed.feedName);
+   const feedId = singleFeed.feedId
    const userEmail = useSelector(state => state.user.loggedInUser?.email );
    console.log(userEmail);
    const dispatch = useDispatch(); // helps to dispatch an action
@@ -30,7 +30,7 @@ const EventScreen = props => {
    // POST TO DB
 
    const handleGoingUser = () => {
-      dispatch(updateGoingUser(eventId, user));
+      dispatch(updateGoingUser(feedId, user));
    };
    
    const handleInterestedUser = () => {
@@ -58,7 +58,7 @@ const EventScreen = props => {
 <View style={styles.banner}>
 
 <Text style={styles.bannerTxt}>Part of collection</Text> 
-<Text style={styles.eventSubline3White}>{singleEvent.eventType}</Text>
+<Text style={styles.eventSubline3White}>{singleFeed.feedType}</Text>
 
 <TouchableOpacity style={styles.mediumBox} >
 <Text style={styles.eventSubline2White}>See collection</Text>
@@ -69,9 +69,9 @@ const EventScreen = props => {
           style={styles.bannerImg}
           // source={props.event.imageUrl}/>
           source={require('./../assets/singleeventpic.png')}/>
-          <Text style={styles.eventHeadline}> {singleEvent.eventName} </Text>
-          <Text style={styles.eventTime}> <Image style={styles.tinyLogo}  source={require('./../assets/alarm-clock-black.png')}/>    {singleEvent.eventTime} </Text>
-          <Text style={styles.eventLocation}> <Image style={styles.tinyLogoLocation} source={require('./../assets/marker-black.png')}/>    {singleEvent.eventLocation} </Text>
+          <Text style={styles.eventHeadline}> {singleFeed.feedName} </Text>
+          <Text style={styles.eventTime}> <Image style={styles.tinyLogo}  source={require('./../assets/alarm-clock-black.png')}/>    {singleFeed.feedTime} </Text>
+          <Text style={styles.eventLocation}> <Image style={styles.tinyLogoLocation} source={require('./../assets/marker-black.png')}/>    {singleFeed.feedLocation} </Text>
       
       <View style={styles.midSection} >
 
@@ -619,4 +619,4 @@ const styles = StyleSheet.create({
    
 });
 
-export default EventScreen;
+export default FeedScreen;

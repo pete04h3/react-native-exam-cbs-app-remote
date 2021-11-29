@@ -4,6 +4,7 @@ import DiscoverScreen from '../screens/DiscoverScreen';
 import EventsScreen from '../screens/EventsScreen';
 import EventScreen from '../screens/EventScreen';
 import HomeScreen from '../screens/HomeScreen';
+import FeedScreen from '../screens/FeedScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -57,9 +58,9 @@ export default function EventStackNavigator() {
             }
           })}
           >
-            <Stack.Screen name="Discover" component={DiscoverScreen} options={{ title: 'DISCOVER', }} />
-            <Stack.Screen name="Events" component={EventsScreen} options={{ title: 'EVENTS', }} />
-            <Stack.Screen name="Event" component={EventScreen} options={{ title: 'EVENT' }} />
+            
+            <Stack.Screen name="HOMESCREEN" component={HomeScreen} options={{ title: 'FEED', }} />
+            <Stack.Screen name="FEEDSCREEN" component={FeedScreen} options={{ title: 'EVENT' }} />
             {/*  <Stack.Screen name="Event" component={EventScreen} options={{ title: `${singleEvent.eventType},` }} />  */}
         </Stack.Navigator>
     )

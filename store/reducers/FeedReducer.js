@@ -1,15 +1,15 @@
-import Event from "../../models/Events";
+import Feed from "../../models/Feed";
 import { FETCH_FEED } from "../actions/FeedAction";
 
 const initialState = {
-    events: [] // new array
+    feed: [] // new array
 };
 
 const FeedReducer = (state = initialState, action) => {
     switch (action.type) {
       
         case FETCH_FEED: 
-            return {...state, events: action.payload };
+            return {...state, feed: action.payload };
 
     default:
         return state;
