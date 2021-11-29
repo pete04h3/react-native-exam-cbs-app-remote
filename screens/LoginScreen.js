@@ -17,21 +17,19 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const LoginScreen = (props) => {
 
-  // VALID
-  const isValid = useSelector((state) => state.user.isValid);
+
 
   
     const [email, onChangeEmail] = useState("");
     const [password, onChangePassword] = useState("");
     const dispatch = useDispatch();
 
+    // VALID
+    const isValid = useSelector((state) => state.user.isValid);
     const handleLogin = () => {
-        dispatch(login(email, password));
-        dispatch(toggleUserValid(!isValid));
+    dispatch(login(email, password, isValid));   
     }
     
-
-
     const acceptTerms = () => {
       dispatch(login(email, password)); // not working
   }

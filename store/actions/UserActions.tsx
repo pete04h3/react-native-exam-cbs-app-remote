@@ -33,13 +33,20 @@ export const terms = (checked: any, setChecked: any) => {
     return { type: TERMS };
 };
 
-export const logout = () => {
+export const logout = (isValid: any) => {
     console.log('User logout confirmed!');
     SecureStore.setItemAsync('userToken', "");
     SecureStore.setItemAsync('user', "");
     SecureStore.setItemAsync('expiration', "");
     SecureStore.setItemAsync('refreshToken', "");
-    return { type: LOGOUT };
+
+    return async (dispatch: any) => {
+
+        dispatch(toggleUserValid(!isValid));
+        console.log("User isValid status:", !isValid);
+        dispatch({ type: LOGOUT })
+        
+        };
    
 
 };
@@ -80,7 +87,7 @@ export const refreshToken = (refreshToken: string) => {
 // POSTFUNCTIONS
 // #############
 
-export const login = (email: string, password: string) => {
+export const login = (email: string, password: string, isValid: any) => {
     console.log('Running login');
     return async (dispatch: any) => { // redux thunk
         const response = await fetch('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=' + api_key, {
@@ -112,6 +119,7 @@ export const login = (email: string, password: string) => {
             SecureStore.setItemAsync('expiration', JSON.stringify(expiration));
             SecureStore.setItemAsync('refreshToken', data.refreshToken);
             dispatch({ type: LOGIN, payload: { user, token: data.idToken } })
+            dispatch(toggleUserValid(!isValid));
         }
     };
 };

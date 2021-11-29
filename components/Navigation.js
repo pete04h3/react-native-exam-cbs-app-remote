@@ -103,7 +103,32 @@ const Navigation = props => {
 
     ) : (
 
-        <Stack.Navigator>
+        <Stack.Navigator screenOptions={({ route }) => ({
+          
+          tabBarActiveTintColor: '#5050A5',
+          tabBarInactiveTintColor: 'gray',
+          
+          tabBarStyle: { 
+          height: 60,
+          backgroundColor: 'white',
+          textTransform: 'uppercase'
+          },
+          tabBarLabelStyle: {
+            fontFamily: "Teko",
+            fontSize: 16,
+            textTransform: 'uppercase'
+          },
+          headerTitleStyle: {
+            fontFamily: "Teko",
+            fontSize: 26,
+            color: '#5050A5',
+            textTransform: 'uppercase'
+          },
+          headerStyle: {
+              textTransform: 'uppercase'
+          }
+        })}
+        >
             {/* <Stack.Screen name="ONBOARDINGSCREEN1" component={OnboardingScreen1} options={{ headerShown: false }} />
             <Stack.Screen name="ONBOARDINGSCREEN2" component={OnboardingScreen2} options={{ headerShown: false }} />
             <Stack.Screen name="ONBOARDINGSCREEN3" component={OnboardingScreen3} options={{ headerShown: false }} />
