@@ -194,18 +194,37 @@ export const signup = (email: any, password: any, props: any) => {
 
         const dataRealtime = await responseRealtime.json(); // json to javascript
 
+        // UPDATE ID 
+    const realTimeUpdate = await fetch('https://kvaliapp-baa85-default-rtdb.europe-west1.firebasedatabase.app/userinfo/' + dataRealtime.name + '/.json?auth=' + data.idToken, {
+    method: 'PATCH',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+        id: dataRealtime.name,
+      
+        
+    })
+});
+
+const realTimeUpdateAwait = await realTimeUpdate.json();
+
+
         console.log(dataRealtime, 'Logging dataRealtime');
         console.log(data);
         if (!response.ok && !responseRealtime.ok) {
             //There was a problem..
         } else {
             console.log('Logging responseRealtime', responseRealtime);
-            const user = new User(dataRealtime.name, '', '', '', email, '', 'false', false);
+            const user = new User(realTimeUpdateAwait.id, '', '', '', email, '', 'false', false);
             dispatch({ type: SIGNUP, payload: { user, token: data.idToken } })
             props.navigation.navigate('OnboardUserinfoScreen') // working
         }
     };
 };
+
+
+
 
 
 export const updateUser = (fullName: string, studyProgramme: string, userInfo: any, isValid: any, props: any) => {
@@ -226,6 +245,7 @@ export const updateUser = (fullName: string, studyProgramme: string, userInfo: a
             body: JSON.stringify({
                 firstname: fullName,
                 studyProgramme: studyProgramme,
+                
             })
         });
 
