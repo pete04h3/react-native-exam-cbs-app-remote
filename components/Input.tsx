@@ -11,10 +11,10 @@ interface Props {
     error: string;
     nameValid: boolean;
     onValid: (arg: boolean) => void;
-    setContent: (arg: string) => void; 
+    setContent: (arg: string) => void;
 }
 
-const Input = ( {placeholder, secure, label='My default value', text, error, nameValid, onValid, setContent} : Props)  => {
+const Input = ({ placeholder, secure, label = 'My default value', text, error, nameValid, onValid, setContent }: Props) => {
     const [touched, setTouched] = useState(false);
 
     const handleNewInput = (enteredText: string) => {
@@ -25,41 +25,41 @@ const Input = ( {placeholder, secure, label='My default value', text, error, nam
 
     if (!handleNewInput) {
 
-    
 
-   return (
-      <View>
-          <Text style={styles.placeHolder}>{label}</Text>
-          <TextInput style={styles.textInput} 
-            value={text} 
-            placeholder={placeholder}
-            secureTextEntry={secure}
-            onChangeText={handleNewInput}
-            onBlur={() => setTouched(true)}></TextInput>
-            {!nameValid && touched && <Text style={styles.errorMsg}  >{error}</Text>}
-            <InformationIcon />
-      </View>
-      
-         
-     
-      
-   );
+
+        return (
+            <View>
+                <Text style={styles.placeHolder}>{label}</Text>
+                <TextInput style={styles.textInput}
+                    value={text}
+                    placeholder={placeholder}
+                    secureTextEntry={secure}
+                    onChangeText={handleNewInput}
+                    onBlur={() => setTouched(true)}></TextInput>
+                {!nameValid && touched && <Text style={styles.errorMsg}  >{error}</Text>}
+                <InformationIcon />
+            </View>
+
+
+
+
+        );
     } else {
-    return (
-       <View>
-           
-          <Text style={styles.placeHolder}>{label}</Text>
-                <TextInput style={styles.textInput} 
-                  value={text} 
-                  placeholder={placeholder}
-                  secureTextEntry={secure}
-                  onChangeText={handleNewInput}
-                  onBlur={() => setTouched(false)}></TextInput>
-                  {!nameValid && touched && <Text style={styles.errorMsg}  >{error}</Text>}
-                 
-        </View>     
-        
-         );
+        return (
+            <View>
+
+                <Text style={styles.placeHolder}>{label}</Text>
+                <TextInput style={styles.textInput}
+                    value={text}
+                    placeholder={placeholder}
+                    secureTextEntry={secure}
+                    onChangeText={handleNewInput}
+                    onBlur={() => setTouched(false)}></TextInput>
+                {!nameValid && touched && <Text style={styles.errorMsg}  >{error}</Text>}
+
+            </View>
+
+        );
 
 
     }
@@ -67,16 +67,16 @@ const Input = ( {placeholder, secure, label='My default value', text, error, nam
 
 const styles = StyleSheet.create({
 
-  
 
-    textInput : {
+
+    textInput: {
         borderWidth: 1,
         padding: 10,
         width: 298,
         borderColor: 'white',
     },
 
-    errorMsg : {
+    errorMsg: {
         color: "red",
         margin: 12,
         marginTop: 1,
@@ -88,9 +88,9 @@ const styles = StyleSheet.create({
 
     infoIcon: {
         flexDirection: 'row',
-      },
+    },
 
-    placeHolder : {
+    placeHolder: {
         margin: 12,
         fontWeight: 'bold',
         textAlign: 'left',
@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
         textTransform: 'uppercase',
 
     }
-   
+
 });
 
 export default Input;

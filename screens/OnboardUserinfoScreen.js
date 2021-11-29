@@ -16,16 +16,16 @@ const OnboardUserinfoScreen = props => {
     const isValid = useSelector(state => state.user.isValid) // the subscription
     // const loggedInUser = useSelector(state => state.user.loggedInUser).token;
 
-    const userInfoId = useSelector(state => state.user.loggedInUser?.id );
+    const userInfo = useSelector(state => state.user?.loggedInUser );
   
-    console.log('User', userInfoId)
+    console.log('User', userInfo)
       // skifter fortegnet på boolean. action creater toggle happy.
 
     const [fullName, onChangeName] = useState('');
     const [studyProg, onChangeStudyprog] = useState('');
     
     const handleOnboardingUser = () => {
-        dispatch(updateUser(fullName, studyProg, userInfoId, isValid, props))    }
+        dispatch(updateUser(fullName, studyProg, userInfo, isValid, props))    }
 
     // const changeProfileImage = () => {
     //    props.src = '../assets/6d38ab105ed32e0c25e4f82e1e9ccd2a.png'; // not working

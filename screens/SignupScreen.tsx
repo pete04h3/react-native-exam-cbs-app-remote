@@ -1,158 +1,143 @@
 import React, { useState } from 'react';
-import { View, Text, Image, Button, StyleSheet, TextInput, Platform, } from 'react-native';
-
-// DISPATCH
+import { View, Text, Image, Button, StyleSheet, TextInput, Platform, SafeAreaView, TouchableOpacity } from 'react-native';
+import { RadioButton } from 'react-native-paper';
 import { useDispatch } from 'react-redux';
-// SIGNUP ACTION
-import { signup } from '../store/actions/UserActions';
-// TERMS ACTION 
-import { terms } from '../store/actions/UserActions';
-// INPUT COMP
+
+import { signup, terms } from '../store/actions/UserActions';
 import Input from './../components/Input';
-// IMAGE COMP
 import ImagesExample from './../components/ImageExample'
-// SCREENS
-import Navigation from '../components/Navigation';
-import LoginScreen from './../screens/LoginScreen';
-// BUTTONS 
-import { TouchableOpacity } from 'react-native-gesture-handler';
-
-// CHECKBOX
-import { Checkbox } from 'react-native-paper';
-
-// INFO ICON
-import InformationIcon from '../components/InfoIcon';
-import { any } from 'prop-types';
-
-// import { useSelector } from 'react-redux';
-// import { toggleUserValid } from './../store/actions/UserActions'
+// import TermsAndConditions from './../components/TermsandConditions';
 
 
 
 
 const SignupScreen = (props: any) => {
 
-  //Checkbox 
-  const [checked, setChecked] = useState(false);
+  // Terms and condition
+  const [checked, setChecked] = useState(''); // useState is empty
+  const [shouldShow, setShouldShow] = useState(''); // useState is empty
 
-  React.useEffect(() => {
-    console.log('Checkbox set to', checked);
-    console.log(props.route.name);
 
-    // add css to signup button (opacity some thing)
-  }, [checked]);
-
-  const handleTerms = () => {
-    setChecked(!checked)
+  const handleRadio = () => {
+    setChecked(!checked as any) // checkbox set to true/false
   }
 
-  // useState 
-  const [changeName, setChangeName] = useState(''); // lift up
-  const [nameValid, setNameValid] = useState(false); // lift up - pass through props instead
 
-  //const [email, onChangeEmail] = useState("");
+  React.useEffect(() => {
+    console.log('Checkbox set to', checked); //Logs checkbox to true/false
+  }, [checked]);
+
+  React.useEffect(() => {
+    console.log('Opening terms and condition module', shouldShow); // Opening terms and condiiton
+  }, [shouldShow]);
+
+
+  // Signup form
+  const [changeName, setChangeName] = useState('');
+  const [nameValid, setNameValid] = useState(false);
+
   const [changePassword, setChangePassword] = useState("");
   const [passwordValid, setPasswordValid] = useState(false);
 
   const [confirmPassword, setConfirmPassword] = useState("");
   const [confirmPasswordValid, setConfirmPasswordValid] = useState(false);
 
-  // const isValid = useSelector(state => state.user.isValid) // the subscription
-
-
-  // dispatch
   const dispatch = useDispatch();
 
   const handleSignup = () => {
-    dispatch(signup(changeName, changePassword, props));
+    dispatch(signup(changeName, changePassword, props)); // working
   }
 
-  const acceptTerms = () => {
-    dispatch(terms(checked, setChecked)); // working
-    console.log(checked, setChecked);
-  }
-
-  // RETURN SIGNUP VIEW
 
   return (
 
     <View style={styles.container}>
 
+      {/* TERMS AND CONDITIONS MODULE
+      <SafeAreaView style={styles.container}>
+        <View style={styles.termsContainer}>
+          {shouldShow ? (<TermsAndConditions />) : null}
+        </View>
+      </SafeAreaView> */}
+
+
+      {/*TOP OF FORM*/}
       <View style={styles.imgWrap}>
         <ImagesExample />
       </View>
-
-
-
       <View style={styles.headLineWrapper}><Text style={styles.headLine}>Sign up to get access</Text></View>
 
+      {/*FORM*/}
       <View style={styles.wrapper}>
+        <SafeAreaView>
 
+          <SafeAreaView style={styles.wrapperInline}>
+            <Input
+              secure={false}
+              placeholder='sije19ab@student.cbs.dk'
+              label="E-mail"
+              error="Please fill out your username"
+              text={changeName} nameValid={nameValid}
+              onValid={(valid: any) => setNameValid(valid)}
+              setContent={(content: any) => setChangeName(content)} />
+          </SafeAreaView>
 
-        <View style={styles.wrapperInline}>
+          <SafeAreaView style={styles.wrapperInline}>
+            <Input
+              secure={true}
+              placeholder="********"
+              label="Password"
+              error="Please fill out your password"
+              text={changePassword} nameValid={passwordValid}
+              onValid={(valid: any) => setPasswordValid(valid)}
+              setContent={(content: any) => setChangePassword(content)} />
+          </SafeAreaView>
 
-          <Input
-            secure={false}
-            placeholder='sije19ab@student.cbs.dk'
-            label="E-mail"
-            error="Please fill out your username"
-            text={changeName} nameValid={nameValid}
-            onValid={(valid: any) => setNameValid(valid)}
-            setContent={(content: any) => setChangeName(content)} />
-        </View>
-        <View style={styles.wrapperInline}>
-          <Input
-            secure={true}
-            placeholder="********"
-            label="Password"
-            error="Please fill out your password"
-            text={changePassword} nameValid={passwordValid}
-            onValid={(valid: any) => setPasswordValid(valid)}
-            setContent={(content: any) => setChangePassword(content)} />
-        </View>
-        <View style={styles.wrapperInline}>
-          <Input
-            secure={true}
-            placeholder="********"
-            label="Repeat Password"
-            error="Password dosn't match"
-            text={confirmPassword} nameValid={confirmPasswordValid}
-            onValid={(valid: any) => setConfirmPasswordValid(valid)}
-            setContent={(content: any) => setConfirmPassword(content)} />
-        </View>
+          <SafeAreaView style={styles.wrapperInline}>
+            <Input
+              secure={true}
+              placeholder="********"
+              label="Repeat Password"
+              error="Password dosn't match"
+              text={confirmPassword} nameValid={confirmPasswordValid}
+              onValid={(valid: any) => setConfirmPasswordValid(valid)}
+              setContent={(content: any) => setConfirmPassword(content)} />
+          </SafeAreaView>
 
+        </SafeAreaView>
 
+        {/*CHECKBOX terms and condition*/}
         <View style={styles.checkboxWrapper}>
           <View style={styles.checkboxContainer}>
-            <View style={styles.checkBoxStyle}>
-              <View style={styles.check}>
 
-                <Checkbox
+            <View style={styles.checkBoxStyle}>
+              <View style={styles.radioButtonWrapper}>
+                <RadioButton
+                  value="false"
                   color="#32305D"
                   uncheckedColor="#32305D"
                   status={checked ? 'checked' : 'unchecked'}
-                  onPress={() => handleTerms()}
-                />
-
+                  onPress={() => handleRadio()} />
               </View>
             </View>
+
             <Text style={styles.termsLabel} > I agree to the </Text>
-            <TouchableOpacity onPress={acceptTerms}><Text style={styles.termsText}>terms and conditions</Text>
+            <TouchableOpacity onPress={() => props.navigation.navigate('TermsAndConditionScreen')}><Text style={styles.termsText}>terms and conditions</Text>
             </TouchableOpacity>
+
           </View>
         </View>
 
       </View>
 
-
+      {/*SIGNUP BUTTON Get access*/}
       <TouchableOpacity disabled={!checked} style={!checked ? styles.button : styles.buttonValid} onPress={handleSignup}>
         <View>
           <Text style={styles.buttonText}>Get access</Text>
         </View>
       </TouchableOpacity>
 
-
-
+      {/*ALREADY A USER, change to Login*/}
       <View style={styles.accountButton}>
         <Text style={styles.accountText}>Already have a user?</Text>
         <TouchableOpacity onPress={() => props.navigation.navigate('LOGIN')}>
@@ -163,25 +148,34 @@ const SignupScreen = (props: any) => {
     </View>
 
 
-
-
-
-
   );
-
-
-
 }
 
-// STYLING
 
+
+// STYLING
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'white',
+  },
 
+  termsContainer: {
+    flex: 0,
+    height: 600,
+    margin: 20,
+    marginTop: 660,
+    //zIndex: 999,
+    backgroundColor: 'white',
+
+  },
+
+  radioButtonWrapper: {
+    borderWidth: 1,
+    borderColor: 'darkblue',
+    borderRadius: 5,
   },
 
   infoIcon: {
@@ -204,6 +198,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignContent: 'center',
     paddingVertical: 15,
+
   },
   text: {
     lineHeight: 30,
@@ -231,6 +226,7 @@ const styles = StyleSheet.create({
     height: 239,
     borderRadius: 5,
     marginBottom: 40,
+
   },
 
   wrapperInline: {
@@ -240,8 +236,6 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     shadowColor: '#AAAAAA29',
     width: 300,
-
-
   },
 
   button: {
@@ -262,6 +256,7 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
+
   },
 
   buttonValid: {
@@ -330,6 +325,7 @@ const styles = StyleSheet.create({
     marginRight: 115,
     marginBottom: 20,
     fontFamily: "Teko",
+
 
   },
 
@@ -403,5 +399,3 @@ const styles = StyleSheet.create({
 
 
 export default SignupScreen;
-
-

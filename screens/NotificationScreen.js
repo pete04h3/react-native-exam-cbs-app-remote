@@ -17,10 +17,10 @@ const NotificationScreen = props => {
 
  // useState  
 /*     const [someThing, someThingElse] = useState(''); // lift up*/ 
-const userInfoId = useSelector((state) => state.user.loggedInUser?.id );
+const userInfo = useSelector((state) => state.user?.loggedInUser );
 
 const handleNotifications = () => {
-  dispatch(updateNotifications(true, userInfoId, props)); // working
+  dispatch(updateNotifications(userInfo, props)); // working
 }
    
  return (

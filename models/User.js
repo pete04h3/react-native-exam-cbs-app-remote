@@ -1,5 +1,5 @@
 class User {
-    constructor(id, firstname, lastname, imageUrl, email, studyProgramme, chatToggle, eventToggle, notifications) {
+    constructor(id, firstname, lastname, imageUrl, email, studyProgramme, chatToggle, eventToggle) {
       this.id = id;
       this.firstname = firstname;
       this.lastname = lastname;
@@ -8,7 +8,6 @@ class User {
       this.studyProgramme = studyProgramme;
       this.chatToggle = chatToggle;
       this.eventToggle = eventToggle;
-      this.notifications = notifications;
     }
   }
 

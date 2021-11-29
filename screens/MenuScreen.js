@@ -4,6 +4,8 @@ import { useDispatch } from 'react-redux';
 import { logout } from './../store/actions/UserActions';
 import { useSelector } from 'react-redux';
 import { toggleUserValid } from './../store/actions/UserActions';
+import { toggleChatNotification } from './../store/actions/UserActions';
+import { toggleEventNotification } from './../store/actions/UserActions';
 
 // IMAGE COMP
 import ImagesAvatar from './../components/imageAvatar';
@@ -12,21 +14,21 @@ import ImagesAvatar from './../components/imageAvatar';
 import Line from './../components/Line';
 
 const MenuScreen = props => {
-   const dispatch = useDispatch();
-   // const [changeName, setChangeName] = useState(profileInfo.name);
-   // const [nameValid, setNameValid] = useState(false);
+   
+  const dispatch = useDispatch();
+  const userInfo = useSelector(state => state.user.loggedInUser );
 
-   // SWITCH TOGGLERS // one for chats and one for events.
-   const [isEnabled, setIsEnabled] = useState(false);
-   const toggleSwitch = () => setIsEnabled(previousState => !previousState);
-   const [isEventEnabled, setEventIsEnabled] = useState(false);
-   const toggleEventSwitch = () => setEventIsEnabled(previousState => !previousState);
-   
-   const isValid = useSelector(state => state.user.isValid) // the subscription
-   
-   const isnotvalid = () => {
-   dispatch(toggleUserValid(!isValid)) // skifter fortegnet på boolean. action creater toggle happy.
-   }
+   const toggleChatNotifications = () => {
+    console.log(userInfo, userInfo.chatToggle);
+    dispatch(toggleChatNotification(userInfo, userInfo.chatToggle));
+ }
+
+ const toggleEventNotifications = () => {
+    console.log(userInfo, userInfo.chatToggle);
+    dispatch(toggleEventNotification(userInfo, userInfo.eventToggle));
+ }
+ 
+
    return (
       <View style={styles.container}>
          
@@ -35,9 +37,9 @@ const MenuScreen = props => {
         <ImagesAvatar  />
 
         <View style={styles.headLineWrapper}>
-           <Text style={styles.headLine}>Robert Jacobsen</Text>
-           <Text style={styles.inLine}>roja20zz@student.cbs.dk</Text>
-           <Text style={styles.inLine}>web development</Text>
+           <Text style={styles.headLine}>{userInfo.firstname}</Text>
+           <Text style={styles.inLine}>{userInfo.email}</Text>
+           <Text style={styles.inLine}>{userInfo.studyProgramme}</Text>
         </View>
       </View>
 
@@ -60,10 +62,10 @@ const MenuScreen = props => {
            <Switch 
                  style={styles.switch}
                  trackColor={{ false: "#AAAAAA", true: "#BABADD" }} 
-                 thumbColor={isEnabled ? "#5050A5" : "#F5F5F5"}
+                 thumbColor={userInfo.chatToggle ? "#5050A5" : "#F5F5F5"}
                  ios_backgroundColor="#3e3e3e"
-                 onValueChange={toggleSwitch}
-                 value={isEnabled} />
+                 onValueChange={toggleChatNotifications}
+                 value={userInfo.chatToggle} />
 
                  
         <View style={styles.flex}>   
@@ -82,10 +84,10 @@ const MenuScreen = props => {
 <Switch 
       style={styles.eventSwitch}
       trackColor={{ false: "#AAAAAA", true: "#BABADD"}}
-      thumbColor={setEventIsEnabled ? "#F5F5F5" : "#F5F5F5"}
+      thumbColor={userInfo.eventToggle ? "#5050A5" : "#F5F5F5"}
       ios_backgroundColor="#3e3e3e"
-      onValueChange={toggleEventSwitch}
-      value={isEventEnabled} />
+      onValueChange={toggleEventNotifications}
+      value={userInfo.eventToggle} />
 
       
 <View style={styles.flex}>   
@@ -101,7 +103,7 @@ const MenuScreen = props => {
 
         <Line />
 
-         <TouchableOpacity onPress={() => dispatch(logout(), isnotvalid())}>
+         <TouchableOpacity onPress={() => dispatch(logout())}>
           <View style={styles.button}>
             <Text style={styles.buttonText}>Log out</Text>
           </View>

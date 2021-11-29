@@ -29,7 +29,7 @@ const Navigation = props => {
     const isValid = useSelector(state => state.user.isValid);
 
     // remember this when using fonts!!
-    const [loaded] = useFonts({Teko: require('../assets/fonts/Teko-Medium.ttf'),});
+    const [loaded] = useFonts({Teko: require('../assets/fonts/Teko-Medium.ttf'), TekoRegular: require('../assets/fonts/Teko-Regular.ttf'), TekoBold: require('../assets/fonts/Teko-Regular.ttf'), TekoSemiBold: require('../assets/fonts/Teko-Regular.ttf')});
       if (!loaded) {return null;}
 
     return (
@@ -61,7 +61,8 @@ const Navigation = props => {
             tabBarInactiveTintColor: 'gray',
             
             tabBarStyle: { 
-            height: 60,
+            height: 90,
+            paddingTop: 10,
             backgroundColor: 'white',
             },
             tabBarLabelStyle: {
@@ -88,7 +89,14 @@ const Navigation = props => {
 
     ) : (
 
-        <Stack.Navigator>
+        <Stack.Navigator screenOptions={({ route }) => ({
+            headerTitleStyle: {
+                fontFamily: "Teko",
+                fontSize: 26,
+                color: '#5050A5',
+                textTransform: 'uppercase'
+              }
+         })} >
             <Stack.Screen name="LOGIN" component={LoginScreen} />
             <Stack.Screen name="SIGNUPOUTER" component={SignupOnboardStackNavigator} options={{ title: 'SIGNUP' , headerShown: false }} />
         </Stack.Navigator>
@@ -99,7 +107,7 @@ const Navigation = props => {
 }
 
 const styles = StyleSheet.create({
-   
+
 });
 
 export default Navigation;

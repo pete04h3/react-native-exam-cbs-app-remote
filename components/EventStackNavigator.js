@@ -8,7 +8,14 @@ const Stack = createNativeStackNavigator();
 
 export default function EventStackNavigator() {
     return (
-        <Stack.Navigator>
+        <Stack.Navigator screenOptions={({ route }) => ({
+            headerTitleStyle: {
+                fontFamily: "Teko",
+                fontSize: 26,
+                color: '#5050A5',
+                textTransform: 'uppercase'
+              }
+         })} >
             <Stack.Screen name="Discover" component={DiscoverScreen} />
             <Stack.Screen name="Events" component={EventsScreen} />
             <Stack.Screen name="Event" component={EventScreen} />
