@@ -137,7 +137,7 @@ const LoginScreen = (props) => {
 
         <View style={styles.accountButton}>
            <Text style={styles.accountText}>Don't have an account?</Text>
-           <TouchableOpacity onPress={ () => handleLogin()}>
+           <TouchableOpacity onPress={ () => goToSignUp()}>
             <Text style={styles.accountButtonText}>Sign up</Text>
         </TouchableOpacity>
         </View>

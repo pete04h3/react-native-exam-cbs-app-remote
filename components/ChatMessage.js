@@ -12,6 +12,7 @@ const ChatMessage = props => {
     
     //const hardcodedUserId = '1';
     const realTimeUserId = useSelector(state => state.user.loggedInUser).id;
+    
 
     const hours = props.chatmessage.messageTimestamp.getHours();
     const minutes = props.chatmessage.messageTimestamp.getMinutes();
@@ -21,6 +22,8 @@ const ChatMessage = props => {
     const userIdOfMessage = props.chatmessage.user.id;
     const isMe = realTimeUserId === userIdOfMessage;
 
+    
+
     let name;
     if (!isMe){
         name = 'From ' + props.chatmessage.user.email + ' ' + props.chatmessage.user.lastname + 'sent at'; // CHANGE props.chatmessage.user.email EMAIL TO FIRSTNAME
@@ -28,14 +31,20 @@ const ChatMessage = props => {
         name = 'From ' + props.chatmessage.user.email + ' ' + props.chatmessage.user.lastname + 'sent at'; // CHANGE props.chatmessage.user.email EMAIL TO FIRSTNAME 
 
     } */
-    // console.log("----------------: " + props.img);
-    // only display the image if this message is not written by me.
+
+
     let image;
     if (!isMe) {
         image = <Image
             style={styles.tinyLogo}
             source={ props.image } />
-    }    
+    }   
+    
+    console.log('User account message varible "isMe" is set to:' , isMe);
+    console.log('User account id variable "realTimeUserId" is:' , realTimeUserId);
+    console.log('User message id:' , userIdOfMessage);
+    console.log('User account email:' , props.chatmessage.user.email , ', sending message:' , props.chatmessage.messageText , 'Message sent at:',hours,':',minutes);
+    
 
     return (
       

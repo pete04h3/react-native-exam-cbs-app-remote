@@ -4,7 +4,7 @@ import { View,  Text, Image, Button, StyleSheet, TextInput, Platform, SafeAreaVi
 import { toggleUserValid } from './../store/actions/UserActions';
 
 // DISPATCH
-import { useDispatch } from 'react-redux';
+import { useDispatch , useSelector} from 'react-redux';
 // SIGNUP ACTION
 import { signup } from '../store/actions/UserActions';
 // TERMS ACTION 
@@ -13,6 +13,7 @@ import { terms } from '../store/actions/UserActions';
 import Input from './../components/Input';
 // IMAGE COMP
 import ImagesExample from './../components/ImageExample'
+
 // SCREENS
 import Navigation from '../components/Navigation';
 import LoginScreen from './../screens/LoginScreen';
@@ -34,16 +35,26 @@ import TermsAndConditions from '../components/Termsandconditions';
 
 const SignupScreen = (props: any) => {
 
- 
-    const [checked, setChecked] = useState(''); // useState has to be empty! 
+ // VALID & USEREMAIL
+ const userEmail = useSelector((state : any) => state.user.loggedInUser?.email );
+ const isValid = useSelector((state : any) => state.user.isValid);
+ console.log('isValid status:', isValid);
+ console.log('User account:', userEmail);
+
+ const [checked, setChecked] = useState(''); // useState has to be empty! 
   
-    React.useEffect(() => {
-      console.log('Checkbox set to', checked);
-    }, [checked]);
+
+
+  
     
     const handleRadio = () => {
       setChecked(!checked as any)
+      
     }
+
+     React.useEffect(() => {
+      console.log('Checkbox set to', checked);
+    }, [checked]); 
 
     // READING TERMS COMPONENT
     const [shouldShow, setShouldShow] = useState('');
@@ -51,27 +62,14 @@ const SignupScreen = (props: any) => {
     const handleTerms = () => {
       setShouldShow(!shouldShow as any)
       console.log(shouldShow, setShouldShow);
-
       
     }
 
-    React.useEffect(() => {
-      console.log('Opening terms and condition module', shouldShow);
-    }, [shouldShow]);
-
-   
-
-    // OLD Checkbox 
- /*   const [checked, setChecked] = useState(false);
- 
-   React.useEffect(() => {
-      console.log('Checkbox set to', checked);
-      // add css to signup button (opacity some thing)
-    }, [checked]);
     
-    const handleTerms = () => {
-      setChecked(!checked)
-    } */
+
+ 
+
+
 
      // useState 
     const [changeName, setChangeName] = useState(''); // lift up
@@ -89,6 +87,7 @@ const SignupScreen = (props: any) => {
 
     const handleSignup = () => {
         dispatch(signup(changeName, changePassword, props)); // working
+        console.log('Attempting to sign up user', changeName, changePassword);
     }
 
     const acceptTerms = () => {

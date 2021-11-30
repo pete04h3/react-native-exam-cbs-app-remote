@@ -14,6 +14,9 @@ const TermsAndConditions = props => {
       contentSize.height - paddingToBottom;
 };
   const [modalVisible, setModalVisible] = useState(true);
+  
+  console.log('Terms and conditions modal visibility is set to:' , modalVisible);
+
 
   const [accepted, setAccepted] = useState('false');
   const toggleAccepted = () => setAccepted(previousState => !previousState);

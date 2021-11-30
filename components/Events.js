@@ -10,7 +10,9 @@ import InformationIcon from './InfoIcon';
 
 const Events = props => {
     const navigation = useNavigation(); 
-    console.log(props.event.eventId);
+    console.log('Loading events:' , props.event.eventId , props.event.eventName);
+    
+  
     let image = props.event.imageUrl
     return (
 

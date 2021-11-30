@@ -15,14 +15,6 @@ import * as SecureStore from 'expo-secure-store';
 export const TOGGLE_VALID = 'TOGGLE_VALID';
 import Navigation from "../../components/Navigation";
 
-// #################
-// TOGGLE USER VALID
-// #################
-
-export const toggleUserValid = (isValid: any) => {
-    return { type: TOGGLE_VALID, payload: isValid }
-}
-
 // #############
 // API KEY
 // #############
@@ -30,11 +22,23 @@ export const toggleUserValid = (isValid: any) => {
 //const api_key = 'AIzaSyBV2KOnzeYrwe6Lwz2B_NbMExB2Jo2aTNs'; // CHRISTIANS API_KEY 
 const api_key = 'AIzaSyCbs8r_RDoaoPymB2IUukOxQUkm5nV9YtI'; // PETERS API_KEY
 
+
+// #################
+// TOGGLE USER VALID
+// #################
+
+export const toggleUserValid = (isValid: any) => {
+    console.log('running toggleUserValid' , isValid)
+    return { type: TOGGLE_VALID, payload: isValid }
+}
+
+
 // #############
 // RESTORE USER
 // #############
 
 export const restoreUser = (user: any, token: any) => {
+    console.log('Logging in user:' , user, token)
     return { type: LOGIN, payload: { user, token } };
 }
 
@@ -48,20 +52,24 @@ export const terms = (checked: any, setChecked: any) => {
 // #############
 // LOGOUT
 // #############
-export const logout = (isValid: any) => {
-    console.log('User logout confirmed!');
+export const logout = (user: any , isValid: any) => {
+
     SecureStore.deleteItemAsync('userToken',);
     SecureStore.deleteItemAsync('user',);
     SecureStore.deleteItemAsync('expiration',);
     SecureStore.deleteItemAsync('refreshToken',);
 
-    return async (dispatch: any) => {
+    console.log('SecureStore updated successfully!')
+    console.log('logout confirmed!');
+
+   
+
+     return async (dispatch: any) => {
 
         dispatch(toggleUserValid(!isValid));
-        console.log("User isValid status:", !isValid);
         dispatch({ type: LOGOUT })
         
-        };
+        }; 
    
 
 };
@@ -161,8 +169,11 @@ export const login = (email: string, password: string, isValid: any) => {
             SecureStore.setItemAsync('expiration', JSON.stringify(expiration));
             SecureStore.setItemAsync('refreshToken', data.refreshToken);
             dispatch({ type: LOGIN, payload: { user, token: data.idToken, isValid: true } })
+            console.log('expiration is:', expiration)
+            console.log('dataRealtime:', dataRealtime , 'data.idToken:',data.idToken)
             //dispatch(toggleUserValid(!isValid));
         }
+
        
 
 
@@ -246,7 +257,7 @@ const realTimeUpdateAwait = await realTimeUpdate.json();
         if (!response.ok && !responseRealtime.ok) {
             //There was a problem..
         } else {
-            console.log('Logging responseRealtime');
+            console.log('Inside else part of function: signup');
             const user = new User(realTimeUpdateAwait.id, '', '', '', email, '', 'false', false);
             SecureStore.setItemAsync('userToken', data.idToken);
             SecureStore.setItemAsync('user', JSON.stringify(user));
@@ -255,6 +266,8 @@ const realTimeUpdateAwait = await realTimeUpdate.json();
             expiration.setSeconds(expiration.getSeconds() + parseInt(data.expiresIn));
             SecureStore.setItemAsync('expiration', JSON.stringify(expiration));
             SecureStore.setItemAsync('refreshToken', data.refreshToken);
+            console.log('expiration is:', expiration)
+            console.log('refresh token is:', data.refreshToken)
             dispatch({ type: SIGNUP, payload: { user, token: data.idToken } })
             props.navigation.navigate('OnboardUserinfoScreen') // working
         }

@@ -12,6 +12,7 @@ import InformationIcon from './InfoIcon';
 const Feed = props => {
 
     const navigation = useNavigation(); 
+    console.log('Loading feed id:' , props.feed.feedId , 'name:', props.feed.feedName);
     console.log(props);
     console.log(props.feed);
     console.log(props.feed.feedId);

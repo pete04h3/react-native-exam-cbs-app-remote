@@ -23,6 +23,8 @@ const NotificationScreen = props => {
 
        const handleNotifications = () => {
            dispatch(updateNotifications(userInfo, props)); // working
+           console.log('Updating notifications');
+           console.log('Notifications is set to:' , userInfo, props);
        }
    
  return (

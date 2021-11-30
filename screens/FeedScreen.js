@@ -17,12 +17,14 @@ import { ScrollView } from 'react-native-gesture-handler';
 
 const FeedScreen = props => {
 
+   const userEmail = useSelector(state => state.user.loggedInUser?.email );
+   console.log('Logged in user:' , userEmail);
    const { id } = props.route.params;
    const singleFeed = useSelector(state => state.feed.feed).find(singleFeed => singleFeed.feedId === id); // state is defined // event: EventReducer in app.js // Initialstate events: []
-   console.log(singleFeed.feedName);
+   console.log('Wathing CBS event:' , singleFeed.feedName);
    const feedId = singleFeed.feedId
-   const userEmail = useSelector(state => state.user.loggedInUser?.email );
-   console.log(userEmail);
+ 
+  
    const dispatch = useDispatch(); // helps to dispatch an action
 
    const user = new UserGoingInterested(userEmail);
@@ -31,10 +33,12 @@ const FeedScreen = props => {
 
    const handleGoingUser = () => {
       dispatch(updateGoingUser(feedId, user));
+      console.log('Adding going user:' ,  user, 'to event id:', feedId)
    };
    
    const handleInterestedUser = () => {
       dispatch(updateInterestedUser(id, user));
+      console.log('Adding interested user:' ,  user, 'to event id:', feedId)
 
    };
 

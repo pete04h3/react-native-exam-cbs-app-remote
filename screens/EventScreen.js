@@ -16,13 +16,14 @@ import { ScrollView } from 'react-native-gesture-handler';
 
 
 const EventScreen = props => {
-
+   
+   const userEmail = useSelector(state => state.user.loggedInUser?.email );
+   console.log('Logged in user:' , userEmail);
    const { id } = props.route.params;
    const singleEvent = useSelector(state => state.event.events).find(singleEvent => singleEvent.eventId === id); // state is defined // event: EventReducer in app.js // Initialstate events: []
-   console.log(singleEvent.eventName);
+   console.log('Wathing CBS event:' , singleEvent.eventName);
    const eventId = singleEvent.eventId
-   const userEmail = useSelector(state => state.user.loggedInUser?.email );
-   console.log(userEmail);
+  
    const dispatch = useDispatch(); // helps to dispatch an action
 
    const user = new UserGoingInterested(userEmail);
@@ -31,11 +32,12 @@ const EventScreen = props => {
 
    const handleGoingUser = () => {
       dispatch(updateGoingUser(eventId, user));
+      console.log('Adding going user:' ,  user, 'to event id:', eventId)
    };
    
    const handleInterestedUser = () => {
       dispatch(updateInterestedUser(id, user));
-
+      console.log('Adding interested user:' ,  user, 'to event id:', eventId)
    };
 
    // DELETE FROM DB
