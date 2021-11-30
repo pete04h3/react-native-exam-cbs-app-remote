@@ -11,31 +11,26 @@ import { onChange } from 'react-native-reanimated';
 
 const OnboardUserinfoScreen = props => {
     
-    const dispatch = useDispatch(); // helps to dispatch an action
+  // To dispatch an action
+    const dispatch = useDispatch();
     
-    const isValid = useSelector(state => state.user.isValid) // the subscription
-    // const loggedInUser = useSelector(state => state.user.loggedInUser).token;
-
-    const userInfo = useSelector(state => state.user?.loggedInUser );
+    //useSelector() that extracts the data from the store. 
+    const userInfo = useSelector(state => state.user.loggedInUser ); // the subscription
   
-    console.log('User', userInfo)
-      // skifter fortegnet på boolean. action creater toggle happy.
-
+    // useState() - Declares new state variable
     const [fullName, onChangeName] = useState('');
     const [studyProg, onChangeStudyprog] = useState('');
     
+    //dispatch the action
     const handleOnboardingUser = () => {
-        dispatch(updateUser(fullName, studyProg, userInfo, isValid, props))    }
+        dispatch(updateUser(fullName, studyProg, userInfo, props))}
+        console.log(props.navigation);
 
-    // const changeProfileImage = () => {
-    //    props.src = '../assets/6d38ab105ed32e0c25e4f82e1e9ccd2a.png'; // not working
-    // }
+
  return (
      <View style={styles.container}>
 
-<Text>Is User done with onboarding? {String(isValid)}</Text>      
-       {/* <Button title="Flip user done" onPress={handleOnboardingUser} /> */}
-       
+      {/* <Text>Is User done with onboarding? {String(isValid)}</Text>       */}
 
      <View style={styles.imgWrap}>
      </View>
@@ -67,9 +62,6 @@ const OnboardUserinfoScreen = props => {
        <TextInput placeholder="Study program" label="Study" style={styles.textInput} onChangeText={onChangeStudyprog} value={studyProg} />
        </View>
 
-    
-
-  
  </View>
 
 

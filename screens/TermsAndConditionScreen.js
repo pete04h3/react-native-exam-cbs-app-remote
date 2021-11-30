@@ -3,25 +3,18 @@ import { View, Text, ScrollView, Dimensions, TouchableOpacity, Modal } from 'rea
 
 
 
-
-   
-
 const TermsAndConditions = props => {
  
     return (
      <View style={styles.container}>
 
           <View>
-            
             <Text style={styles.title}>Terms and conditions</Text>
-            <ScrollView 
-            style={styles.tcContainer}
-            scrollEventThrottle={({nativeEvent}) => {
+            
+                <ScrollView style={styles.tcContainer} scrollEventThrottle={({nativeEvent}) => {
                 if (isCloseToBottom(nativeEvent)) {
                   toggleAccepted(accepted);
-                }
-              }}
-            >
+                } }} >
                 <Text style={styles.tcP}>Welcome to our website. If you continue to browse and use this website, you are agreeing to comply with and be bound by the following terms and conditions of use, which together with our privacy policy govern [business name]’s relationship with you in relation to this website. If you disagree with any part of these terms and conditions, please do not use our website.</Text>
                 <Text style={styles.tcP}>The term ‘[business name]’ or ‘us’ or ‘we’ refers to the owner of the website whose registered office is [address]. Our company registration number is [company registration number and place of registration]. The term ‘you’ refers to the user or viewer of our website.</Text>
                     <Text style={styles.tcL}>{'\u2022'} The content of the pages of this website is for your general information and use only. It is subject to change without notice.</Text>

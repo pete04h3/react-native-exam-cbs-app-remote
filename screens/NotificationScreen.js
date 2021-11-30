@@ -12,15 +12,15 @@ import { updateNotifications } from '../store/actions/UserActions';
 
 const NotificationScreen = props => {
 
- // dispatch
+ //To dispatch an action
  const dispatch = useDispatch();
 
- // useState  
-/*     const [someThing, someThingElse] = useState(''); // lift up*/ 
-const userInfo = useSelector((state) => state.user?.loggedInUser );
+//useSelector() that extracts the data from the store. 
+const userInfo = useSelector((state) => state.user.loggedInUser );
 
+//dispatch the action
 const handleNotifications = () => {
-  dispatch(updateNotifications(userInfo, props)); // working
+  dispatch(updateNotifications(userInfo, props));
 }
    
  return (
@@ -41,7 +41,7 @@ const handleNotifications = () => {
           </View>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={ () => props.navigation.navigate('CHATOUTER') }>
+        <TouchableOpacity onPress={ () => props.navigation.navigate('ONBOARDINGSCREEN1') }>
           <View style={styles.laterButton}>
             <Text style={styles.laterButtonText}>Maybe later</Text>
           </View>

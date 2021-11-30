@@ -14,6 +14,8 @@ import ImagesAvatar from './../components/imageAvatar';
 import Line from './../components/Line';
 
 const MenuScreen = props => {
+
+  const isValid = useSelector(state => state.user.isValid) // the subscription
    
   const dispatch = useDispatch();
   const userInfo = useSelector(state => state.user.loggedInUser );
@@ -103,7 +105,7 @@ const MenuScreen = props => {
 
         <Line />
 
-         <TouchableOpacity onPress={() => dispatch(logout())}>
+         <TouchableOpacity onPress={() => dispatch(logout(isValid))}>
           <View style={styles.button}>
             <Text style={styles.buttonText}>Log out</Text>
           </View>

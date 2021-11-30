@@ -15,8 +15,10 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 
 
 const LoginScreen = (props) => {
+    
     const [email, onChangeEmail] = useState("");
     const [password, onChangePassword] = useState("");
+    
     const dispatch = useDispatch();
     const isValid = useSelector(state => state.user.isValid) // the subscription
 
@@ -24,8 +26,6 @@ const LoginScreen = (props) => {
         dispatch(login(email, password, isValid));
     }
   
-
-
     const acceptTerms = () => {
       dispatch(login(email, password)); // not working
   }
@@ -47,13 +47,16 @@ const LoginScreen = (props) => {
                 console.log("refresh token");
                 refreshTokenString = await SecureStore.getItemAsync('refreshToken');
                 dispatch(refreshToken(refreshTokenString));
-            } else {
-              dispatch(toggleUserValid(!isValid))
-            }
+            } 
             console.log("no refresh token");
 
             userToken = await SecureStore.getItemAsync('userToken');
             user = JSON.parse(await SecureStore.getItemAsync('user'));
+            
+            if (userToken) {
+            dispatch(restoreUser(user, userToken));
+            }
+            
             
             // console.log(userToken);
             // console.log(user);
@@ -63,8 +66,8 @@ const LoginScreen = (props) => {
             console.log("restore token failed");
             console.log(e);
           }
-    
-          dispatch(restoreUser(user, userToken));
+          
+  
         };
     
         bootstrapAsync();

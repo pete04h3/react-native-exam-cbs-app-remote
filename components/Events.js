@@ -34,7 +34,7 @@ const TimeIcon = () => (
 
 const Events = props => {
     const navigation = useNavigation(); 
-    console.log(props.event.eventId);
+    console.log('se her efter events', props);
     console.log(props.event.eventName);
     let image = props.event.imageUrl
     return (

@@ -26,8 +26,8 @@ export default function SignupOnboardStackNavigator() {
          })}>
             <Stack.Screen name="SIGNUP" component={SignupScreen}  />
              <Stack.Screen name="TermsAndConditionScreen" component={TermsAndConditionScreen}options={{ title: 'Terms and conditions' }}  />
-            <Stack.Screen name="OnboardUserinfoScreen" component={OnboardUserinfoScreen} options={{ title: 'User info' }} />
-            <Stack.Screen name="NOTIFCATIONS" component={NotificationScreen} options={{ title: 'Notifications' }} />
+            <Stack.Screen name="OnboardUserinfoScreen" component={OnboardUserinfoScreen} options={{ title: 'User info' }, { headerShown: false }} />
+            <Stack.Screen name="NOTIFCATIONS" component={NotificationScreen} options={{ title: 'Notifications' }, { headerShown: false }}  />
             <Stack.Screen name="ONBOARDINGSCREEN1" component={OnboardingScreen1} options={{ headerShown: false }} />
             <Stack.Screen name="ONBOARDINGSCREEN2" component={OnboardingScreen2} options={{ headerShown: false }} />
             <Stack.Screen name="ONBOARDINGSCREEN3" component={OnboardingScreen3} options={{ headerShown: false }} />

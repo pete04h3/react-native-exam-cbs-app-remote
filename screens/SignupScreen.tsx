@@ -3,17 +3,39 @@ import { View, Text, Image, Button, StyleSheet, TextInput, Platform, SafeAreaVie
 import { RadioButton } from 'react-native-paper';
 import { useDispatch } from 'react-redux';
 
-import { signup, terms } from '../store/actions/UserActions';
+import { signup } from '../store/actions/UserActions';
 import Input from './../components/Input';
 import ImagesExample from './../components/ImageExample'
-// import TermsAndConditions from './../components/TermsandConditions';
-
 
 
 
 const SignupScreen = (props: any) => {
 
-  // Terms and condition
+
+  // --- For signup form
+
+  // useState() - Declares new state variable
+  const [changeEmail, setChangeEmail] = useState('');
+  const [nameValid, setNameValid] = useState(false);
+
+  const [changePassword, setChangePassword] = useState("");
+  const [passwordValid, setPasswordValid] = useState(false);
+
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [confirmPasswordValid, setConfirmPasswordValid] = useState(false);
+
+  // Invoke hook useDisptach and store it to variable dispatch to dispatch actions
+  const dispatch = useDispatch();
+
+  // function component to handle signup
+  const handleSignup = () => {
+    dispatch(signup(changeEmail, changePassword, props)); // working
+  }
+
+
+
+
+  // --- For the Terms and condition
   const [checked, setChecked] = useState(''); // useState is empty
   const [shouldShow, setShouldShow] = useState(''); // useState is empty
 
@@ -21,7 +43,6 @@ const SignupScreen = (props: any) => {
   const handleRadio = () => {
     setChecked(!checked as any) // checkbox set to true/false
   }
-
 
   React.useEffect(() => {
     console.log('Checkbox set to', checked); //Logs checkbox to true/false
@@ -32,33 +53,10 @@ const SignupScreen = (props: any) => {
   }, [shouldShow]);
 
 
-  // Signup form
-  const [changeName, setChangeName] = useState('');
-  const [nameValid, setNameValid] = useState(false);
-
-  const [changePassword, setChangePassword] = useState("");
-  const [passwordValid, setPasswordValid] = useState(false);
-
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [confirmPasswordValid, setConfirmPasswordValid] = useState(false);
-
-  const dispatch = useDispatch();
-
-  const handleSignup = () => {
-    dispatch(signup(changeName, changePassword, props)); // working
-  }
-
 
   return (
 
     <View style={styles.container}>
-
-      {/* TERMS AND CONDITIONS MODULE
-      <SafeAreaView style={styles.container}>
-        <View style={styles.termsContainer}>
-          {shouldShow ? (<TermsAndConditions />) : null}
-        </View>
-      </SafeAreaView> */}
 
 
       {/*TOP OF FORM*/}
@@ -77,9 +75,9 @@ const SignupScreen = (props: any) => {
               placeholder='sije19ab@student.cbs.dk'
               label="E-mail"
               error="Please fill out your username"
-              text={changeName} nameValid={nameValid}
+              text={changeEmail} nameValid={nameValid}
               onValid={(valid: any) => setNameValid(valid)}
-              setContent={(content: any) => setChangeName(content)} />
+              setContent={(content: any) => setChangeEmail(content)} />
           </SafeAreaView>
 
           <SafeAreaView style={styles.wrapperInline}>
@@ -130,7 +128,7 @@ const SignupScreen = (props: any) => {
 
       </View>
 
-      {/*SIGNUP BUTTON Get access*/}
+      {/*SIGNUP BUTTON*/}
       <TouchableOpacity disabled={!checked} style={!checked ? styles.button : styles.buttonValid} onPress={handleSignup}>
         <View>
           <Text style={styles.buttonText}>Get access</Text>

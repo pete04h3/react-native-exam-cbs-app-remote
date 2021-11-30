@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { View, Text, Button, StyleSheet, TextInput } from 'react-native';
 import InformationIcon from './InfoIcon';
 
+// Properties with build in types
 interface Props {
     secure: boolean,
     placeholder: string;
@@ -15,14 +16,18 @@ interface Props {
 }
 
 const Input = ({ placeholder, secure, label = 'My default value', text, error, nameValid, onValid, setContent }: Props) => {
+
+    // useState() - Declares new state variable as false
     const [touched, setTouched] = useState(false);
 
+    // if intered text is empty string then onValid(false) else onValid(true) 
     const handleNewInput = (enteredText: string) => {
         setTouched(true);
         enteredText === '' ? onValid(false) : onValid(true);
         setContent(enteredText);
     };
 
+    // if user is typing in input or not
     if (!handleNewInput) {
 
 

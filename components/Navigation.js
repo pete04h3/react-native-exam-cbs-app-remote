@@ -9,34 +9,36 @@ import SignupOnboardStackNavigator from './SignupOnboardStackNavigator';
 import HomeScreen from './../screens/HomeScreen';
 import EventStackNavigator from './EventStackNavigator';
 import MenuScreen from './../screens/MenuScreen';
-import NotificationScreen from './../screens/NotificationScreen';
-import { HeaderShownContext } from '@react-navigation/elements';
-import SignupScreen from './../screens/SignupScreen';
+
 import LoginScreen from './../screens/LoginScreen';
 import { useSelector } from 'react-redux';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
-// remember this when using fonts!!
+
 import { useFonts } from 'expo-font';
-import { and } from 'react-native-reanimated';
+
 
 
 const Navigation = props => {
     
     const Stack = createNativeStackNavigator();
     const Tab = createBottomTabNavigator();
+
     const loggedInUser = useSelector(state => state.user.loggedInUser);
     const isValid = useSelector(state => state.user.isValid);
 
-    // remember this when using fonts!!
+    console.log("State of loggedInUser and isValid:",loggedInUser, isValid);
+
     const [loaded] = useFonts({Teko: require('../assets/fonts/Teko-Medium.ttf'), TekoRegular: require('../assets/fonts/Teko-Regular.ttf'), TekoBold: require('../assets/fonts/Teko-Regular.ttf'), TekoSemiBold: require('../assets/fonts/Teko-Regular.ttf')});
       if (!loaded) {return null;}
 
     return (
     <NavigationContainer>
         
+
+        {/* if isValid is not false and loggedInUser is not undefined then login in to app else go to signup/login */}
         { isValid !== false && loggedInUser !== undefined  ? (
-        // { loggedInUser !== undefined ?(
+       
         
         <Tab.Navigator screenOptions={({ route }) => ({
             tabBarIcon: ({ focused, color, size }) => {

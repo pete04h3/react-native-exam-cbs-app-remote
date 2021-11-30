@@ -13,25 +13,23 @@ const UserReducer = (state = initialState, action) => {
             return { ...state, loggedInUser: action.payload };
 
         case TOGGLE_VALID: 
-        //state.isHappy = true; //NOO !!!! State mutation not allowed
-        return { ...state, isValid: action.payload } ;
+            return { ...state, isValid: action.payload } ;
 
         case EVENT_NOTIFICATIONS_TOGGLE:
             return { ...state, loggedInUser: action.payload };
 
-            case CHAT_NOTIFICATIONS_TOGGLE:
-                return { ...state, loggedInUser: action.payload };
+        case CHAT_NOTIFICATIONS_TOGGLE:
+            return { ...state, loggedInUser: action.payload };
 
         case REFRESH_TOKEN:
             return { ...state, token: action.payload };
         
         case LOGOUT:
-            return {...state, loggedInUser: undefined, token: undefined };
+            return {...state, loggedInUser: undefined, token: undefined};
 
         case SIGNUP:
             return { ...state, loggedInUser: action.payload.user, token: action.payload.token };
             
-
         case LOGIN:
             return { ...state, loggedInUser: action.payload.user, 
                 token: action.payload.token };
