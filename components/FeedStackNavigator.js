@@ -8,7 +8,7 @@ import FeedScreen from '../screens/FeedScreen';
 
 const Stack = createNativeStackNavigator();
 
-export default function EventStackNavigator() {
+export default function FeedStackNavigator() {
     
     return (
 
